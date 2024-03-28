@@ -1,11 +1,27 @@
 from django.db import models
 
+class Device(models.Model):
+    EUR = 'EUR'
+    GBP = 'GBP'
+    USD = 'USD'
+
+    DEVISE_CHOICES = (
+        (EUR, 'EUR (EUR)'),
+        (GBP, 'GBP (GBP)'),
+        (USD, 'USD (USD)'),
+    )
+
+    devise = models.CharField(max_length=3, choices=DEVISE_CHOICES)
+
+    def __str__(self):
+        return self.get_devise_display()
+
 class Client(models.Model):
     
     etat_dossier = (
-        ('Y', ('Yes')),
-        ('N', ('No')),
-    )
+    (True, 'Validé'),
+    (False, 'Non validé'),
+)
  
     etat_statut= (
         ('A', ('Active')),
@@ -37,7 +53,7 @@ class Client(models.Model):
 
     article_imposition = models.CharField(max_length=100)
 
-    devise = models.CharField(max_length=100)
+    devise = models.ForeignKey(Device, on_delete=models.CASCADE)  
 
     rue = models.CharField(max_length=100)
 
@@ -73,7 +89,7 @@ class Client(models.Model):
 
     fax = models.CharField(max_length=100, blank=False)
 
-    dossier_valide = models.CharField(max_length=1, choices=etat_dossier)
+    dossier_valide = models.BooleanField(default=False)
 
     statut = models.CharField(max_length=1, choices=etat_statut)
 
@@ -82,4 +98,7 @@ class Client(models.Model):
         verbose_name_plural = "clients"
 
     def __str__(self): #représenter chaque instance de Client avec son nom
-        return self.name
+        return self.nom
+    
+    def get_devise_display(self):
+        return self.devise.get_devise_display()
