@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "clients",
-    "factures",
     "devises",
+    "factures_vente",
+    "factures_service",
     "rest_framework",
     'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -160,4 +162,12 @@ CORS_ALLOW_HEADERS = [
     'Content-Type',
 ]
 
+# REST_FRAMEWORK = {
+
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+        
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     )
+    
+# }
 

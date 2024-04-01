@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FacturesConfig(AppConfig):
+class FacturesVenteConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'factures'
+    name = 'factures_vente'

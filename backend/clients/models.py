@@ -79,6 +79,8 @@ class Client(models.Model):
 
     statut = models.CharField(max_length=1, choices=etat_statut)
 
+    est_vip = models.BooleanField(default=False) 
+
     class Meta: 
         verbose_name = "client"
         verbose_name_plural = "clients"
