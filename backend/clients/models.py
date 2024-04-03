@@ -15,8 +15,8 @@ class Client(models.Model):
     )
 
     categorie = (
-        ('C', ('Client')),
-        ('S', ('Supplier')),
+        ('Client', ('Client')),
+        ('Supplier', ('Supplier')),
     )
 
     #id = models.CharField(max_length=100 , primary_key=True)
