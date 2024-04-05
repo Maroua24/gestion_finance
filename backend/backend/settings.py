@@ -142,9 +142,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Exemple pour une application React locale
-        # Exemple pour un domaine spécifique
-    # Ajoutez d'autres origines autorisées au besoin
+    'http://localhost:3000',  
 ]
 
 CORS_ALLOW_METHODS = [
