@@ -1,19 +1,19 @@
 from rest_framework.permissions import IsAuthenticated
-from .models import Factureservice
-from .serializers import  FactureserviceSerializer
+from .models import FactureService
+from .serializers import  FactureServiceSerializer
 from rest_framework.generics import ListAPIView,  CreateAPIView, UpdateAPIView 
 
-class  FactureserviceListView(ListAPIView):
+class  FactureServiceListView(ListAPIView):
     permission_classes = [IsAuthenticated]
-    queryset = Factureservice.objects.all()
-    serializer_class = FactureserviceSerializer
+    queryset = FactureService.objects.all()
+    serializer_class = FactureServiceSerializer
 
-class FactureserviceCreateView(CreateAPIView):
+class FactureServiceCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
-    queryset = Factureservice.objects.all()
-    serializer_class = FactureserviceSerializer
+    queryset = FactureService.objects.all()
+    serializer_class = FactureServiceSerializer
 
-class FactureserviceUpdateView(UpdateAPIView):
+class FactureServiceUpdateView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
-    queryset = Factureservice.objects.all()
-    serializer_class = FactureserviceSerializer
+    queryset = FactureService.objects.all()
+    serializer_class = FactureServiceSerializer
