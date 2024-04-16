@@ -14,7 +14,7 @@ export const getAllClients = createAsyncThunk('posts/getAll', async (url,thunkAP
 });
 
 export const addClient = createAsyncThunk('posts/addClient',async (values) => {
-    return fetch("https://eoj0a1c4o63edof.m.pipedream.net",{method:"POST",
+    return fetch("http://127.0.0.1:8000/api/clients/",{method:"POST",
         headers:{Accept:"application/json","Content-type":"application/json"},
         body: JSON.stringify({
             Categorie_de_compte: values.Categorie_de_compte,
