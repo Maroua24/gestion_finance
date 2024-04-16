@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
-// import {clientlist} from './data'
 import {addClient, getAllClients} from '../API/ClientAPI'
 
 const initialState = {
@@ -49,5 +47,4 @@ const ClientSlice = createSlice({
     }
 })
 
-// export const {addClient} = ClientSlice.actions;
 export default ClientSlice.reducer;

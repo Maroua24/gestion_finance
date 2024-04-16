@@ -33,20 +33,19 @@ export const addClient = createAsyncThunk('posts/addClient',async (values) => {
             Type_de_region: values.Type_de_region,
             Code_postal: values.Code_postal,
             Pays: values.Pays,
-Telephone: values.Telephone,
-Email: values.Email,
-Secteur_activite: values.Secteur_activite,
-Condition_de_paiement: values.Condition_de_paiement,
-Cre_le: values.Cre_le,
-Cre_par: values.Cre_par,
-Nom: values.Nom,
-Prenom: values.Prenom,
-Fonction: values.Fonction,
-Type_de_client: values.Type_de_client,
-Fax: values.Fax,
-Dossier_valide: values.Dossier_valide,
-valid: values.valid
-
+            Telephone: values.Telephone,
+            Email: values.Email,
+            Secteur_activite: values.Secteur_activite,
+            Condition_de_paiement: values.Condition_de_paiement,
+            Cre_le: values.Cre_le,
+            Cre_par: values.Cre_par,
+            Nom: values.Nom,
+            Prenom: values.Prenom,
+            Fonction: values.Fonction,
+            Type_de_client: values.Type_de_client,
+            Fax: values.Fax,
+            Dossier_valide: values.Dossier_valide,
+            valid: values.valid
         })
 
     }).then((res)=> res.json());
