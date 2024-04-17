@@ -86,7 +86,6 @@ const AddClient = () => {
                     <Style>
                         <Input label="Region:" name="Region" type="text" id="Region" value={inputValue.Region} onChange={handleInput}/>
                         <Input label="Type de region:" name="Type_de_region" type="text" id="Type_de_region" value={inputValue.Type_de_region} onChange={handleInput}/>
-
                     </Style>
 
                     <Style>
