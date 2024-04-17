@@ -13,7 +13,7 @@ const Client = () => {
     const Clients = useSelector(state => state.ClientList.ClientsList);
 
     useEffect(()=>{
-        dispatch(getAllClients("http://127.0.0.1:8000/api/clients/"));
+        dispatch(getAllClients("http://127.0.0.1:8000/api/clients"));
     },[dispatch]);
     return (
         <>

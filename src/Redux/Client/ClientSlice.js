@@ -5,7 +5,6 @@ const initialState = {
     ClientsList:[],
     isLoading:false,
     error:null,
-    isSuccess:'',
 }
 
 const ClientSlice = createSlice({
@@ -37,7 +36,6 @@ const ClientSlice = createSlice({
             .addCase(addClient.fulfilled, (state,action) => {
                 state.isLoading = false
                 state.ClientsList=[]
-                state.isSuccess=action.payload
             })
             .addCase(addClient.rejected,(state,action) => {
                 state.isLoading=false

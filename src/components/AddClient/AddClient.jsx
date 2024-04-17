@@ -48,6 +48,7 @@ const AddClient = () => {
     const handleSubmit=(e)=> {
         e.preventDefault();
         dispatch(addClient(inputValue))
+        // console.log(inputValue)
     }
 
 
@@ -55,67 +56,67 @@ const AddClient = () => {
         <>
             <Menu/>
             <form onSubmit={handleSubmit}  method="post" action="{% url 'formulaire_client' %}">
-                <h1 className="text-[--light-color] text-2xl">Ajouter un client:</h1>
+                <h1 className="text-[--statistic-color] text-3xl m-3">Ajouter un client:</h1>
                 {/* {% csrf_token %}  */}
                 <div style={{ display: "block" }}>
-                    <Select name="Categorie de compte :" value_1="C" value_2="S" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.Categorie_de_compte} onChange={handleInput}/>
+                    <Select name="Categorie_de_compte" value_1="C" value_2="S" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.Categorie_de_compte} onChange={handleInput}/>
 
                     <Style>
-                        <Input name="Raison sociale :" type="text" id="Raison_sociale" value={inputValue.Raison_sociale} onChange={handleInput} />
-                        <Input name="Sigle :" type="text" id="Sigle" value={inputValue.Sigle} onChange={handleInput}/>
+                        <Input label="Raison sociale:" name="Raison_sociale" type="text" id="Raison_sociale" value={inputValue.Raison_sociale} onChange={handleInput} />
+                        <Input label="Sigle:" name="Sigle" type="text" id="Sigle" value={inputValue.Sigle} onChange={handleInput}/>
                     </Style>
 
-                    <Input name="Code TVA :" type="text" id="Code_TVA"  value={inputValue.Code_TVA} onChange={handleInput}/>
-                    <Input name="Nature du compte :" type="text" id="Nature_du_compte"  value={inputValue.Nature_du_compte} onChange={handleInput}/>
+                    <Input label="Code TVA:" name="Code_TVA" type="text" id="Code_TVA"  value={inputValue.Code_TVA} onChange={handleInput}/>
+                    <Input label="Nature du compte:" name="Nature_du_compte" type="text" id="Nature_du_compte"  value={inputValue.Nature_du_compte} onChange={handleInput}/>
 
                     <Style>
-                        <Input name="NIF :" type="text" id="NIF"  value={inputValue.NIF} onChange={handleInput}/>
-                        <Input name="NIS :" type="text" id="NIS" value={inputValue.NIS} onChange={handleInput}/>
+                        <Input label="NIF:" name="NIF" type="text" id="NIF"  value={inputValue.NIF} onChange={handleInput}/>
+                        <Input label="NIS:" name="NIS" type="text" id="NIS" value={inputValue.NIS} onChange={handleInput}/>
                     </Style>
 
-                    <Input name="Registre de commerce :" type="text" id="Registre_de_commerce"  value={inputValue.Registre_de_commerce} onChange={handleInput}/>
-                    <Input name="Article d'imposition :" type="text" id="Article_imposition" value={inputValue.Article_imposition}  onChange={handleInput}/>
-                    <Input name="Devise :" type="text" id="Devise" value={inputValue.Devise} onChange={handleInput}/>
+                    <Input label="Registre de commerce:" name="Registre de commerce" type="text" id="Registre_de_commerce"  value={inputValue.Registre_de_commerce} onChange={handleInput}/>
+                    <Input label="Article d'imposition:" name="Article_dimposition" type="text" id="Article_imposition" value={inputValue.Article_imposition}  onChange={handleInput}/>
+                    <Input label="Devise:" name="Devise" type="text" id="Devise" value={inputValue.Devise} onChange={handleInput}/>
 
                     <Style>
-                        <Input name="Rue :" type="text" id="Rue" value={inputValue.Rue}  onChange={handleInput}/>
-                        <Input name="Ville :" type="text" id="Ville" value={inputValue.Ville} onChange={handleInput}/>
-                    </Style>
-
-                    <Style>
-                        <Input name="Region :" type="text" id="Region" value={inputValue.Region} onChange={handleInput}/>
-                        <Input name="Type de region :" type="text" id="Type_de_region" value={inputValue.Type_de_region} onChange={handleInput}/>
-
+                        <Input label="Rue:" name="Rue" type="text" id="Rue" value={inputValue.Rue}  onChange={handleInput}/>
+                        <Input label="Ville:" name="Ville" type="text" id="Ville" value={inputValue.Ville} onChange={handleInput}/>
                     </Style>
 
                     <Style>
-                        <Input name="Code postal :" type="text" id="Code_postal" value={inputValue.Code_postal} onChange={handleInput}/>
-                        <Input name="Pays :" type="text" id="Pays" value={inputValue.Pays} onChange={handleInput}/>
+                        <Input label="Region:" name="Region" type="text" id="Region" value={inputValue.Region} onChange={handleInput}/>
+                        <Input label="Type de region:" name="Type_de_region" type="text" id="Type_de_region" value={inputValue.Type_de_region} onChange={handleInput}/>
+
                     </Style>
-
-                        <Input name="Telephone :" type="text" id="Telephone" value={inputValue.Telephone} onChange={handleInput}/>
-                        <Input name="Email :" type="email" id="Email" value={inputValue.Email} onChange={handleInput}/>
-
-                        <Input name="Secteur d'activite :" type="text" id="Secteur_activite" value={inputValue.Secteur_activite}  onChange={handleInput}/>
-                        <Input name="Condition de paiement :" type="text" id="Condition_de_paiement" value={inputValue.Condition_de_paiement} onChange={handleInput}/>
 
                     <Style>
-                        <Input name="Cre le :" type="date" id="Cre_le" value={inputValue.Cre_le} onChange={handleInput}/>
-                        <Input name="Cre par :" type="text" id="Cre_par" value={inputValue.Cre_par} onChange={handleInput}/>
+                        <Input label="Code postal:" name="Code_postal" type="text" id="Code_postal" value={inputValue.Code_postal} onChange={handleInput}/>
+                        <Input label="Pays:" name="Pays" type="text" id="Pays" value={inputValue.Pays} onChange={handleInput}/>
                     </Style>
 
-                    <Input name="Nom :" type="text" id="Nom" value={inputValue.Nom} onChange={handleInput}/>
-                    <Input name="Prenom :" type="text" id="Prenom" value={inputValue.Prenom} onChange={handleInput}/>
+                        <Input label="Telephone:" name="Telephone" type="text" id="Telephone" value={inputValue.Telephone} onChange={handleInput}/>
+                        <Input label="Email:" name="Email" type="email" id="Email" value={inputValue.Email} onChange={handleInput}/>
+
+                        <Input label="Secteur d'activite:" name="Secteur_dactivite" type="text" id="Secteur_activite" value={inputValue.Secteur_activite}  onChange={handleInput}/>
+                        <Input label="Condition de paiement:" name="Condition_de_paiement" type="text" id="Condition_de_paiement" value={inputValue.Condition_de_paiement} onChange={handleInput}/>
 
                     <Style>
-                        <Input name="Fonction :" type="text" id="Fonction" value={inputValue.Fonction} onChange={handleInput}/>
-                        <Input name="Type de client :" type="text" id="Type_de_client" value={inputValue.Type_de_client} onChange={handleInput}/>
+                        <Input label="Cre le:" name="Cre_le" type="date" id="Cre_le" value={inputValue.Cre_le} onChange={handleInput}/>
+                        <Input label="Cre par:" name="Cre_par" type="text" id="Cre_par" value={inputValue.Cre_par} onChange={handleInput}/>
                     </Style>
 
-                    <Input name="Fax :" type="text" id="Fax" value={inputValue.Fax} onChange={handleInput}/>
+                    <Input label="Nom:" name="Nom" type="text" id="Nom" value={inputValue.Nom} onChange={handleInput}/>
+                    <Input label="Prenom:" name="Prenom" type="text" id="Prenom" value={inputValue.Prenom} onChange={handleInput}/>
 
-                        <Select name="Dossier valide :" value_1="Y" value_2="N" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleInput}/>
-                        <Select name="Status:" value_1="A" value_2="I" choix1="Actif" choix2="Inactif" id="status" value={inputValue.valid} onChange={handleInput}/>
+                    <Style>
+                        <Input label="Fonction:" name="Fonction" type="text" id="Fonction" value={inputValue.Fonction} onChange={handleInput}/>
+                        <Input label="Type de client:" name="Type_de_client" type="text" id="Type_de_client" value={inputValue.Type_de_client} onChange={handleInput}/>
+                    </Style>
+
+                    <Input label="Fax:" name="Fax" type="text" id="Fax" value={inputValue.Fax} onChange={handleInput}/>
+
+                        <Select label="Dossier valide:" name="Dossier_valide" value_1="Y" value_2="N" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleInput}/>
+                        <Select label="Status:" name="Status" value_1="A" value_2="I" choix1="Actif" choix2="Inactif" id="status" value={inputValue.valid} onChange={handleInput}/>
                         <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
                     </div>
             </form>

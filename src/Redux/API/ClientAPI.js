@@ -14,8 +14,11 @@ export const getAllClients = createAsyncThunk('posts/getAll', async (url,thunkAP
 });
 
 export const addClient = createAsyncThunk('posts/addClient',async (values) => {
-    return fetch("http://127.0.0.1:8000/api/clients/",{method:"POST",
-        headers:{Accept:"application/json","Content-type":"application/json"},
+    return fetch("http://127.0.0.1:8000/api/clients",{method:"POST",
+        headers:{
+            Accept:"application/json", //I accept JSON format
+            "Content-type":"application/json"// The content I'm sending is in JSON format.
+        },
         body: JSON.stringify({
             Categorie_de_compte: values.Categorie_de_compte,
             Raison_sociale: values.Raison_sociale,
