@@ -1,8 +1,14 @@
 import './Log-in.css'
-
+import {Input} from '../index'
 const Log_in = () => {
     return (
         <>
+{/*
+            <Input />
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+            </div> */}
+
             <form className='form'>
                 <div className="mb-2  ml-[580px] mr-9 mt-5">
                     <label className="form-label text-[#0284fe]">Email address</label>

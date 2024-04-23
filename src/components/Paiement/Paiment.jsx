@@ -4,9 +4,8 @@ import { MdOutlineMonetizationOn } from "react-icons/md";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input} from '../index'
-import {getAllClients} from '../../Redux/API/ClientAPI'
-const Paiment
- = () => {
+import {getAll} from '../../Redux/API/GetAll'
+const Paiment = () => {
 
     const [Search, setSearch] = useState("");
 
@@ -14,7 +13,7 @@ const Paiment
     const Clients = useSelector(state => state.ClientList.ClientsList);
 
     useEffect(()=>{
-        dispatch(getAllClients("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
     return (
         <>

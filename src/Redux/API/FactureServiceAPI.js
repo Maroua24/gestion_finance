@@ -1,17 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from "axios";
 
-
-
-// export const getAllClients = createAsyncThunk('posts/getAll', async (url,thunkAPI)=>{
-//     const {rejectWithValue} = thunkAPI;
-//     try{
-//         const res = await axios.get(url);
-//         return res.data;
-//     }catch(err){
-//         return rejectWithValue(err.message);
-//     }
-// });
 
 export const addFactureService = createAsyncThunk('posts/addFactureService', async (values) => {
     return fetch("http://127.0.0.1:8000/api/clients", {

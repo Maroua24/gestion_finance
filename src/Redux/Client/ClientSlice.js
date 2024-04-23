@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {addClient, getAllClients} from '../API/ClientAPI'
+import {addClient} from '../API/ClientAPI'
+import {getAll} from '../API/GetAll'
 
 const initialState = {
     ClientsList:[],
@@ -14,16 +15,16 @@ const ClientSlice = createSlice({
     extraReducers: (builder) => {
         // Fetch clients
         builder
-            .addCase(getAllClients.pending, (state, action) => {
+            .addCase(getAll.pending, (state, action) => {
                 state.isLoading=true;
                 state.error=null;
             })
-            .addCase(getAllClients.fulfilled, (state, action) => {
+            .addCase(getAll.fulfilled, (state, action) => {
                 state.ClientsList = action.payload;
                 state.isLoading=false;
                 state.error=null;
             })
-            .addCase(getAllClients.rejected, (state, action) => {
+            .addCase(getAll.rejected, (state, action) => {
                 state.isLoading=false;
                 state.error=action?.error?.message;
             })
