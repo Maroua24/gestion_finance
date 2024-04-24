@@ -24,9 +24,9 @@ const Paiment = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <button className='text-xs  py-1 px-2 border-none ml-1 rounded-md bg-[--statistic-color] my-3 ml-[630px]  hover:bg-[--light-color] hover:text-[--statistic-color]'>
+                {/* <button className='text-xs  py-1 px-2 border-none ml-1 rounded-md bg-[--statistic-color] my-3 ml-[630px]  hover:bg-[--light-color] hover:text-[--statistic-color]'>
                     <a href="/AddClient" className='font-semibold'>Ajouter +</a>
-                </button>
+                </button> */}
 
                 <table className="ml-5 ">
                     <thead className=' w-80  text-sm  bg-[--statistic-color] text-white font-semibold'>

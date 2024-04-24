@@ -1,10 +1,12 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 
 export const addClient = createAsyncThunk('posts/addClient',async (values) => {
+    const token = ''
     return fetch("http://127.0.0.1:8000/api/clients",{method:"POST",
         headers:{
             Accept:"application/json", //I accept JSON format
-            "Content-type":"application/json"// The content I'm sending is in JSON format.
+            "Content-type":"application/json",// The content I'm sending is in JSON format.
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
             Categorie_de_compte: values.Categorie_de_compte,
