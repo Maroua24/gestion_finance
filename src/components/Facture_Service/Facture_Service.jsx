@@ -36,7 +36,7 @@ const Facture_service = () => {
                             <th scope="col" className='py-2 px-4'>Code client</th>
                             <th scope="col" className='py-2 px-4'>Nom client</th>
                             <th scope="col" className='py-2 px-4'>Numero de facture</th>
-                            <th scope="col" className='py-2 px-4'>Address</th>
+                            <th scope="col" className='py-2 px-4'>Date de creation</th>
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
                     </thead>

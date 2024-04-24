@@ -56,7 +56,7 @@ const Client = () => {
                                 <td>{client.email}</td>
                                 <td>{client.website}</td>
                                 <td>
-                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><GrDocumentUpdate  /></a></button>
+                                    <button to={`/edit/${client.id}`} className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><GrDocumentUpdate  /></a></button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><MdOutlineMonetizationOn /></a></button>
                                 </td>
                             </tr>

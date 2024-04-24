@@ -8,7 +8,7 @@ const Input = (props) => {
                 <input
                     type={props.type}
                     id="input"
-                    className="bg-transparent border border-solid border-[--light-color] w-full h-5 text-[--light-color] border-2 border-outset focus:border-transparent"
+                    className="bg-transparent border border-solid border-[--light-color] w-full h-5 border-2 border-outset focus:border-transparent"
                     name={props.name}
                     value={props.value}
                     onChange={props.onChange}

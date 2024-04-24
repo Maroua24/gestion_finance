@@ -9,7 +9,10 @@ export const addFactureService = createAsyncThunk('posts/addFactureService', asy
             "Content-type": "application/json"// The content I'm sending is in JSON format.
         },
         body: JSON.stringify({
-
+            Num_Fact:values.Num_Fact,
+            date_creation: values.date_creation,
+            date_comp: values.date_comp,
+            date_dech: values.date_dech
         })
 
     }).then((res) => res.json());

@@ -1,9 +1,8 @@
-// import DataTable from 'react-data-table-component'
 import { GrDocumentUpdate } from "react-icons/gr";
 import { MdOutlineMonetizationOn } from "react-icons/md";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input} from '../index'
+import {Menu,Search_input,Add_payment} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 const Paiment = () => {
 
@@ -56,7 +55,7 @@ const Paiment = () => {
                                 <td>{client.website}</td>
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><GrDocumentUpdate  /></a></button>
-                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><MdOutlineMonetizationOn /></a></button>
+                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Add_payment"><MdOutlineMonetizationOn /></a></button>
                                 </td>
                             </tr>
                         ))}
