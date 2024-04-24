@@ -11,6 +11,7 @@ const Client = () => {
 
     const dispatch = useDispatch();
     const Clients = useSelector(state => state.ClientList.ClientsList);
+    const isLoading = useSelector(state => state.ClientList.isLoading)
 
     useEffect(()=>{
         // dispatch(getAll("http://127.0.0.1:8000/api/clients"));
@@ -42,25 +43,32 @@ const Client = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Clients
-                        .filter((client) => {
-                            return Search.toLowerCase() === ''
-                                ? client
-                                : client.name.toLowerCase().includes(Search)
-                        })
-                        .map((client) => (
-                            <tr key={client.id} className="text-xs shadow-md">
-                                <td className="pl-6">{client.id}</td>
-                                <td className="p-3 ">{client.name}</td>
-                                <td>{client.username}</td>
-                                <td>{client.email}</td>
-                                <td>{client.website}</td>
-                                <td>
-                                    <button to={`/edit/${client.id}`} className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><GrDocumentUpdate  /></a></button>
-                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><MdOutlineMonetizationOn /></a></button>
-                                </td>
-                            </tr>
-                        ))}
+                        {
+                            isLoading ?
+                                <div class="d-flex align-items-center text-primary">
+                                    <strong>Loading...</strong>
+                                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                                </div>:
+                                Clients
+                                    .filter((client) => {
+                                        return Search.toLowerCase() === ''
+                                            ? client
+                                            : client.name.toLowerCase().includes(Search)
+                                    })
+                                    .map((client) => (
+                                        <tr key={client.id} className="text-xs shadow-md">
+                                            <td className="pl-6">{client.id}</td>
+                                            <td className="p-3 ">{client.name}</td>
+                                            <td>{client.username}</td>
+                                            <td>{client.email}</td>
+                                            <td>{client.website}</td>
+                                            <td>
+                                                <button to={`/edit/${client.id}`} className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><GrDocumentUpdate  /></a></button>
+                                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><MdOutlineMonetizationOn /></a></button>
+                                            </td>
+                                        </tr>
+                                    ))
+                        }
                     </tbody>
                 </table>
             </div>
