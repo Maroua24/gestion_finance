@@ -1,6 +1,7 @@
 import { FaDownload } from "react-icons/fa";
 import { FaFilePdf } from "react-icons/fa6";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { GrDocumentUpdate } from "react-icons/gr";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input} from '../index'
@@ -58,6 +59,7 @@ const Facture_vente = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><IoMdInformationCircleOutline /></a></button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><FaDownload /></a></button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><FaFilePdf /></a></button>
+                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><GrDocumentUpdate /></a></button>
                                 </td>
                             </tr>
                         ))}

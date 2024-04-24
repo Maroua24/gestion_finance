@@ -1,6 +1,7 @@
 import { FaDownload } from "react-icons/fa";
 import { FaFilePdf } from "react-icons/fa6";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { GrDocumentUpdate } from "react-icons/gr";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input} from '../index'
@@ -13,7 +14,7 @@ const Facture_service = () => {
     const Clients = useSelector(state => state.ClientList.ClientsList);
 
     useEffect(()=>{
-        dispatch(getAll("https://jsonplaceholder.typicode.com/todos"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
     return (
         <>
@@ -50,14 +51,15 @@ const Facture_service = () => {
                         .map((client) => (
                             <tr key={client.id} className="text-xs shadow-md">
                                 <td className="pl-6">{client.id}</td>
-                                <td className="p-3 ">{client.userId}</td>
-                                <td>{client.title}</td>
-                                <td>{client.completed}</td>
-                                <td>{client.title}</td>
+                                <td className="p-3 ">{client.username}</td>
+                                <td>{client.name}</td>
+                                <td>{client.email}</td>
+                                <td>{client.website}</td>
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><IoMdInformationCircleOutline /></a></button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><FaDownload /></a></button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><FaFilePdf /></a></button>
+                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><GrDocumentUpdate /></a></button>
                                 </td>
                             </tr>
                         ))}
