@@ -26,7 +26,7 @@ const Menu =() => {
                         <Item href="/Facture_Service" item="Factures service"/>
                         <Item item="Avoires vente"/>
                         <Item item="Avoires service"/>
-                        <Item item="Facture impayees"/>
+                        <Item href="/Facture_Impayees" item="Facture impayees"/>
                         <Item href="/paiment" item="Paiement"/>
                         <Item item="Paiement proformats"/>
                         <Item item="Dates mise en demande"/>

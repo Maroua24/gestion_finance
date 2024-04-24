@@ -1,6 +1,6 @@
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import "./App.css"
-import {Style,Log_in,Main,Client,AddClient,EditClient,Client_VIP, Facture_Service,Facture_vente,Paiment,AddFactureService,AddFactureVente,Add_payment} from "./components/index"
+import {Style,Log_in,Main,Client,AddClient,EditClient,Client_VIP, Facture_Service,Facture_vente,Paiment,AddFactureService,AddFactureVente,Add_payment,FactureImpayees} from "./components/index"
 
 const App = () => {
     return(
@@ -22,6 +22,7 @@ const App = () => {
                         <Route path='/AddFacturService' element={<AddFactureService/>}/>
                         <Route path='/AddFactureVente' element={<AddFactureVente/>}/>
                         <Route path='/Add_payment' element={<Add_payment/>}/>
+                        <Route path='/Facture_Impayees' element={<FactureImpayees/>}/>
                     </Routes>
                 </Style>
             </Router>

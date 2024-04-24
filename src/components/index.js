@@ -26,3 +26,6 @@ export {default as Paiment} from './Paiement/Paiment'
 export {default as AddFactureService} from './AddFactureService/AddFactureService'
 export {default as AddFactureVente} from './AddFactureVente/AddFactureVente'
 export {default as Add_payment} from './Addpayment/Addpayment'
+export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
+
+
