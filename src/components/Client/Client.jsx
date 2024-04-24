@@ -11,7 +11,7 @@ const Client = () => {
 
     const dispatch = useDispatch();
     const Clients = useSelector(state => state.ClientList.ClientsList);
-    const isLoading = useSelector(state => state.ClientList.isLoading)
+    const isLoading = useSelector(state => state.ClientList.isLoading);
 
     useEffect(()=>{
         // dispatch(getAll("http://127.0.0.1:8000/api/clients"));

@@ -11,6 +11,8 @@ const Client_VIP = () => {
 
     const dispatch = useDispatch();
     const Clients = useSelector(state => state.ClientList.ClientsList);
+    const isLoading = useSelector(state => state.ClientList.isLoading)
+
 
     useEffect(()=>{
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
@@ -41,7 +43,13 @@ const Client_VIP = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Clients
+                        {
+                        isLoading ?
+                            <div class="d-flex align-items-center text-primary">
+                                <strong>Loading...</strong>
+                                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                            </div>:
+                        Clients
                         .filter((client) => {
                             return Search.toLowerCase() === ''
                                 ? client
