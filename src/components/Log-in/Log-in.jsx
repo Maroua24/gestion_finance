@@ -4,9 +4,9 @@ const Log_in = () => {
     return (
         <>
         <div className='ml-[37%] '>
-            <h1 className='text-primary text-8xl m-[10%] ml-[17%]'>Icosnet</h1>
+            <h1 className='text-primary text-8xl m-[10%] ml-[1%]'>Icosnet</h1>
             <form className='border border-primary shadow shadow-md  text-2xl'>
-                <div className="m-3 ">
+                <div className="m-3 npm start">
                     <label for="exampleInputEmail1" className="form-label">Email address</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Email'/>
                 </div>

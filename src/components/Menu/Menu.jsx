@@ -1,4 +1,3 @@
-import './Menu.css'
 import {Item , Style} from "../index"
 import { FiAlignLeft } from "react-icons/fi";
 import { useState } from 'react';
@@ -12,12 +11,12 @@ const Menu =() => {
         <>
         <div>
             <Style>
-                <img src={image} alt="image" className='w-10 h-10'/>
+                <img src={image} alt="image" className='w-[40%] h-[40%]'/>
             </Style>
-            <FiAlignLeft className='w-10 cursor-pointer inline-block' onClick={click}/>
+            <FiAlignLeft className='cursor-pointer inline-block' onClick={click}/>
 
             {statistic &&(
-                <div className='w-24 h-full font-Main-font'>
+                <div className='w-24 h-full w-[78%]'>
                     <ul className="list-group list-group-flush">
                         <Item href="/" item="Dashboard"/>
                         <Item href="/client" item="Client"/>

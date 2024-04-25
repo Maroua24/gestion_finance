@@ -2,8 +2,8 @@
 const Item = (props) => {
     return(
         <>
-            <li className="item list-group-item bg-light text-black">
-                <a href={props.href} className="text-black">{props.item}</a>
+            <li className="item list-group-item text-xs font-[--Main-font] hover:ml-4 ">
+                <a href={props.href} className="text-[--statistic-color] ">{props.item}</a>
             </li>
         </>
     )

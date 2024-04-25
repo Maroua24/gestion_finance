@@ -15,12 +15,12 @@ const StraightPieChart_Card = (props) => {
     }
     return (
         <>
-            <div className="inline-block">
-                <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer h-16 w-56 font-Main-font transition duration-700 hover:border-2 border-inset border-royal-blue shadow-md' onClick={click}>
-                    <p className='container'>{props.title}</p>
-                    <button className='text-xs w-16 bg-Menu-hover border-b border-solid border-light-color border-r'>
+            <div className="inline-block w-[40%] h-[40%]">
+                <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer  h-[60%] w-[90%] font-Main-font transition duration-700 hover:border-2 border-inset border-royal-blue shadow-lg' onClick={click}>
+                    <p className='container text-3xl mb-3'>{props.title}</p>
+                    <button className=' text-2xl bg-Menu-hover border-b border-solid border-light-color border-r'>
                         <a href="" className="text-light-color">More Info</a>
-                        <MdReadMore className='ml-1' />
+                        <MdReadMore  className='ml-1'/>
                     </button>
                 </div>
 

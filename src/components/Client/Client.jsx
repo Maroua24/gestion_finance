@@ -1,4 +1,3 @@
-// import DataTable from 'react-data-table-component'
 import { GrDocumentUpdate } from "react-icons/gr";
 import { MdOutlineMonetizationOn } from "react-icons/md";
 import {useDispatch , useSelector} from "react-redux";
@@ -22,17 +21,17 @@ const Client = () => {
         <Menu/>
 
             <div>
-                <h1 className="text-[--statistic-color] text-3xl m-4">Client</h1>
+                <h1 className="text-[--statistic-color] p-4 sm:text-sm md:text-2xl  lg:text-6xl">Client:</h1>
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <button className='text-xs  py-1 px-2 border-none ml-1 rounded-md bg-[--statistic-color] my-3 ml-[630px]  hover:bg-[--light-color]'>
+                <button className='sm:text-xs md:text-xl  lg:text-xl  py-1 px-2 border-none ml-1 rounded-md bg-[--statistic-color] my-3 ml-[630px]  hover:bg-[--light-color]'>
                     <a href="/AddClient" className='font-semibold'>Ajouter +</a>
                 </button>
 
                 <table className="ml-5 ">
-                    <thead className=' w-80  text-sm  bg-[--statistic-color] text-white font-semibold'>
+                    <thead className=' sm:text-xs md:text-2xl  lg:text-xl  text-sm  bg-[--statistic-color] text-white font-semibold'>
                         <tr className="m-2">
                             <th scope="col" className='py-2 px-4'>id</th>
                             <th scope="col" className='py-2 px-4'>Code</th>
@@ -56,7 +55,7 @@ const Client = () => {
                                             : client.name.toLowerCase().includes(Search)
                                     })
                                     .map((client) => (
-                                        <tr key={client.id} className="text-xs shadow-md">
+                                        <tr key={client.id} className="sm:text-xs md:text-2xl  lg:text-xl shadow-md">
                                             <td className="pl-6">{client.id}</td>
                                             <td className="p-3 ">{client.name}</td>
                                             <td>{client.username}</td>

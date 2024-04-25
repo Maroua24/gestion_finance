@@ -1,4 +1,3 @@
-import './Dashboard.css'
 import {PieChart_Card , StraightPieChart_Card , TowLevelPieChart_Card ,BarChart_Card} from '../index';
 
 const Dashboard = () => {
