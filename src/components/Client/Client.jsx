@@ -18,10 +18,10 @@ const Client = () => {
     },[dispatch]);
     return (
         <>
-        <Menu/>
-
+<Menu/>
             <div>
-                <h1 className="text-[--statistic-color] p-4 sm:text-sm md:text-2xl  lg:text-6xl">Client:</h1>
+
+                <h1 className="text-[--statistic-color] p-4 sm:text-sm md:text-2xl  lg:text-4xl xl:text-7xl 2xl:text-[200px]  ">Client:</h1>
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}
                 />
@@ -31,7 +31,7 @@ const Client = () => {
                 </button>
 
                 <table className="ml-5 ">
-                    <thead className=' sm:text-xs md:text-2xl  lg:text-xl  text-sm  bg-[--statistic-color] text-white font-semibold'>
+                    <thead className='sm:text-xs md:text-xm lg:text-xl xl:text-2xl 2xl:text-7xl bg-[--statistic-color] text-white font-semibold'>
                         <tr className="m-2">
                             <th scope="col" className='py-2 px-4'>id</th>
                             <th scope="col" className='py-2 px-4'>Code</th>
@@ -55,7 +55,7 @@ const Client = () => {
                                             : client.name.toLowerCase().includes(Search)
                                     })
                                     .map((client) => (
-                                        <tr key={client.id} className="sm:text-xs md:text-2xl  lg:text-xl shadow-md">
+                                        <tr key={client.id} className="sm:text-xs md:text-xm lg:text-xl xl:text-xl 2xl:text-6xl  shadow-md">
                                             <td className="pl-6">{client.id}</td>
                                             <td className="p-3 ">{client.name}</td>
                                             <td>{client.username}</td>
