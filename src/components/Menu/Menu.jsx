@@ -9,11 +9,9 @@ const Menu =() => {
     }
     return(
         <>
-        <div>
-            <Style>
-                <img src={image} alt="image" className='w-[40%] h-[40%]'/>
-            </Style>
-            <FiAlignLeft className='cursor-pointer inline-block' onClick={click}/>
+        <div className="sm:ml-3 md:ml-5 lg:ml-7 xl:ml-8">
+                <img src={image} alt="image" className='sm:w-14 sm:mr-1 md:w-20 lg:w-24 xl:w-40'/>
+                <FiAlignLeft className='cursor-pointer inline-block' onClick={click}/>
 
             {statistic &&(
                 <div className='w-24 h-full w-[78%]'>
