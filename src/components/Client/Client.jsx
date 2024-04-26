@@ -18,21 +18,27 @@ const Client = () => {
     },[dispatch]);
     return (
         <>
-<Menu/>
-            <div>
+            <Menu/>
+            <div className="">
 
-                <h1 className="text-[--statistic-color] p-4 sm:text-sm md:text-2xl  lg:text-4xl xl:text-7xl 2xl:text-[200px]  ">Client:</h1>
+                <h1 className="text-[--statistic-color] p-4 sm:text-3xl">
+                    Client:
+                </h1>
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <button className='sm:text-xs md:text-xl  lg:text-xl  py-1 px-2 border-none ml-1 rounded-md bg-[--statistic-color] my-3 ml-[630px]  hover:bg-[--light-color]'>
+                <button className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
+                                    '>
                     <a href="/AddClient" className='font-semibold'>Ajouter +</a>
                 </button>
 
-                <table className="ml-5 ">
-                    <thead className='sm:text-xs md:text-xm lg:text-xl xl:text-2xl 2xl:text-7xl bg-[--statistic-color] text-white font-semibold'>
-                        <tr className="m-2">
+                <table className="ml-5 sm:mr-4">
+                    <thead className='bg-[--statistic-color] text-white font-semibold
+                                        sm:text-[10px]
+                                    '>
+                        <tr className="m-2 text-center">
                             <th scope="col" className='py-2 px-4'>id</th>
                             <th scope="col" className='py-2 px-4'>Code</th>
                             <th scope="col" className='py-2 px-4'>Nom</th>
@@ -41,7 +47,7 @@ const Client = () => {
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-center">
                         {
                             isLoading ?
                                 <div class="d-flex align-items-center text-primary">
@@ -55,7 +61,7 @@ const Client = () => {
                                             : client.name.toLowerCase().includes(Search)
                                     })
                                     .map((client) => (
-                                        <tr key={client.id} className="sm:text-xs md:text-xm lg:text-xl xl:text-xl 2xl:text-6xl  shadow-md">
+                                        <tr key={client.id} className="sm:text-[10px] md:text-xm lg:text-xl xl:text-xl 2xl:text-6xl  shadow-md">
                                             <td className="pl-6">{client.id}</td>
                                             <td className="p-3 ">{client.name}</td>
                                             <td>{client.username}</td>

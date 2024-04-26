@@ -8,10 +8,13 @@ const Search_input = (props) => {
                 <input
                     type="text"
                     placeholder='Search...'
-                    className="ml-[70%] shadow-md p-1 pr-8 sm:w-[20%] md:w-[30%] lg:w-[40%]   "
+                    className="shadow-md p-1 pr-8 sm:w-[20%] sm:ml-[70%]"
                     onChange={props.onChange}
                 />
-                <IoSearchSharp className='text-[--light-color] bg-[--statistic-color] absolute ml-[69%] mt-2 p-1 rounded-xl' />
+                <IoSearchSharp
+                    className='text-[--light-color] bg-[--statistic-color] absolute ml-[69%] mt-2 p-1 rounded-xl
+                                sm:ml-[77%]'
+                />
             </Style>
         </form>
     )
