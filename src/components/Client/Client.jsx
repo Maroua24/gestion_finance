@@ -21,7 +21,9 @@ const Client = () => {
             <Menu/>
             <div className="">
 
-                <h1 className="text-[--statistic-color] p-4 sm:text-3xl">
+                <h1 className="text-[--statistic-color] p-4 sm:text-3xl
+                                md:text-5xl lg:text-7xl
+                            ">
                     Client:
                 </h1>
                 <Search_input
@@ -30,13 +32,14 @@ const Client = () => {
 
                 <button className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
                                     hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
+                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
                                     '>
                     <a href="/AddClient" className='font-semibold'>Ajouter +</a>
                 </button>
 
-                <table className="ml-5 sm:mr-4">
+                <table className="ml-5 sm:mr-4 ">
                     <thead className='bg-[--statistic-color] text-white font-semibold
-                                        sm:text-[10px]
+                                        sm:text-[10px] md:text-xl lg:text-2xl
                                     '>
                         <tr className="m-2 text-center">
                             <th scope="col" className='py-2 px-4'>id</th>
@@ -50,7 +53,7 @@ const Client = () => {
                     <tbody className="text-center">
                         {
                             isLoading ?
-                                <div class="d-flex align-items-center text-primary">
+                                <div class="d-flex align-items-center text-primary md:text-2xl lg:text-3xl">
                                     <strong>Loading...</strong>
                                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                                 </div>:
@@ -61,15 +64,22 @@ const Client = () => {
                                             : client.name.toLowerCase().includes(Search)
                                     })
                                     .map((client) => (
-                                        <tr key={client.id} className="sm:text-[10px] md:text-xm lg:text-xl xl:text-xl 2xl:text-6xl  shadow-md">
+                                        <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl">
                                             <td className="pl-6">{client.id}</td>
                                             <td className="p-3 ">{client.name}</td>
                                             <td>{client.username}</td>
                                             <td>{client.email}</td>
                                             <td>{client.website}</td>
                                             <td>
-                                                <button to={`/edit/${client.id}`} className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><GrDocumentUpdate  /></a></button>
-                                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><MdOutlineMonetizationOn /></a></button>
+                                                <button to={`/edit/${client.id}`} className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                                                sm:text-sm md:text-xl lg:text-2xl'>
+                                                    <a href="/Update"><GrDocumentUpdate  /></a>
+                                                </button>
+                                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                    sm:text-sm md:text-xl lg:text-2xl
+                                                                    '>
+                                                    <a href="#"><MdOutlineMonetizationOn /></a>
+                                                </button>
                                             </td>
                                         </tr>
                                     ))
