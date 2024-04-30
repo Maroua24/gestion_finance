@@ -1,6 +1,6 @@
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import "./App.css"
-import {Style,Log_in,Main,Client,AddClient,EditClient,Client_VIP, Facture_Service,Facture_vente,Paiment,AddFactureService,AddFactureVente,Add_payment,FactureImpayees} from "./components/index"
+import {Style,Log_in,Main,Nav,Client,AddClient,EditClient,Client_VIP, Facture_Service,Facture_vente,Paiment,AddFactureService,AddFactureVente,Add_payment,FactureImpayees,Client_info} from "./components/index"
 
 const App = () => {
     return(
@@ -14,15 +14,20 @@ const App = () => {
                         <Route path='/client'    element={<Client/>} />
                         <Route path='/AddClient' element={<AddClient/>} />
                         <Route path='/Update'    element={<EditClient/>}/>
+                        <Route path='/Client_info/:id' element={<Client_info/>}/>
 
                         <Route path='/client_VIP' element={<Client_VIP/>}/>
+
                         <Route path='/Facture_vente' element={<Facture_vente/>}/>
-                        <Route path='/Facture_Service' element={<Facture_Service/>}/>
-                        <Route path='/Paiment' element={<Paiment/>}/>
-                        <Route path='/AddFacturService' element={<AddFactureService/>}/>
                         <Route path='/AddFactureVente' element={<AddFactureVente/>}/>
-                        <Route path='/Add_payment' element={<Add_payment/>}/>
+
+                        <Route path='/Facture_Service' element={<Facture_Service/>}/>
+                        <Route path='/AddFacturService' element={<AddFactureService/>}/>
+
                         <Route path='/Facture_Impayees' element={<FactureImpayees/>}/>
+
+                        <Route path='/Paiment' element={<Paiment/>}/>
+                        <Route path='/Add_payment' element={<Add_payment/>}/>
                     </Routes>
                 </Style>
             </Router>

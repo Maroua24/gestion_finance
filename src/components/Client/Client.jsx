@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { MdOutlineMonetizationOn } from "react-icons/md";
 import {useDispatch , useSelector} from "react-redux";
@@ -60,11 +61,14 @@ const Client = () => {
                                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                                 </div>:
                                 Clients
-                                    .filter((client) => {
-                                        return Search.toLowerCase() === ''
-                                            ? client
-                                            : client.name.toLowerCase().includes(Search)
-                                    })
+                                .filter((client) => {
+                                    const searchTerm = Search.toLowerCase();
+                                    return searchTerm === '' ||
+                                        client.name.toLowerCase().includes(searchTerm) ||
+                                        client.username.toLowerCase().includes(searchTerm) ||
+                                        client.email.toLowerCase().includes(searchTerm) ||
+                                        client.website.toLowerCase().includes(searchTerm);
+                                })
                                     .map((client) => (
                                         <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                             <td className="pl-6">{client.id}</td>
@@ -80,11 +84,14 @@ const Client = () => {
                                                                     '>
                                                     <a href="/Update"><GrDocumentUpdate  /></a>
                                                 </button>
+
                                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl
                                                                     '>
-                                                    <a href="#"><MdOutlineMonetizationOn /></a>
+                                                    <Link to={`/Client_info/${client.id}`}>
+                                                        <MdOutlineMonetizationOn />
+                                                    </Link>
                                                 </button>
                                             </td>
                                         </tr>

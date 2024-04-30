@@ -1,4 +1,4 @@
-export { default as Nav } from "./nav/Nav";
+export { default as Nav } from "./Nav/Nav";
 export { default as Menu } from "./Menu/Menu";
 export { default as Main } from "./Main/Main";
 export { default as Dashboard } from "./Dashboard/Dashboard";
@@ -28,4 +28,4 @@ export {default as AddFactureVente} from './AddFactureVente/AddFactureVente'
 export {default as Add_payment} from './Addpayment/Addpayment'
 export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
 
-
+export {default as Client_info} from './Client_info/Client_info'
