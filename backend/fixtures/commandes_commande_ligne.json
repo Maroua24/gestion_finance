@@ -1,6 +1,6 @@
 [
     {
-      "model": "commande_ligne.commande_ligne",
+      "model": "commandes.commande_ligne",
       "pk": 1,
       "fields": {
         "commande": 1,
@@ -9,7 +9,7 @@
       }
     },
     {
-      "model": "commande_ligne.commande_ligne",
+      "model": "commandes.commande_ligne",
       "pk": 2,
       "fields": {
         "commande": 2,

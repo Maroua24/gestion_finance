@@ -19,28 +19,37 @@ class Commande(models.Model):
     
     produits = models.ManyToManyField(Produit, through='commandes.Commande_ligne')
     
-    def calculer_pht(self):
-        ligne_commande = self.commande_ligne.all()
-        pht_total = sum(ligne.produit.prix_unitaire * ligne.quantite for ligne in ligne_commande)
-        self.pht = pht_total
-        self.save()
+    # def calculer_pht(self):
+    #     ligne_commande = self.commande_ligne.all()
+    #     pht_total = sum(ligne.produit.prix_unitaire * ligne.quantite for ligne in ligne_commande)
+    #     self.pht = pht_total
+    #     self.save()
 
-    @receiver(pre_save, sender='commandes.Commande_ligne')
-    def update_pht(sender, instance, **kwargs):
-        instance.commande.calculer_pht()  # Update PHT when a Commande_ligne instance is saved
+    # @receiver(pre_save, sender='commandes.Commande_ligne')
+    # def update_pht(sender, instance, **kwargs):
+    #     instance.commande.calculer_pht()  # Update PHT when a Commande_ligne instance is saved
 
-@receiver(pre_save, sender=Commande)
-def update_tva(sender, instance, **kwargs):
-    if instance.client:
-        instance.tva = instance.client.code_tva  # Remplit automatiquement le champ tva avec le tva du client associé
+# @receiver(pre_save, sender='commandes.Commande_ligne')
+#     def update_pht(sender, instance, **kwargs):
+#         # instance.commande.calculer_pht()  # Update PHT when a Commande_ligne instance is saved
+#          ligne_commande = instance.commande.commande_ligne.all()  # Accéder aux lignes de commande associées à une commande
+#          pht_total = sum(ligne.produit.prix_unitaire * ligne.quantity for ligne in ligne_commande)
+#          instance.commande.pht = pht_total
+#          instance.commande.save()
 
-def update_fields(sender, instance, **kwargs):
-    if instance.pht is not None and instance.tva is not None:
-        instance.mtva = instance.pht * instance.tva / 100
-    else:
-        instance.mtva = None
-    instance.tht = instance.pht
-    instance.ttva = instance.mtva
+
+# @receiver(pre_save, sender=Commande) 
+# def update_tva(sender, instance, **kwargs):
+#     if instance.client:
+#         instance.tva = instance.client.code_tva  # Remplit automatiquement le champ tva avec le tva du client associé
+
+# def update_fields(sender, instance, **kwargs):
+#     if instance.pht is not None and instance.tva is not None:
+#         instance.mtva = instance.pht * instance.tva / 100
+#     else:
+#         instance.mtva = None
+#     instance.tht = instance.pht
+#     instance.ttva = instance.mtva
 
 
 class Commande_ligne(models.Model):

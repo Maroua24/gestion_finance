@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from factures_service.models import FactureService
-from factures_vente.models import FactureVente
+from factures.models import FactureService
+from factures.models import FactureVente
 from clients.models import Client
 from .serializers import (
     ClientStatistiquesSerializer,
