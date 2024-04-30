@@ -1,0 +1,34 @@
+[
+    {
+      "model": "commandes.commande",
+      "pk": 1,
+      "fields": {
+        "client": 1,
+        "tva": 20.0,
+        "date_commande": "2024-04-28",
+        "pht": 100.0,  
+        "mtva": 20.0,  
+        "tht": 120.0,  
+        "ttva": 18.0,  
+        "ttc": 138.0,  
+        "est_promo": false,
+        "code_promo": ""
+      }
+    },
+    {
+      "model": "commandes.commande",
+      "pk": 2,
+      "fields": {
+        "client": 2,
+        "tva": 15.0,
+        "date_commande": "2024-04-28",
+        "pht": 200.0,  
+        "mtva": 30.0,  
+        "tht": 230.0,  
+        "ttva": 34.5,  
+        "ttc": 264.5,  
+        "est_promo": true,
+        "code_promo": "PROMO123"
+      }
+    }
+  ]

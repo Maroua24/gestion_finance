@@ -12,5 +12,6 @@ urlpatterns = [
     path('api/', include('factures_service.urls')),
     path('api/', include('devises.urls')),
     path('api/', include('statistiques.urls')),
+    path('api/', include('factures.urls')),
 ]
     

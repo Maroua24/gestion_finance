@@ -1,0 +1,20 @@
+[
+    {
+      "model": "produits.produit",
+      "pk": 1,
+      "fields": {
+        "nom": "Produit A",
+        "description": "Description du Produit A",
+        "prix_unitaire": 50.0
+      }
+    },
+    {
+      "model": "produits.produit",
+      "pk": 2,
+      "fields": {
+        "nom": "Produit B",
+        "description": "Description du Produit B",
+        "prix_unitaire": 100.0
+      }
+    }
+  ]

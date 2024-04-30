@@ -1,0 +1,20 @@
+[
+    {
+      "model": "commande_ligne.commande_ligne",
+      "pk": 1,
+      "fields": {
+        "commande": 1,
+        "produit": 1,
+        "quantity": 2
+      }
+    },
+    {
+      "model": "commande_ligne.commande_ligne",
+      "pk": 2,
+      "fields": {
+        "commande": 2,
+        "produit": 2,
+        "quantity": 3
+      }
+    }
+  ]
