@@ -13,9 +13,9 @@ const PieChart_Card = (props) =>{
     }
     return (
         <>
-            {/* <div className={`flex flex-col ${statistic ? 'items-end' : 'items-start'}`}> */}
-        <div className=" inline-block w-[40%] h-[40%] sm:h-[30%] lg:h-[100%] 2xl:h-[40%]">
-            <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer h-[60%] w-[90%] font-[--Main-font]   shadow-lg' onClick={click}>
+        <div className="inline-block sm:h-[200px] sm:w-[240px] lg:h-[50px] 2xl:h-[40%]">
+            <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer  font-[--Main-font]   shadow-lg'
+                            onClick={click}>
                 <p className='container text-3xl mb-3
                                 sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
                                 '>
@@ -32,12 +32,12 @@ const PieChart_Card = (props) =>{
 
             {statistic &&(
             <div className="border border-solid border-[--light-color] bg-[--statistic-color] shadow-lg ">
-                    <PieChart width={450} height={140}>
+                    <PieChart  width={450} height={140}>
                         <Pie
                             dataKey="value"
                             isAnimationActive={true}
                             data={data}
-                            cx="50%"
+                            cx="25%"
                             cy="48%"
                             outerRadius={55}
                             label ={{fontSize: 17,}}
@@ -51,7 +51,6 @@ const PieChart_Card = (props) =>{
                 </div>
                 )}
                 </div>
-                {/* </div> */}
         </>
     )
 }

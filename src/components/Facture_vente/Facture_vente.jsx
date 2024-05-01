@@ -1,11 +1,14 @@
 import { FaDownload } from "react-icons/fa";
 import { FaFilePdf } from "react-icons/fa6";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { LuLoader } from "react-icons/lu";
 import { GrDocumentUpdate } from "react-icons/gr";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input} from '../index'
+import {Menu,Search_input,Facture_Vente_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
+import { PDFDownloadLink } from "@react-pdf/renderer";
+
 const Facture_vente = () => {
 
     const [Search, setSearch] = useState("");
@@ -64,9 +67,19 @@ const Facture_vente = () => {
                                 <td>{client.website}</td>
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><IoMdInformationCircleOutline /></a></button>
-                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="/Update"><FaDownload /></a></button>
+                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'>
+                                        <PDFDownloadLink document={<Facture_Vente_PDF/>} fileName="FORM" >
+                                            {({Loading}) => 
+                                                Loading ? (
+                                                    <LuLoader />
+                                                ) : (
+                                                    <FaDownload />
+                                                )
+                                            }
+                                        </PDFDownloadLink>
+                                    </button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><FaFilePdf /></a></button>
-                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><GrDocumentUpdate /></a></button>
+                                    {/* <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><GrDocumentUpdate /></a></button> */}
                                 </td>
                             </tr>
                         ))}
