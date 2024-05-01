@@ -14,7 +14,7 @@ const PieChart_Card = (props) =>{
     return (
         <>
             {/* <div className={`flex flex-col ${statistic ? 'items-end' : 'items-start'}`}> */}
-        <div className=" inline-block w-[40%] h-[40%] sm:h-[30%] lg:h-[35%] 2xl:h-[40%]">
+        <div className=" inline-block w-[40%] h-[40%] sm:h-[30%] lg:h-[100%] 2xl:h-[40%]">
             <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer h-[60%] w-[90%] font-[--Main-font]   shadow-lg' onClick={click}>
                 <p className='container text-3xl mb-3
                                 sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl

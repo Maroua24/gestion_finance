@@ -29,3 +29,4 @@ export {default as Add_payment} from './Addpayment/Addpayment'
 export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
 
 export {default as Client_info} from './Client_info/Client_info'
+export {default as Info} from './Info/Info'
