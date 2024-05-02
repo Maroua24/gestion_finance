@@ -62,12 +62,13 @@ const Client = () => {
                                 </div>:
                                 Clients
                                 .filter((client) => {
-                                    const searchTerm = Search.toLowerCase();
-                                    return searchTerm === '' ||
-                                        client.name.toLowerCase().includes(searchTerm) ||
-                                        client.username.toLowerCase().includes(searchTerm) ||
-                                        client.email.toLowerCase().includes(searchTerm) ||
-                                        client.website.toLowerCase().includes(searchTerm);
+                                    return Search.toLowerCase() === ''
+                                        ? client
+                                        :
+                                        client.name.toLowerCase().includes(Search) ||
+                                        client.username.toLowerCase().includes(Search) ||
+                                        client.email.toLowerCase().includes(Search) ||
+                                        client.website.toLowerCase().includes(Search)
                                 })
                                     .map((client) => (
                                         <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">

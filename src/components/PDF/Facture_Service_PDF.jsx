@@ -1,6 +1,6 @@
 import { Page, Text, Document, StyleSheet } from '@react-pdf/renderer';
 
-const Facture_Vente_PDF = ({client}) => {
+const Facture_Service_PDF = ({client}) => {
 
     const styles = StyleSheet.create({
         body: {
@@ -58,4 +58,4 @@ const Facture_Vente_PDF = ({client}) => {
     );
 }
 
-export default Facture_Vente_PDF;
+export default Facture_Service_PDF;
