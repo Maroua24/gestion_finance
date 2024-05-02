@@ -68,8 +68,8 @@ const Facture_vente = () => {
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'><a href="#"><IoMdInformationCircleOutline /></a></button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]'>
-                                        <PDFDownloadLink document={<Facture_Vente_PDF/>} fileName="FORM" >
-                                            {({Loading}) => 
+                                        <PDFDownloadLink document={<Facture_Vente_PDF client={Clients} id={client.id} />} fileName="Facture_Vente" >
+                                            {({Loading}) =>
                                                 Loading ? (
                                                     <LuLoader />
                                                 ) : (

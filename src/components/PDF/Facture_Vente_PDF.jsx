@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
 import { Page, Text, Document, StyleSheet } from '@react-pdf/renderer';
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from '../../Redux/API/GetAll';
+// import { getAll } from '../../Redux/API/GetAll';
 
-const Facture_Vente_PDF = () => {
+const Facture_Vente_PDF = ({id}) => {
 
-    // const dispatch = useDispatch();
-    // const Clients = useSelector(state => state.ClientList.ClientsList);
-
-    // useEffect(() => {
-    //     dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-    // }, [dispatch]);
+    const clientId = parseInt(id);
+    const client = useSelector(state => state.ClientList.ClientsList.find(c => c.id === clientId));
 
     const styles = StyleSheet.create({
         body: {
@@ -44,12 +40,19 @@ const Facture_Vente_PDF = () => {
             color: "gray",
         },
     });
+    
+
 
     return (
         <Document>
             <Page size="A4" style={styles.body}>
                 <Text style={styles.header} fixed></Text>
-                <Text style={styles.text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea placeat expedita quae? Praesentium nemo totam nisi corrupti expedita saepe tempora nostrum, ipsum repellat, delectus facilis soluta ex et amet fugiat.</Text>
+                <Text style={styles.text}>
+            {client?.name}
+            {client?.username}
+            {client?.email}
+            {client?.phone}
+        </Text>
                 <Text
                     style={styles.pageNumber}
                     render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
