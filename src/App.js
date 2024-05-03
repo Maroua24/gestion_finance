@@ -20,7 +20,7 @@ const App = () => {
 
                         <Route path='/Facture_vente' element={<Facture_vente/>}/>
                         <Route path='/AddFactureVente' element={<AddFactureVente/>}/>
-                        <Route path='/Facture_Vente_Info' element={<Facture_Vente_Info/>} />
+                        <Route path='/Facture_Vente_Info/:id' element={<Facture_Vente_Info/>} />
 
                         <Route path='/Facture_Service' element={<Facture_Service/>}/>
                         <Route path='/AddFacturService' element={<AddFactureService/>}/>

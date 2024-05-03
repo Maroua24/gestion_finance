@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { GrDocumentUpdate } from "react-icons/gr";
-import { MdOutlineMonetizationOn } from "react-icons/md";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input} from '../index'
@@ -8,6 +8,7 @@ import {getAll} from '../../Redux/API/GetAll'
 const Client = () => {
 
     const [Search, setSearch] = useState("");
+    const [sortBy, setSortBy] = useState(null);
 
     const dispatch = useDispatch();
     const Clients = useSelector(state => state.ClientList.ClientsList);
@@ -17,6 +18,22 @@ const Client = () => {
         // dispatch(getAll("http://127.0.0.1:8000/api/clients"));
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
+
+    const handleSort = (key) => {
+        if (sortBy === key) {
+            setSortBy(null);
+        } else {
+            setSortBy(key);
+        }
+    };
+    const highlightMatch = (text, search) => {
+        return search ? (
+            <span dangerouslySetInnerHTML={{ __html: text.replace(new RegExp(search, 'gi'), match => `<span style="color:blue">${match}</span>`) }} />
+        ) : (
+            text
+        );
+    };
+
     return (
         <>
             <Menu/>
@@ -45,11 +62,11 @@ const Client = () => {
                                         xl:text-3xl 2xl:text-4xl
                                     '>
                         <tr className="m-2 text-center">
-                            <th scope="col" className='py-2 px-4'>id</th>
-                            <th scope="col" className='py-2 px-4'>Code</th>
-                            <th scope="col" className='py-2 px-4'>Nom</th>
-                            <th scope="col" className='py-2 px-4'>Email</th>
-                            <th scope="col" className='py-2 px-4'>Address</th>
+                        <th scope="col" className='py-2 px-4'>id</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('name')}>Nom</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('username')}>Code</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('email')}>Email</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('website')}>Address</th>
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
                     </thead>
@@ -70,13 +87,28 @@ const Client = () => {
                                         client.email.toLowerCase().includes(Search) ||
                                         client.website.toLowerCase().includes(Search)
                                 })
+                                .sort((a, b) => {
+                                    if (sortBy) {
+                                        return a[sortBy].localeCompare(b[sortBy]);
+                                    } else {
+                                        return 0;
+                                    }
+                                })
                                     .map((client) => (
                                         <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                             <td className="pl-6">{client.id}</td>
-                                            <td className="p-3 ">{client.name}</td>
-                                            <td>{client.username}</td>
-                                            <td>{client.email}</td>
-                                            <td>{client.website}</td>
+                                            <td className="p-3 ">
+                                                {highlightMatch(client.name, Search)}
+                                            </td>
+                                            <td>
+                                                {highlightMatch(client.username, Search)}
+                                            </td>
+                                            <td>
+                                                {highlightMatch(client.email, Search)}
+                                            </td>
+                                            <td>
+                                                {highlightMatch(client.website, Search)}
+                                            </td>
                                             <td>
                                                 <button to={`/edit/${client.id}`}
                                                         className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
@@ -91,7 +123,7 @@ const Client = () => {
                                                                     xl:text-3xl 2xl:text-4xl
                                                                     '>
                                                     <Link to={`/Client_info/${client.id}`}>
-                                                        <MdOutlineMonetizationOn />
+                                                        <IoMdInformationCircleOutline />
                                                     </Link>
                                                 </button>
                                             </td>
@@ -107,3 +139,4 @@ const Client = () => {
 }
 
 export default Client
+

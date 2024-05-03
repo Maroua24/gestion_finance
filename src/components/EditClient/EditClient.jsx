@@ -2,127 +2,115 @@ import { Select, Input , Style,Menu} from "../index"
 import { useState, useEffect } from "react";
 import { useDispatch ,useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
-// import { addClient } from "../../Redux/ClientReduser";
-// import { useNavigate } from 'react-router-dom'
+
 
 const EditClient = () => {
 
-    // const dispatch = useDispatch();
+
+    const { id } = useParams();
+    const clientId = parseInt(id);
+    const client = useSelector(state => state.ClientList.ClientsList.find(c => c.id === clientId));
+
+
+    // const {
+    //     Categorie_de_compte,
+    //     Sigle,
+    //     Raison_sociale,
+    //     Code_TVA,
+    //     Nature_du_compte,
+    //     NIF,
+    //     NIS,
+    //     Registre_de_commerce,
+    //     Article_dimposition,
+    //     Devise,
+    //     Rue,
+    //     Ville,
+    //     Region,
+    //     Type_de_region,
+    //     Code_postal,
+    //     Pays,
+    //     Telephone,
+    //     Email,
+    //     Secteur_dactivite,
+    //     Condition_de_paiement,
+    //     Cre_le,
+    //     Cre_par,
+    //     Nom,
+    //     Prenom,
+    //     Fonction,
+    //     Type_de_client,
+    //     Fax,
+    //     Dossier_valide,
+    //     Status,
+    // } = existingClient[0];
 
     // const [inputValue, setInputValue] = useState({
-    //     Categorie_de_compte: '',
-    //     Raison_sociale: '',
-    //     Sigle: '',
-    //     Code_TVA: '',
-    //     Nature_du_compte: '',
-    //     NIF: '',
-    //     NIS: '',
-    //     Registre_de_commerce: '',
-    //     Article_imposition: '',
-    //     Devise: '',
-    //     Rue: '',
-    //     Ville: '',
-    //     Region: '',
-    //     Type_de_region: '',
-    //     Code_postal: '',
-    //     Pays: '',
-    //     Telephone: '',
-    //     Email: '',
-    //     Secteur_activite: '',
-    //     Condition_de_paiement: '',
-    //     Cre_le: '',
-    //     Cre_par: '',
-    //     Nom: '',
-    //     Prenom: '',
-    //     Fonction: '',
-    //     Type_de_client: '',
-    //     Fax: '',
-    //     Dossier_valide: '',
-    //     valid: '',
+    //     Categorie_de_compte,
+    //     Raison_sociale,
+    //     Sigle,
+    //     Code_TVA,
+    //     Nature_du_compte,
+    //     NIF,
+    //     NIS,
+    //     Registre_de_commerce,
+    //     Article_dimposition,
+    //     Devise,
+    //     Rue,
+    //     Ville,
+    //     Region,
+    //     Type_de_region,
+    //     Code_postal,
+    //     Pays,
+    //     Telephone,
+    //     Email,
+    //     Secteur_dactivite,
+    //     Condition_de_paiement,
+    //     Cre_le,
+    //     Cre_par,
+    //     Nom,
+    //     Prenom,
+    //     Fonction,
+    //     Type_de_client,
+    //     Fax,
+    //     Dossier_valide,
+    //     Status,
     // });
 
-    // const handleInput=(e) => {
-    //     setInputValue({...inputValue,[e.target.name]: e.target.value});
-    // }
+    // const {
+    //     name,
+    //     username,
+    //     email,
+    //     website,
+    // }  = existingClient;
 
-    // const handleSubmit=(e)=> {
-    //     e.preventDefault();
-    //     // dispatch(addClient(inputValue))
-    //     // console.log(inputValue)
-    // }
+    // const [inputValue,setInputValue] = useState({
+    //     name,
+    //     username,
+    //     email,
+    //     website,
+    // })
 
-    const {id} = useParams();
-    const Clients = useSelector(state => state.ClientList.ClientsList);
-    const existingClient = Clients.filter(f => f.id == id);
-    const {
-        Categorie_de_compte,
-        Sigle,
-        Raison_sociale,
-        Code_TVA,
-        Nature_du_compte,
-        NIF,
-        NIS,
-        Registre_de_commerce,
-        Article_dimposition,
-        Devise,
-        Rue,
-        Ville,
-        Region,
-        Type_de_region,
-        Code_postal,
-        Pays,
-        Telephone,
-        Email,
-        Secteur_dactivite,
-        Condition_de_paiement,
-        Cre_le,
-        Cre_par,
-        Nom,
-        Prenom,
-        Fonction,
-        Type_de_client,
-        Fax,
-        Dossier_valide,
-        Status,
-    } = existingClient[0];
-
-    const [inputValue, setInputValue] = useState({
-        Categorie_de_compte,
-        Raison_sociale,
-        Sigle,
-        Code_TVA,
-        Nature_du_compte,
-        NIF,
-        NIS,
-        Registre_de_commerce,
-        Article_dimposition,
-        Devise,
-        Rue,
-        Ville,
-        Region,
-        Type_de_region,
-        Code_postal,
-        Pays,
-        Telephone,
-        Email,
-        Secteur_dactivite,
-        Condition_de_paiement,
-        Cre_le,
-        Cre_par,
-        Nom,
-        Prenom,
-        Fonction,
-        Type_de_client,
-        Fax,
-        Dossier_valide,
-        Status,
-    });
     return (
         <>
         <Menu/>
-        <form   method="post" action="{% url 'formulaire_client' %}">
+
+
+        <form>
+            <Style>
+                <Input label="NIF:" name="NIF" type="text" id="NIF"  value={client.name} />
+                <Input label="NIS:" name="NIS" type="text" id="NIS" value={client.username} />
+            </Style>
+
+            <Style>
+                <Input label="NIF:" name="NIF" type="text" id="NIF"  value={client.email} />
+                <Input label="NIS:" name="NIS" type="text" id="NIS" value={client.website} />
+            </Style>
+        </form>
+
+
+        {/* <form   method="post" action="{% url 'formulaire_client' %}">
                 <h1 className="text-[--statistic-color] text-3xl m-3">.....</h1>
-                {/* {% csrf_token %}  */}
+                {/* {% csrf_token %}
                 <div style={{ display: "block" }}>
                     <Select name="Categorie_de_compte" value_1="C" value_2="S" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={Categorie_de_compte} />
 
@@ -183,7 +171,7 @@ const EditClient = () => {
                         <Select label="Status:" name="Status" value_1="A" value_2="I" choix1="Actif" choix2="Inactif" id="status" value={Status} />
                         <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
                     </div>
-            </form>
+            </form> */}
         </>
     );
 };

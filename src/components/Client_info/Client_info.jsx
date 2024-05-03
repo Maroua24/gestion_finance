@@ -14,7 +14,7 @@ const ClientInfo = () => {
                 <Style>
                     <Menu/>
                     <div>
-                <h2 className="shadow-md p-3 text-[#071F90] m-3 sm:text-[20px] md:text-2xl lg:text-2xl xl:text-4xl 2xl:text-5xl">
+                <h2 className="shadow-lg p-3 text-[#071F90] m-3 sm:text-[20px] md:text-2xl lg:text-2xl xl:text-4xl 2xl:text-5xl">
                     <b>Information du client:</b>
                 </h2>
 
@@ -23,7 +23,7 @@ const ClientInfo = () => {
                 </div>
 
                 <div className="md:flex">
-                <div className="shadow-md rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="ID : " API={client.id}/>
                     <Info name="Nom : " API={client.company.name}/>
                     <Info name="Prenom : " API={client.company.catchPhrase}/>
@@ -31,7 +31,7 @@ const ClientInfo = () => {
                     <Info name="Telephone : " API={client.phone}/>
                 </div>
 
-                <div className="shadow-md rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="Categorie de compte : " API={client.name}/>
                     <Info name="Nature du compte : " API={client.phone}/>
                     <Info name="Raison sociale : " API={client.username}/>
@@ -39,7 +39,7 @@ const ClientInfo = () => {
                 </div>
                 </div>
 
-                <div className="shadow-md rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="Sigle : " API={client.email}/>
                     <Info name="Code TVA : " API={client.website}/>
                     <Info name="NIF : " API={client.company.name}/>
@@ -47,7 +47,7 @@ const ClientInfo = () => {
                 </div>
 
                 <div className="md:flex">
-                <div className="shadow-md rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="Article imposition : " API={client.id}/>
                     <Info name="Devise : " API={client.name}/>
                     <Info name="Code postal : " API={client.company.name}/>
@@ -55,7 +55,7 @@ const ClientInfo = () => {
                     <Info name="Condition de paiement : " API={client.username}/>
                 </div>
 
-                <div className="shadow-md rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="Rue : " API={client.username}/>
                     <Info name="Ville : " API={client.email}/>
                     <Info name="Region : " API={client.website}/>
@@ -65,14 +65,14 @@ const ClientInfo = () => {
                 </div>
 
                 <div className="md:flex">
-                <div className="shadow-md rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="Sigle : " API={client.email}/>
                     <Info name="Cre le : " API={client.website}/>
                     <Info name="Cre par : " API={client.phone}/>
                     <Info name="Fonction : " API={client.company.name}/>
                 </div>
 
-                <div className="shadow-md rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="Type de client : " API={client.website}/>
                     <Info name="Fax : " API={client.phone}/>
                     <Info name="Dossier valide : " API={client.company.name}/>

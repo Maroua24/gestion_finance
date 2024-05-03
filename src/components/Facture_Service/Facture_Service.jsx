@@ -41,15 +41,7 @@ const Facture_Service = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <button className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
-                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
-                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
-                                    2xl:text-3xl
-                                    '>
-                    <a href="/AddClient" className='font-semibold'>Ajouter +</a>
-                </button>
-
-                <table className="ml-5 sm:mr-4 xl:mr-8">
+                <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">
                     <thead className='bg-[--statistic-color] text-white font-semibold
                                         sm:text-[10px] md:text-xl lg:text-2xl
                                         xl:text-3xl 2xl:text-4xl
@@ -84,6 +76,7 @@ const Facture_Service = () => {
                                 client.email.toLowerCase().includes(Search) ||
                                 client.website.toLowerCase().includes(Search)
                         })
+                        .sort((a, b) => a.username.localeCompare(b.name))
                         .map((client) => (
                             <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                 <td className="pl-6">{client.id}</td>

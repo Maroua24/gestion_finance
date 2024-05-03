@@ -1,12 +1,18 @@
-import "./Select.css"
 
 const Select = (props) => {
     return(
         <>
-            <label className="ml-5 text-light-color text-xs">{props.name}</label>
+            <label className="ml-5 text-light-color text-xs md:text-lg xl:text-2xl 2xl:text-3xl">
+                {props.name}
+            </label>
             <select
                 id={props.id}
-                className="bg-transparent text-xs border-2 border-outset border-card-color text-light-color m-3 text-black" name="Selector"
+                className="bg-transparent text-xs  border-2 border-outset border-card-color m-3 text-black
+                            md:h-[35px] md:w-[95px] md:text-lg
+                            lg:h-[40px] lg:w-[110px] lg:text-xl
+                            xl:h-[45px] xl:w-[130px] xl:text-2xl
+                            2xl:h-[50px] 2xl:w-[150px] 2xl:text-3xl"
+                name="Selector"
                 onChange={props.handleInput}
                 >
 

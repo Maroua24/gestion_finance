@@ -56,7 +56,10 @@ const AddClient = () => {
         <>
             <Menu/>
             <form onSubmit={handleSubmit}  method="post" action="{% url 'formulaire_client' %}">
-                <h1 className="text-[--statistic-color] text-3xl m-3">Ajouter un client:</h1>
+                <h1 className="text-[--statistic-color] p-4 sm:text-3xl
+                                md:text-5xl lg:text-7xl">
+                    Ajouter un client:
+                </h1>
                 {/* {% csrf_token %}  */}
                 <div style={{ display: "block" }}>
                     <Select name="Categorie_de_compte" value_1="C" value_2="S" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.Categorie_de_compte} onChange={handleInput}/>
@@ -116,7 +119,10 @@ const AddClient = () => {
 
                         <Select label="Dossier valide:" name="Dossier_valide" value_1="Y" value_2="N" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleInput}/>
                         <Select label="Status:" name="Status" value_1="A" value_2="I" choix1="Actif" choix2="Inactif" id="status" value={inputValue.valid} onChange={handleInput}/>
-                        <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
+                        <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md
+                                                        md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                            Envoyer
+                        </button>
                     </div>
             </form>
         </>

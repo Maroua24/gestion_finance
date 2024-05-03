@@ -16,7 +16,7 @@ const Menu =() => {
             {statistic &&(
                 <div className='w-24 h-full w-[78%]'>
                     <ul className="list-group list-group-flush">
-                        <Item href="/" item="Dashboard"/>
+                        <Item href="/Main" item="Dashboard"/>
                         <Item href="/client" item="Client"/>
                         <Item href="/client_VIP" item="Client VIP"/>
                         <Item href="/Facture_vente" item="Factures vente"/>

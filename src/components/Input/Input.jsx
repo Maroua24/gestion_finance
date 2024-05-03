@@ -2,29 +2,24 @@
 const Input = (props) => {
     return(
         <>
-            <div className="block flex-wrap h-5 m-4">
-                <label className="text-xs">{props.label}</label>
+            <div className="block flex-wrap h-5 m-4 md:h-8 lg:h-11 xl:h-14 2xl:h-16">
+                <label className="text-xs
+                                md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                    {props.label}
+                </label>
                 <input
                     type={props.type}
                     id="input"
-                    className="bg-transparent border border-solid border-[--light-color] w-full h-5 border-2 border-outset focus:border-transparent"
+                    className="bg-transparent border border-solid border-[--light-color] w-full h-5 border-2 border-outset focus:border-transparent
+                                md:h-[30px] md:text-lg
+                                lg:h-[35px] lg:text-xl
+                                xl:h-[40px] xl:text-2xl
+                                2xl:h-[50px] 2xl:text-3xl"
                     name={props.name}
                     value={props.value}
                     onChange={props.onChange}
                 />
             </div>
-            {/* <div class="mb-3 row">
-                <label for="staticEmail" class="text-xs col-sm-2 col-form-label">{props.label}</label>
-                <div class="col-sm-10">
-                    <input
-                        type={props.type}
-                        class="form-control-plaintext bg-transparent border border-solid border-[--light-color] w-full h-5 text-[--light-color] border-2 border-outset focus:border-transparent"
-                        id="input"
-                        value={props.value}
-                        onChange={props.onChange}
-                    />
-                </div>
-            </div> */}
         </>
     )
 }
