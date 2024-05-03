@@ -4,18 +4,18 @@ from devises.models import Devise
 
 class Client(models.Model):
     etat_dossier = (
-        (True, 'Validé'),
-        (False, 'Non validé'),
+        ('Valide', 'Valide'),
+        ('Non valide', 'Non valide'),
     )
 
     etat_statut= (
-        ('A', ('Active')),
-        ('I', ('Inactive')),
+        ('Active', 'Active'),
+        ('Inactive', 'Inactive'),
     )
 
     categorie = (
-        ('Client', ('Client')),
-        ('Supplier', ('Supplier')),
+        ('Client', 'Client'),
+        ('Supplier', 'Supplier'),
     )
 
     categorie_compte  = models.CharField(max_length=10, choices=categorie)
@@ -45,7 +45,7 @@ class Client(models.Model):
     type_client = models.CharField(max_length=100)
     fax = models.CharField(max_length=100, blank=False)
     dossier_valide = models.BooleanField(default=False)
-    statut = models.CharField(max_length=1, choices=etat_statut)
+    statut = models.CharField(max_length=10, choices=etat_statut)
     est_vip = models.BooleanField(default=False) 
     creer_par = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, blank=True , related_name='client')
 

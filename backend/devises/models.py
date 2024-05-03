@@ -9,12 +9,12 @@ class Devise(models.Model):
     JPY = 'JPY'
 
     DEVISE_CHOICES = (
-        (EUR, 'EUR (EUR)'),
-        (GBP, 'GBP (GBP)'),
-        (USD, 'USD (USD)'),
-        (CAD, 'CAD (CAD)'),
-        (AUD, 'AUD (AUD)'),
-        (JPY, 'JPY (JPY)'),
+        ('EUR', 'EUR (EUR)'),
+        ('GBP', 'GBP (GBP)'),
+        ('USD', 'USD (USD)'),
+        ('CAD', 'CAD (CAD)'),
+        ('AUD', 'AUD (AUD)'),
+        ('JPY', 'JPY (JPY)'),
     )
 
     devise = models.CharField(max_length=10, choices=DEVISE_CHOICES ,default=EUR)

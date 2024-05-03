@@ -41,15 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "clients",
     "devises",
-    # "factures_vente",
-    # "factures_service",
+
     "authentification",
     "statistiques",
     "commandes",
     # "commande_ligne",
     "produits",
-    # "paiements",
+    "paiements",
     "factures",
+    # "fact",
+    # "factpai",
+    
 
     "rest_framework",
     'corsheaders',

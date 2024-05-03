@@ -1,0 +1,45 @@
+[
+    {
+      "model": "devises.devise",
+      "pk": 1,
+      "fields": {
+        "devise": "EUR"
+      }
+    },
+    {
+      "model": "devises.devise",
+      "pk": 2,
+      "fields": {
+        "devise": "GBP"
+      }
+    },
+    {
+      "model": "devises.devise",
+      "pk": 3,
+      "fields": {
+        "devise": "USD"
+      }
+    },
+    {
+      "model": "devises.devise",
+      "pk": 4,
+      "fields": {
+        "devise": "CAD"
+      }
+    },
+    {
+      "model": "devises.devise",
+      "pk": 5,
+      "fields": {
+        "devise": "AUD"
+      }
+    },
+    {
+      "model": "devises.devise",
+      "pk": 6,
+      "fields": {
+        "devise": "JPY"
+      }
+    }
+  ]
+  
