@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     ClientListView, ClientDetailView, ClientCreateView,
-    ClientDeleteView, VueListeClientsVIP
+    ClientDeleteView, VueListeClientsVIP ,FacturesClientAPIView
 )
 
 urlpatterns = [
@@ -11,5 +11,5 @@ urlpatterns = [
     
     path('clients/<int:pk>/delete/', ClientDeleteView.as_view(), name='client-delete'),
     path('clients-vip/', VueListeClientsVIP.as_view(), name='liste_clients_vip'),
-
+    path('clients/<int:client_id>/factures/', FacturesClientAPIView.as_view(), name='factures_client_api'),
 ]
