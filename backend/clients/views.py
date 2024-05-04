@@ -12,6 +12,51 @@ from rest_framework import generics
 from factures.models import Facture
 from factures.serializers import FactureSerializer
 
+from paiements.models import Paiement
+from paiements.serializers import PaiementSerializer
+from rest_framework.views import APIView
+
+class HistouriqueView(APIView):
+    def get(self, request, client_id):
+        # Récupère toutes les factures du client
+        factures = Facture.objects.filter(client_id=client_id)
+        factures_serializer = FactureSerializer(factures, many=True)
+
+        # Récupère tous les paiements du client
+        paiements = Paiement.objects.filter(facture__client_id=client_id)
+        paiements_serializer = PaiementSerializer(paiements, many=True)
+
+        # Crée une réponse JSON contenant les factures et les paiements
+        data = {
+            'factures': factures_serializer.data,
+            'paiements': paiements_serializer.data,
+        }
+        return Response(data)
+
+class PaiementHistoryView(APIView):
+    def get(self, request, client_id):
+        # Récupère toutes les factures du client
+        factures = Facture.objects.filter(client_id=client_id)
+
+        # Initialise une liste vide pour stocker les paiements
+        paiements = []
+
+        # Pour chaque facture du client, récupère tous les paiements associés
+        for facture in factures:
+            paiements_facture = Paiement.objects.filter(facture=facture)
+            paiements.extend(paiements_facture)
+
+        # Serialize les paiements récupérés
+        serializer = PaiementSerializer(paiements, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = PaiementSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class FacturesClientAPIView(ListAPIView):
     serializer_class = FactureSerializer
 
