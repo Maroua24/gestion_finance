@@ -10,7 +10,7 @@ class Facture(models.Model):
     ]
 
     type_facture = models.CharField(max_length=10, choices=TYPE_CHOICES)
-    commande_ligne = models.ForeignKey(Commande_ligne, on_delete=models.CASCADE, related_name='factures')
+    commande_ligne = models.ManyToManyField(Commande_ligne, related_name='factures')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='factures')
     facture_id = models.CharField(max_length=20, unique=True, editable=False)
     date_creation = models.DateField(auto_now_add=True)
