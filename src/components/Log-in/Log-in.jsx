@@ -15,7 +15,7 @@ const Log_in = () => {
                     <input type="password" className="form-control sm:w-48 lg:w-64 xl:w-80 xl:h-12 xl:text-xl 2xl:w-96 2xl:h-16 2xl:text-3xl" id="exampleInputPassword1" placeholder='Mot de passe'/>
                 </div>
                 <button type="submit" className="btn btn-primary m-3">
-                    <a href="/Main" className='hover:text-[--light-color] xl:text-xl 2xl:text-3xl'>Submit</a>
+                    <a href="/Main" className='hover:text-[--light-color] xl:text-xl 2xl:text-3xl'>Log in</a>
                 </button>
             </form>
         </div>

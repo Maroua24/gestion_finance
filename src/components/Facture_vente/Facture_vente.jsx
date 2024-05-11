@@ -12,15 +12,24 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 const Facture_vente = () => {
 
     const [Search, setSearch] = useState("");
+    const [sortBy, setSortBy] = useState(null);
 
     const dispatch = useDispatch();
-    const Clients = useSelector(state => state.ClientList.ClientsList);
-    const isLoading = useSelector(state => state.ClientList.isLoading)
+    const FactureVenteList = useSelector(state => state.FactureVenteList.FactureVenteList);
+    const isLoading = useSelector(state => state.FactureVenteList.isLoading)
 
     useEffect(()=>{
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        //dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
     },[dispatch]);
 
+    const highlightMatch = (text, search) => {
+        return search ? (
+            <span dangerouslySetInnerHTML={{ __html: text.replace(new RegExp(search, 'gi'), match => `<span style="color:blue">${match}</span>`) }} />
+        ) : (
+            text
+        );
+    };
     const viewPDF = (client) => {
         const pdfContent = <Facture_Vente_PDF client={client} />;
         const pdfBlob = new Blob([pdfContent], { type: 'application/pdf' });
@@ -50,10 +59,10 @@ const Facture_vente = () => {
                                     '>
                         <tr className="m-2 text-center">
                             <th scope="col" className='py-2 px-4'>id</th>
-                            <th scope="col" className='py-2 px-4'>Code</th>
-                            <th scope="col" className='py-2 px-4'>Nom</th>
-                            <th scope="col" className='py-2 px-4'>Email</th>
-                            <th scope="col" className='py-2 px-4'>Address</th>
+                            <th scope="col" className='py-2 px-4'>Date de creation</th>
+                            <th scope="col" className='py-2 px-4'>Date de comptabilisation</th>
+                            <th scope="col" className='py-2 px-4'>Date de decheance</th>
+                            <th scope="col" className='py-2 px-4'>Etat</th>
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
                     </thead>
@@ -68,36 +77,35 @@ const Facture_vente = () => {
                                 </td>
                             </tr>
                             :
-                        Clients
-                        .filter((client) => {
+                        FactureVenteList
+                        .filter((Facture) => {
                             return Search.toLowerCase() === ''
-                                ? client
+                                ? Facture
                                 :
-                                client.name.toLowerCase().includes(Search) ||
-                                client.username.toLowerCase().includes(Search) ||
-                                client.email.toLowerCase().includes(Search) ||
-                                client.website.toLowerCase().includes(Search)
+                                Facture.name.toLowerCase().includes(Search) ||
+                                Facture.username.toLowerCase().includes(Search) ||
+                                Facture.email.toLowerCase().includes(Search) ||
+                                Facture.website.toLowerCase().includes(Search)
                         })
-                        .sort((a, b) => a.username.localeCompare(b.name))
-                        .map((client) => (
-                            <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                <td className="pl-6">{client.id}</td>
-                                <td className="p-3 ">{client.name}</td>
-                                <td>{client.username}</td>
-                                <td>{client.email}</td>
-                                <td>{client.website}</td>
+                        .map((Facture) => (
+                            <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                <td className="pl-6">{Facture.id}</td>
+                                <td className="p-3 ">{Facture.name}</td>
+                                <td>{Facture.username}</td>
+                                <td>{Facture.email}</td>
+                                <td>{Facture.website}</td>
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <Link to={`/Facture_Vente_Info/${client.id}`}>
+                                        <Link to={`/Facture_Vente_Info/${Facture.id}`}>
                                             <IoMdInformationCircleOutline />
                                         </Link>
                                     </button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_Vente_PDF client={client} />} fileName="Facture_Vente.pdf" >
+                                        <PDFDownloadLink document={<Facture_Vente_PDF Facture={Facture} Factures={FactureVenteList}/>} fileName="Facture_Vente.pdf" >
                                             {({Loading}) =>
                                                 Loading ? (
                                                     <LuLoader />
@@ -110,7 +118,7 @@ const Facture_vente = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'
-                                                                    onClick={() => viewPDF(client)}>
+                                                                    onClick={() => viewPDF(Facture)}>
                                         <a href="#"><FaFilePdf /></a>
                                     </button>
                                 </td>

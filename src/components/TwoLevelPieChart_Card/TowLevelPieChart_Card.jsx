@@ -14,8 +14,11 @@ const TowLevelPieChart_Card = (props) => {
     }
     return (
         <>
-            <div className="inline-block w-[40%] h-[40%] sm:h-[30%] lg:h-[35%] 2xl:h-[40%]">
-                <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer  h-[60%] w-[90%] font-[--Main-font] shadow-lg' onClick={click}>
+            <div className="inline-block">
+                <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer  h-[60%] w-[90%] font-[--Main-font] shadow-lg
+                                sm:h-[100px] sm:w-[220px] md:h-[110px] md:w-[290px]
+                                lg:h-[120px] lg:w-[330px] 2xl:h-[170px] 2xl:w-[470px]'
+                                onClick={click}>
                     <p className='container text-3xl mb-3
                                     sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
                                     '>
@@ -30,7 +33,8 @@ const TowLevelPieChart_Card = (props) => {
                 </div>
 
                 {statistic && (
-                    <div className="w-[230px] h-[270px] ml-5  mb-0 mt-30 border border-solid border-light-color bg-[--statistic-color] shadow-md ">
+                    <div className="ml-6 border border-solid border-light-color bg-[--statistic-color] shadow-md 
+                                    sm:w-[220px] md:w-[290px] lg:w-[330px] 2xl:w-[470px]">
                         <PieChart width={200} height={140}>
                             <Pie
                                 data={data}
@@ -38,7 +42,7 @@ const TowLevelPieChart_Card = (props) => {
                                 cx="50%"
                                 cy="50%"
                                 innerRadius={40}
-                                outerRadius={50}
+                                outerRadius={55}
                                 label={{ fontSize: 10,}}
                             />
                         </PieChart>

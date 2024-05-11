@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {addFactureService} from '../API/FactureServiceAPI'
 import {getAll} from '../API/GetAll'
 
 const initialState = {
@@ -27,21 +26,6 @@ const FactureServiceSlice = createSlice({
             .addCase(getAll.rejected, (state, action) => {
                 state.isLoading=false;
                 state.error=action?.error?.message;
-            })
-        // Add facture service
-        builder
-            .addCase(addFactureService.pending, state => {
-                state.isLoading = true
-                state.error = ''
-            })
-            .addCase(addFactureService.fulfilled, (state,action) => {
-                state.isLoading = false
-                state.FactureServiceList=[]
-            })
-            .addCase(addFactureService.rejected,(state,action) => {
-                state.isLoading=false
-                state.FactureServiceList=[]
-                state.error = action.error.message
             })
     }
 })

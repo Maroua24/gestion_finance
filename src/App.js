@@ -19,11 +19,9 @@ const App = () => {
                         <Route path='/client_VIP' element={<Client_VIP/>}/>
 
                         <Route path='/Facture_vente' element={<Facture_vente/>}/>
-                        <Route path='/AddFactureVente' element={<AddFactureVente/>}/>
                         <Route path='/Facture_Vente_Info/:id' element={<Facture_Vente_Info/>} />
 
                         <Route path='/Facture_Service' element={<Facture_Service/>}/>
-                        <Route path='/AddFacturService' element={<AddFactureService/>}/>
 
                         <Route path='/Facture_Impayees' element={<FactureImpayees/>}/>
 

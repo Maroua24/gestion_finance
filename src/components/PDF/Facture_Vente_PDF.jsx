@@ -1,6 +1,7 @@
-import { Page, Text, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, Document, StyleSheet, View } from '@react-pdf/renderer';
+import {useSelector} from "react-redux";
 
-const Facture_Vente_PDF = ({client}) => {
+const Facture_Vente_PDF = ({client,Clients}) => {
 
     const styles = StyleSheet.create({
         body: {
@@ -33,7 +34,32 @@ const Facture_Vente_PDF = ({client}) => {
             textAlign: "center",
             color: "gray",
         },
+
+
+        table: {
+            display: "table",
+            width: "auto",
+            borderStyle: "solid",
+            borderWidth: 1,
+            borderRightWidth: 0,
+            borderBottomWidth: 0,
+        },
+        tableRow: {
+            margin: "auto",
+            flexDirection: "row",
+        },
+        tableCell: {
+            margin: "auto",
+            marginVertical: 5,
+            borderStyle: "solid",
+            borderWidth: 1,
+            borderLeftWidth: 0,
+            borderTopWidth: 0,
+            width: "25%",
+            textAlign: "center",
+        },
     });
+
 
     return (
         <Document>
@@ -53,6 +79,25 @@ const Facture_Vente_PDF = ({client}) => {
                     render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
                     fixed
                 />
+
+                    <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableCell}>Item</Text>
+                        <Text style={styles.tableCell}>Quantity</Text>
+                        <Text style={styles.tableCell}>Price</Text>
+                        <Text style={styles.tableCell}>Total</Text>
+                    </View>
+                    {/* Map over your items to create table rows */}
+                    {Clients.map((item, index) => (
+                        <View key={index} style={styles.tableRow}>
+                            <Text style={styles.tableCell}>{item.name}</Text>
+                            <Text style={styles.tableCell}>{item.username}</Text>
+                            <Text style={styles.tableCell}>{item.email}</Text>
+                            <Text style={styles.tableCell}>{item.email }</Text>
+                        </View>
+                    ))}
+                </View>
+
             </Page>
         </Document>
     );
