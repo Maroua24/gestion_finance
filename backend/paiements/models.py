@@ -10,6 +10,7 @@ class Paiement(models.Model):
     date_paiement = models.DateField(auto_now_add=True)
     facture = models.ForeignKey(Facture, on_delete=models.CASCADE)
     montant = models.DecimalField(max_digits=10, decimal_places=2)
+    montant_partiel = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     creer_par = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, blank=True , related_name='paiement')
     est_annule = models.BooleanField(default=False)
     Etat_CHOICES=(
@@ -47,3 +48,5 @@ class Paiement(models.Model):
 #     # Utilisateur = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='operations_paiement')
 #     date_operation = models.DateTimeField(auto_now_add=True)
 #     raison_annulation = models.TextField(blank=True)
+
+
