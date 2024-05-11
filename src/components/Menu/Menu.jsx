@@ -10,8 +10,8 @@ const Menu =() => {
     return(
         <>
         <div className="sm:ml-3 md:ml-5 lg:ml-7 xl:ml-8">
-                <img src={image} alt="image" className='sm:w-14 sm:mr-1 md:w-20 lg:w-24 xl:w-40'/>
-                <FiAlignLeft className='cursor-pointer inline-block' onClick={click}/>
+                <img src={image} alt="image" className='sm:w-14  sm:mr-1 md:w-20 lg:w-24 xl:w-40 xl:mt-[-20px] '/>
+                <FiAlignLeft className='cursor-pointer inline-block sm:mt-[-40px] md:text-xl lg:text-3xl xl:text-4xl' onClick={click}/>
 
             {statistic &&(
                 <div className='w-24 h-full w-[78%]'>

@@ -15,8 +15,8 @@ const Client = () => {
     const isLoading = useSelector(state => state.ClientList.isLoading);
 
     useEffect(()=>{
-        // dispatch(getAll("http://127.0.0.1:8000/api/clients"));
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/clients/create/"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
 
     const handleSort = (key) => {
@@ -82,10 +82,10 @@ const Client = () => {
                                     return Search.toLowerCase() === ''
                                         ? client
                                         :
-                                        client.name.toLowerCase().includes(Search) ||
-                                        client.username.toLowerCase().includes(Search) ||
+                                        client.nom.toLowerCase().includes(Search) ||
+                                        client.prenom.toLowerCase().includes(Search) ||
                                         client.email.toLowerCase().includes(Search) ||
-                                        client.website.toLowerCase().includes(Search)
+                                        client.pays.toLowerCase().includes(Search)
                                 })
                                 .sort((a, b) => {
                                     if (sortBy) {
@@ -98,16 +98,16 @@ const Client = () => {
                                         <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                             <td className="pl-6">{client.id}</td>
                                             <td className="p-3 ">
-                                                {highlightMatch(client.name, Search)}
+                                                {highlightMatch(client.nom, Search)}
                                             </td>
                                             <td>
-                                                {highlightMatch(client.username, Search)}
+                                                {highlightMatch(client.prenom, Search)}
                                             </td>
                                             <td>
                                                 {highlightMatch(client.email, Search)}
                                             </td>
                                             <td>
-                                                {highlightMatch(client.website, Search)}
+                                                {highlightMatch(client.pays, Search)}
                                             </td>
                                             <td>
                                                 <button to={`/edit/${client.id}`}

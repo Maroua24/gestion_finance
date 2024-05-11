@@ -13,8 +13,10 @@ const PieChart_Card = (props) =>{
     }
     return (
         <>
-        <div className="inline-block sm:h-[200px] sm:w-[240px] lg:h-[50px] 2xl:h-[40%]">
-            <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer  font-[--Main-font]   shadow-lg'
+        <div className="inline-block">
+            <div className='bg-[--card-color] text-[--light-color] m-6 ml-6 cursor-pointer  font-[--Main-font]   shadow-lg z-10
+                            sm:h-[100px] sm:w-[220px] lg:h-[50px] 2xl:h-[60px]
+                            '
                             onClick={click}>
                 <p className='container text-3xl mb-3
                                 sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl
@@ -31,13 +33,15 @@ const PieChart_Card = (props) =>{
             </div>
 
             {statistic &&(
-            <div className="border border-solid border-[--light-color] bg-[--statistic-color] shadow-lg ">
+            <div className="border border-solid border-[--light-color] bg-[--statistic-color] shadow-lg ml-6
+                            sm:w-[220px]
+            ">
                     <PieChart  width={450} height={140}>
                         <Pie
                             dataKey="value"
                             isAnimationActive={true}
                             data={data}
-                            cx="25%"
+                            cx="23%"
                             cy="48%"
                             outerRadius={55}
                             label ={{fontSize: 17,}}

@@ -32,7 +32,7 @@ const Facture_Vente_Info = () => {
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Eta : " API={client.company.name}/>
+                    <Info name="Etat : " API={client.company.name}/>
                 </div>
 
                 </div>
