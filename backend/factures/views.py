@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView,  CreateAPIView, UpdateAPIView 
+from rest_framework.generics import ListAPIView,  CreateAPIView, RetrieveAPIView
 from rest_framework import generics
 from .models import Facture
 from .serializers import FactureSerializer
@@ -26,10 +26,6 @@ class PDFFactureView(View):
             buffer = BytesIO()
 
             pdf = canvas.Canvas(buffer, pagesize=A4)
-
-           
-            
-
             
             pdf.drawString(25, 800, f"ID Facture: {facture.facture_id}")
             pdf.drawString(25, 780, f"Client: {facture.client.nom}")
@@ -86,62 +82,21 @@ class PDFFactureView(View):
         except Facture.DoesNotExist:
             return HttpResponse('La facture demandée n\'existe pas.', status=404)
 
-# class PDFFactureView(View):
-#     def get(self, requNon, id, *args, **kwargs):
-#      try:
-#         facture = Facture.objects.get(id=id)
-#         commande_ligne = facture.commande_ligne
-#         commande = commande_ligne.commande
-#         produit = commande_ligne.produit 
-
-#         buffer = io.BytesIO()
-
-#         pdf = canvas.Canvas(buffer)
-
-#         pdf.drawString(25, 820, f"ID Facture: {facture.facture_id}")
-#         pdf.drawString(25, 800, f"Date de création: {facture.date_creation}")
-#         pdf.drawString(25, 780, f"Date de comptabilisation: {facture.date_comptabilisation}")
-#         pdf.drawString(25, 760, f"Date de déchéance: {facture.date_decheance}")
-#         pdf.drawString(25, 660, f"Produit :{produit.nom}")
-#         pdf.drawString(25, 720, f"Prix unitaire :{produit.prix_unitaire}")
-#         pdf.drawString(25, 660, f"Quantite :{commande_ligne.quantity}")
-#         pdf.drawString(25, 680, f"Prix HT :{commande.pht}")
-#         pdf.drawString(25, 660, f"Prix TTC :{commande.ttc}")
-     
-
-#         # pdf.drawString(25, 640, f"Prix TTC :{commande.ttc}")
-
-
-#         pdf.showPage()
-#         pdf.save()
-
-#         pdf_data = buffer.getvalue()
-
-#         response = HttpResponse(pdf_data, content_type='application/pdf')
-#         response['Content-Disposition'] = 'inline; filename="facture.pdf"'
-#         # pour le téléchargement automatique
-#         #response['Content-Disposition'] = f'attachment; filename="facture_{id}.pdf"'
-
-#         return response
-#      except Facture.DoesNotExist:
-#         return HttpResponse('La facture demandée n\'existe pas.', status=404)
-
-
-
-
 
 class FactureListView(ListAPIView):
     
     queryset = Facture.objects.all()
     serializer_class = FactureSerializer
 
+# class FactureDetail(RetrieveAPIView):
+#     queryset = Facture.objects.all()
+#     serializer_class = FactureSerializer
+#     lookup_field = 'id'
+
 class FactureListCreate(CreateAPIView):
     queryset = Facture.objects.all()
     serializer_class = FactureSerializer
 
-# class FactureDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Facture.objects.all()
-#     serializer_class = FactureSerializer
 
 class FactureVenteList(generics.ListAPIView):
     queryset = Facture.objects.filter(type_facture='Vente')
@@ -156,3 +111,6 @@ class FactureNonPayeeList(generics.ListAPIView):
 
     def get_queryset(self):
         return Facture.objects.filter(non_payee=True)
+    
+
+

@@ -1,14 +1,23 @@
 from rest_framework import serializers
 from .models import Client
+from devises.serializers import DeviseSerializer
+from django.contrib.auth.models import User
+from authentification.serializers import UserSerializer
+
 
 class ClientSerializer(serializers.ModelSerializer):
-    devise_nom = serializers.SerializerMethodField()
+    devise = DeviseSerializer()
     cree_par = serializers.ReadOnlyField(source='cree_par.username')
     class Meta:
         model = Client
         fields = '__all__'
-    def get_devise_nom(self, obj):
-        if obj.devise:
-            return obj.devise.devise
-        return None
+    
+class InfoClientSerializer(serializers.ModelSerializer):
+    devise = DeviseSerializer()
+    cree_par = serializers.ReadOnlyField(source='cree_par.username')
+    class Meta:
+        model = Client
+        fields = ['id', 'nom', 'devise' , 'cree_par']
+
+
        

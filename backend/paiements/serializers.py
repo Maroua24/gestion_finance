@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from .models import Paiement 
-        
+from devises.serializers import DeviseSerializer         
+
 class PaiementSerializer(serializers.ModelSerializer):
+    devise = DeviseSerializer()
     cree_par = serializers.ReadOnlyField(source='cree_par.username') 
     class Meta:
         model = Paiement
