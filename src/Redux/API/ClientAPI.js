@@ -37,8 +37,8 @@ export const addClient = createAsyncThunk('posts/addClient',async (values) => {
             Type_de_client: values.Type_de_client,
             Fax: values.Fax,
             Dossier_valide: values.Dossier_valide,
-            valid: values.valid
+            valid: values.valid,
+            VIP: values.VIP
         })
-
     }).then((res)=> res.json());
 })

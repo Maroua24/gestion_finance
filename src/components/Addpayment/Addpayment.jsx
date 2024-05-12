@@ -1,46 +1,96 @@
-import { Select, Input , Style,Menu} from "../index"
-import { useState} from "react";
-import { useDispatch} from "react-redux";
+import {Input ,Menu,Style,Check_box} from "../index"
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+
 
 
 const Add_payment = () => {
 
-    const dispatch = useDispatch();
-
-    const [inputValue, setInputValue] = useState({
-
-    });
-
-    const handleInput=(e) => {
-        setInputValue({...inputValue,[e.target.name]: e.target.value});
-    }
-
-    const handleSubmit=(e)=> {
-        e.preventDefault();
-        // dispatch(addClient(inputValue))
-        // console.log(inputValue)
-    }
+    const { id } = useParams();
+    const FactureId = parseInt(id);
+    const client = useSelector(state => state.PaimentList.PaimentList.find(c => c.id === FactureId));
 
 
     return (
         <>
             <Menu/>
-            <form onSubmit={handleSubmit}  method="post" action="{% url 'formulaire_client' %}">
-                <h1 className="text-[--statistic-color] text-3xl m-3 ml-6">Ajouter un client:</h1>
-                {/* {% csrf_token %}  */}
+            <form method="post" action="{% url 'formulaire_client' %}">
+                <h1 className="text-[--statistic-color] p-4 sm:text-3xl
+                                md:text-5xl lg:text-7xl
+                            ">
+                    Ajouter un paiment:
+                </h1>
                 <div style={{ display: "block" }}>
-                    <Select name="Categorie de paiement" value_1="C" value_2="S" choix1="Complet" choix2="Partiel" id="Categorie_de_paiement " value={inputValue.Categorie_de_paiement} onChange={handleInput}/>
-
-                    <Input label="Montant:" name="montant" type="Number" id="Registre_de_commerce"  value={inputValue.Registre_de_commerce} onChange={handleInput}/>
-                    <Input label="Article d'imposition:" name="Article_dimposition" type="text" id="Article_imposition" value={inputValue.Article_imposition}  onChange={handleInput}/>
-                    <Input label="Devise:" name="Devise" type="text" id="Devise" value={inputValue.Devise} onChange={handleInput}/>
-
-                    <Input label="Fax:" name="Fax" type="text" id="Fax" value={inputValue.Fax} onChange={handleInput}/>
-
-                        <Select label="Dossier valide:" name="Dossier_valide" value_1="Y" value_2="N" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleInput}/>
-                        <Select label="Status:" name="Status" value_1="A" value_2="I" choix1="Actif" choix2="Inactif" id="status" value={inputValue.valid} onChange={handleInput}/>
-                        <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
+                    <Input label="Code Client" name="Code client" type="Number" id="Code_client"  value={client.id}/>
+                    <div className="ml-6 mt-8">
+                        <Style>
+                            <Style>
+                                <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                    Avance:
+                                </p>
+                                <p className="text-red-500 sm:mr-[95px] md:mr-[137px] lg:mr-[150px] xl:mr-[177px] 2xl:mr-[215px]">*</p>
+                            </Style>
+                            <div>
+                                <Check_box label="oui" />
+                                <Check_box label="Non" />
+                            </div>
+                        </Style>
                     </div>
+
+                    <div className="ml-6 mt-8">
+                        <Style>
+                            <Style>
+                                <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                    Mode de regiement:
+                                </p>
+                                <p className="text-red-500 sm:mr-[30px] md:mr-[35px] lg:mr-[40px] xl:mr-[45px] 2xl:mr-[50px]">*</p>
+                            </Style>
+                            <div>
+                                <Check_box label="Espece" />
+                                <Check_box label="Cheque" />
+                                <Check_box label="Virement" />
+                                <Check_box label="CIB" />
+                                <Check_box label="Avance" />
+                                <Check_box label="Autre" />
+                            </div>
+                        </Style>
+
+                        <div className="ml-1 mt-8">
+                        <Style>
+                            <Style>
+                                <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                    Operations:
+                                </p>
+                                <p className="text-red-500 sm:mr-[70px] md:mr-[102px]  mr-[133px]
+                                            lg:mr-[113px] xl:mr-[132px] 2xl:mr-[160px]">
+                                    *
+                                </p>
+                            </Style>
+                            <div>
+                                <Check_box label="Payer" />
+                                <Check_box label="Payer & Reactive" />
+                            </div>
+                        </Style>
+                        </div>
+
+                        <div className="ml-1 mt-8">
+                        <Style>
+                            <Style>
+                                <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                    Stocker dans l'avance:
+                                </p>
+                                <p className="text-red-500  mr-3 ">*</p>
+                            </Style>
+                            <div>
+                                <Check_box label="oui" />
+                                <Check_box label="Non" />
+                            </div>
+                        </Style>
+                    </div>
+                    </div>
+                    <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
+                </div>
             </form>
         </>
     );

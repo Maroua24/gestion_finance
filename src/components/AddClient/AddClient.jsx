@@ -145,8 +145,9 @@ const AddClient = () => {
 
                     <Input label="Fax:" name="Fax" type="number" id="Fax" value={inputValue.Fax} onChange={handleInput}/>
 
-                        <Select label="Dossier valide:" name="Dossier valide" value_1="Y" value_2="N" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleInput}/>
+                        <Select label="Dossier valide:" name="Dossier valide" value_1="Validé" value_2="Non validé" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleInput}/>
                         <Select label="Status:" name="Status" value_1="Active" value_2="Inactive" choix1="Actif" choix2="Inactif" id="status" value={inputValue.valid} onChange={handleInput}/>
+                        <Select label="VIP" name="VIP" value_1="False" value_2="True" choix1="Non VIP" choix2="VIP" id="status" value={inputValue.valid} onChange={handleInput}/>
                         <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md
                                                         md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                             Envoyer

@@ -26,7 +26,7 @@ const App = () => {
                         <Route path='/Facture_Impayees' element={<FactureImpayees/>}/>
 
                         <Route path='/Paiment' element={<Paiment/>}/>
-                        <Route path='/Add_payment' element={<Add_payment/>}/>
+                        <Route path='/Add_payment/:id' element={<Add_payment/>}/>
                     </Routes>
                 </Style>
             </Router>
