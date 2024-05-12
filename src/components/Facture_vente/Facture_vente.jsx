@@ -19,17 +19,10 @@ const Facture_vente = () => {
     const isLoading = useSelector(state => state.FactureVenteList.isLoading)
 
     useEffect(()=>{
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        //dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
     },[dispatch]);
 
-    const highlightMatch = (text, search) => {
-        return search ? (
-            <span dangerouslySetInnerHTML={{ __html: text.replace(new RegExp(search, 'gi'), match => `<span style="color:blue">${match}</span>`) }} />
-        ) : (
-            text
-        );
-    };
     const viewPDF = (client) => {
         const pdfContent = <Facture_Vente_PDF client={client} />;
         const pdfBlob = new Blob([pdfContent], { type: 'application/pdf' });
@@ -78,22 +71,22 @@ const Facture_vente = () => {
                             </tr>
                             :
                         FactureVenteList
-                        .filter((Facture) => {
-                            return Search.toLowerCase() === ''
-                                ? Facture
-                                :
-                                Facture.name.toLowerCase().includes(Search) ||
-                                Facture.username.toLowerCase().includes(Search) ||
-                                Facture.email.toLowerCase().includes(Search) ||
-                                Facture.website.toLowerCase().includes(Search)
-                        })
+                        // .filter((Facture) => {
+                        //     return Search.toLowerCase() === ''
+                        //         ? Facture
+                        //         :
+                        //         Facture.name.toLowerCase().includes(Search) ||
+                        //         Facture.username.toLowerCase().includes(Search) ||
+                        //         Facture.email.toLowerCase().includes(Search) ||
+                        //         Facture.website.toLowerCase().includes(Search)
+                        // })
                         .map((Facture) => (
                             <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                 <td className="pl-6">{Facture.id}</td>
-                                <td className="p-3 ">{Facture.name}</td>
-                                <td>{Facture.username}</td>
-                                <td>{Facture.email}</td>
-                                <td>{Facture.website}</td>
+                                <td className="p-3 ">{Facture.date_creation}</td>
+                                <td>{Facture.date_comptabilisation}</td>
+                                <td>{Facture.date_decheance}</td>
+                                <td>{Facture.non_payée}</td>
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl

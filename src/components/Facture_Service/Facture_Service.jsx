@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FaDownload } from "react-icons/fa";
 import { FaFilePdf } from "react-icons/fa6";
 import { IoMdInformationCircleOutline } from "react-icons/io";
@@ -11,13 +12,15 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 const Facture_Service = () => {
 
     const [Search, setSearch] = useState("");
+    const [sortBy, setSortBy] = useState(null);
 
     const dispatch = useDispatch();
-    const Clients = useSelector(state => state.ClientList.ClientsList);
-    const isLoading = useSelector(state => state.ClientList.isLoading)
+    const FactureServiceList = useSelector(state => state.FactureServiceList.FactureServiceList);
+    const isLoading = useSelector(state => state.FactureServiceList.isLoading)
 
     useEffect(()=>{
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
     },[dispatch]);
 
     const viewPDF = (client) => {
@@ -41,6 +44,7 @@ const Facture_Service = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
+
                 <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">
                     <thead className='bg-[--statistic-color] text-white font-semibold
                                         sm:text-[10px] md:text-xl lg:text-2xl
@@ -48,10 +52,10 @@ const Facture_Service = () => {
                                     '>
                         <tr className="m-2 text-center">
                             <th scope="col" className='py-2 px-4'>id</th>
-                            <th scope="col" className='py-2 px-4'>Code</th>
-                            <th scope="col" className='py-2 px-4'>Nom</th>
-                            <th scope="col" className='py-2 px-4'>Email</th>
-                            <th scope="col" className='py-2 px-4'>Address</th>
+                            <th scope="col" className='py-2 px-4'>Date de creation</th>
+                            <th scope="col" className='py-2 px-4'>Date de comptabilisation</th>
+                            <th scope="col" className='py-2 px-4'>Date de decheance</th>
+                            <th scope="col" className='py-2 px-4'>Etat</th>
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
                     </thead>
@@ -66,34 +70,35 @@ const Facture_Service = () => {
                                 </td>
                             </tr>
                             :
-                        Clients
-                        .filter((client) => {
-                            return Search.toLowerCase() === ''
-                                ? client
-                                :
-                                client.name.toLowerCase().includes(Search) ||
-                                client.username.toLowerCase().includes(Search) ||
-                                client.email.toLowerCase().includes(Search) ||
-                                client.website.toLowerCase().includes(Search)
-                        })
-                        .sort((a, b) => a.username.localeCompare(b.name))
-                        .map((client) => (
-                            <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                <td className="pl-6">{client.id}</td>
-                                <td className="p-3 ">{client.name}</td>
-                                <td>{client.username}</td>
-                                <td>{client.email}</td>
-                                <td>{client.website}</td>
+                        FactureServiceList
+                        // .filter((Facture) => {
+                        //     return Search.toLowerCase() === ''
+                        //         ? Facture
+                        //         :
+                        //         Facture.name.toLowerCase().includes(Search) ||
+                        //         Facture.username.toLowerCase().includes(Search) ||
+                        //         Facture.email.toLowerCase().includes(Search) ||
+                        //         Facture.website.toLowerCase().includes(Search)
+                        // })
+                        .map((Facture) => (
+                            <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                <td className="pl-6">{Facture.id}</td>
+                                <td className="p-3 ">{Facture.date_creation}</td>
+                                <td>{Facture.date_comptabilisation}</td>
+                                <td>{Facture.date_decheance}</td>
+                                <td>{Facture.non_payée}</td>
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <a href="#"><IoMdInformationCircleOutline  /></a>
+                                        <Link to={`/Facture_Service_Info/${Facture.id}`}>
+                                            <IoMdInformationCircleOutline />
+                                        </Link>
                                     </button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_Service_PDF client={client} />} fileName="Facture_Vente.pdf" >
+                                        <PDFDownloadLink document={<Facture_Service_PDF Facture={Facture} Factures={FactureServiceList}/>} fileName="Facture_Service.pdf" >
                                             {({Loading}) =>
                                                 Loading ? (
                                                     <LuLoader />
@@ -106,7 +111,7 @@ const Facture_Service = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'
-                                                                    onClick={() => viewPDF(client)}>
+                                                                    onClick={() => viewPDF(Facture)}>
                                         <a href="#"><FaFilePdf /></a>
                                     </button>
                                 </td>

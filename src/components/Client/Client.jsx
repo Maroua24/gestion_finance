@@ -63,10 +63,10 @@ const Client = () => {
                                     '>
                         <tr className="m-2 text-center">
                         <th scope="col" className='py-2 px-4'>id</th>
-                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('name')}>Nom</th>
-                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('username')}>Code</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('nom')}>Nom</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('prenom')}>Code</th>
                             <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('email')}>Email</th>
-                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('website')}>Address</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('pays')}>Address</th>
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
                     </thead>

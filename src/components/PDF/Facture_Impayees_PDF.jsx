@@ -1,7 +1,7 @@
 import { Page, Text, Document, StyleSheet, View } from '@react-pdf/renderer';
 import {useSelector} from "react-redux";
 
-const Facture_Vente_PDF = ({Facture,Factures}) => {
+const Facture_Impayees_PDF = ({Facture,Factures}) => {
 
     const styles = StyleSheet.create({
         body: {
@@ -64,7 +64,7 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
     return (
         <Document>
             <Page size="A4" style={styles.body}>
-                <Text style={styles.header} fixed>Facture Vente</Text>
+                <Text style={styles.header} fixed>Facture Impayees</Text>
                 <Text style={styles.text}>
                     {Facture.date_creation}
                     {Facture.date_comptabilisation}
@@ -99,4 +99,4 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
     );
 }
 
-export default Facture_Vente_PDF;
+export default Facture_Impayees_PDF;

@@ -5,18 +5,35 @@ import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
-const Client_VIP = () => {
+const ClientVIP = () => {
 
     const [Search, setSearch] = useState("");
+    const [sortBy, setSortBy] = useState(null);
 
     const dispatch = useDispatch();
-    const Clients = useSelector(state => state.ClientList.ClientsList);
-    const isLoading = useSelector(state => state.ClientList.isLoading);
+    const ClientsVIP = useSelector(state => state.Client_VIP_List.ClientsVIPList);
+    const isLoading = useSelector(state => state.Client_VIP_List.isLoading);
 
     useEffect(()=>{
-        // dispatch(getAll("http://127.0.0.1:8000/api/clients"));
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/clients/create/"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
+
+    const handleSort = (key) => {
+        if (sortBy === key) {
+            setSortBy(null);
+        } else {
+            setSortBy(key);
+        }
+    };
+    const highlightMatch = (text, search) => {
+        return search ? (
+            <span dangerouslySetInnerHTML={{ __html: text.replace(new RegExp(search, 'gi'), match => `<span style="color:blue">${match}</span>`) }} />
+        ) : (
+            text
+        );
+    };
+
     return (
         <>
             <Menu/>
@@ -45,11 +62,11 @@ const Client_VIP = () => {
                                         xl:text-3xl 2xl:text-4xl
                                     '>
                         <tr className="m-2 text-center">
-                            <th scope="col" className='py-2 px-4'>id</th>
-                            <th scope="col" className='py-2 px-4'>Code</th>
-                            <th scope="col" className='py-2 px-4'>Nom</th>
-                            <th scope="col" className='py-2 px-4'>Email</th>
-                            <th scope="col" className='py-2 px-4'>Address</th>
+                        <th scope="col" className='py-2 px-4'>id</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('nom')}>Nom</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('prenom')}>Code</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('email')}>Email</th>
+                            <th scope="col" className='py-2 px-4 cursor-pointer ' onClick={() => handleSort('pays')}>Address</th>
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
                     </thead>
@@ -60,24 +77,38 @@ const Client_VIP = () => {
                                     <strong>Loading...</strong>
                                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                                 </div>:
-                                Clients
+                                ClientsVIP
                                 .filter((client) => {
                                     return Search.toLowerCase() === ''
                                         ? client
                                         :
-                                        client.name.toLowerCase().includes(Search) ||
-                                        client.username.toLowerCase().includes(Search) ||
+                                        client.nom.toLowerCase().includes(Search) ||
+                                        client.prenom.toLowerCase().includes(Search) ||
                                         client.email.toLowerCase().includes(Search) ||
-                                        client.website.toLowerCase().includes(Search)
+                                        client.pays.toLowerCase().includes(Search)
                                 })
-                                .sort((a, b) => a.username.localeCompare(b.name))
+                                .sort((a, b) => {
+                                    if (sortBy) {
+                                        return a[sortBy].localeCompare(b[sortBy]);
+                                    } else {
+                                        return 0;
+                                    }
+                                })
                                     .map((client) => (
                                         <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                             <td className="pl-6">{client.id}</td>
-                                            <td className="p-3 ">{client.name}</td>
-                                            <td>{client.username}</td>
-                                            <td>{client.email}</td>
-                                            <td>{client.website}</td>
+                                            <td className="p-3 ">
+                                                {highlightMatch(client.nom, Search)}
+                                            </td>
+                                            <td>
+                                                {highlightMatch(client.prenom, Search)}
+                                            </td>
+                                            <td>
+                                                {highlightMatch(client.email, Search)}
+                                            </td>
+                                            <td>
+                                                {highlightMatch(client.pays, Search)}
+                                            </td>
                                             <td>
                                                 <button to={`/edit/${client.id}`}
                                                         className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
@@ -107,4 +138,5 @@ const Client_VIP = () => {
     )
 }
 
-export default Client_VIP
+export default ClientVIP
+

@@ -32,3 +32,4 @@ export {default as Info} from './Info/Info'
 
 export {default as Facture_Vente_PDF} from './PDF/Facture_Vente_PDF'
 export {default as Facture_Service_PDF} from './PDF/Facture_Service_PDF'
+export {default as Facture_Impayees_PDF} from './PDF/Facture_Impayees_PDF'
