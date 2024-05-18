@@ -80,7 +80,7 @@ const AddClient = () => {
         e.preventDefault();
         dispatch(addClient(inputValue))
         clearInputValues();
-        // console.log(inputValue)
+        //console.log(inputValue)
     }
 
 

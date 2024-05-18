@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 
-export const addClientVIP = createAsyncThunk('posts/addClient',async (values) => {
+export const addClientVIP = createAsyncThunk('posts/addClientVIP',async (values) => {
     const token = ''
     return fetch("http://127.0.0.1:8000/api/clients/create/",{method:"POST",
         headers:{

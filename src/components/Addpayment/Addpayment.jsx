@@ -87,7 +87,9 @@ const Add_payment = () => {
                                 <Check_box label="Non" />
                             </div>
                         </Style>
-                    </div>
+                        </div>
+                        <Input label="Code Client" name="Code client" type="Number" id="Code_client"  value={client.id}/>
+                        <Input label="Code Client" name="Code client" type="Number" id="Code_client"  value={client.id}/>
                     </div>
                     <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
                 </div>

@@ -15,7 +15,7 @@ const ClientSlice = createSlice({
     extraReducers: (builder) => {
         // Fetch clients
         builder
-            .addCase(getAll.pending, (state, action) => {
+            .addCase(getAll.pending, (state) => {
                 state.isLoading=true;
                 state.error=null;
             })
@@ -28,13 +28,13 @@ const ClientSlice = createSlice({
                 state.isLoading=false;
                 state.error=action?.error?.message;
             })
-        // Add clients
+        // Add a client
         builder
             .addCase(addClient.pending, state => {
                 state.isLoading = true
                 state.error = ''
             })
-            .addCase(addClient.fulfilled, (state,action) => {
+            .addCase(addClient.fulfilled, (state) => {
                 state.isLoading = false
                 state.ClientsList=[]
             })

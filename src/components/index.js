@@ -38,3 +38,5 @@ export {default as Check_box} from './Check_box/Check_box'
 export {default as Facture_Vente_PDF} from './PDF/Facture_Vente_PDF'
 export {default as Facture_Service_PDF} from './PDF/Facture_Service_PDF'
 export {default as Facture_Impayees_PDF} from './PDF/Facture_Impayees_PDF'
+
+export {default as ProtectedRouters} from './Protected/ProtectedRoutes'
