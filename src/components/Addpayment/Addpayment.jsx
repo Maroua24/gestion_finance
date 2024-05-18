@@ -88,8 +88,28 @@ const Add_payment = () => {
                             </div>
                         </Style>
                         </div>
-                        <Input label="Code Client" name="Code client" type="Number" id="Code_client"  value={client.id}/>
-                        <Input label="Code Client" name="Code client" type="Number" id="Code_client"  value={client.id}/>
+ 
+                        <Style>
+                        <Style>
+                                <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                    Devise:
+                                </p>
+                                <p className="text-red-500  mr-3 ">*</p>
+                            </Style>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Action
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                        </Style>
+
+                        <Input label="Montant d'encaissenment:" name="Montant d'encaissenment" type="Number" id="Code_client" placeholder="Montant d'encaissenment"/>
+                        <Input label="Montant" name="Code client" type="Number" id="Code_client"/>
                     </div>
                     <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
                 </div>

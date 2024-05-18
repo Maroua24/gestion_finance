@@ -55,7 +55,6 @@ const Log_in = () => {
                             value={inputValue.website} onChange={handleInput}/>
                 </div>
                 <button type="submit" className="btn btn-primary m-3" onClick={handleLogin}>
-                    {/* <a href="/Main" className='hover:text-[--light-color] xl:text-xl 2xl:text-3xl'></a> */}
                     Log in
                 </button>
             </form>
