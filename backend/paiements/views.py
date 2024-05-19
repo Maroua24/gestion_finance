@@ -31,6 +31,9 @@ class PaiementCreateView(APIView):
                 montant_partiel =  Decimal(montant_p)
                 if montant_partiel and montant_partiel <= montant:
                     montant_partiel = montant_partiel
+                    montant -= montant_partiel
+                    facture.montant = montant
+                    facture.save()
                 else:
                     return Response({'error': 'Montant partiel incorrect.'}, status=status.HTTP_400_BAD_REQUEST)
             elif etat == 'complet':
@@ -72,4 +75,3 @@ class PaiementPartielList(generics.ListAPIView):
 class PaiementCompletList(generics.ListAPIView):
     queryset = Paiement.objects.filter(etat='complet')
     serializer_class = PaiementSerializer 
-    
