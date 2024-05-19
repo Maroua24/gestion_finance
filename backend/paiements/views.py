@@ -5,6 +5,7 @@ from .models import Paiement
 from .serializers import PaiementSerializer , PaiementSerializer
 from factures.models import Facture
 from rest_framework.views import APIView
+from decimal import Decimal
 
 class ListePaiements(generics.ListAPIView):
     queryset = Paiement.objects.all()
@@ -25,9 +26,11 @@ class PaiementCreateView(APIView):
             commentaire = request.data.get('commentaire')
 
             if etat == 'partiel':
-                montant_partiel = request.data.get('montant_partiel')
-                if montant_partiel and montant_partiel <= facture.montant:
-                    montant = montant_partiel
+                montant = Decimal(facture.montant)
+                montant_p = request.data.get('montant_partiel')
+                montant_partiel =  Decimal(montant_p)
+                if montant_partiel and montant_partiel <= montant:
+                    montant_partiel = montant_partiel
                 else:
                     return Response({'error': 'Montant partiel incorrect.'}, status=status.HTTP_400_BAD_REQUEST)
             elif etat == 'complet':
@@ -45,6 +48,7 @@ class PaiementCreateView(APIView):
                 est_annule=est_annule,
                 mode_reglement=mode_reglement,
                 commentaire=commentaire,
+                montant_partiel = montant_partiel if etat == 'partiel' else None
             )
 
             facture.non_payee = False
@@ -60,3 +64,12 @@ class PaiementCreateView(APIView):
 class PaiementPartielDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Paiement.objects.all()
     serializer_class = PaiementSerializer
+
+class PaiementPartielList(generics.ListAPIView):
+    queryset = Paiement.objects.filter(etat='partiel')
+    serializer_class = PaiementSerializer
+
+class PaiementCompletList(generics.ListAPIView):
+    queryset = Paiement.objects.filter(etat='complet')
+    serializer_class = PaiementSerializer 
+    

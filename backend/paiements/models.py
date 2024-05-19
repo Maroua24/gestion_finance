@@ -10,7 +10,7 @@ class Paiement(models.Model):
     date_paiement = models.DateField(auto_now_add=True)
     facture = models.ForeignKey(Facture, on_delete=models.CASCADE)
     montant = models.DecimalField(max_digits=10, decimal_places=2)
-    montant_partiel = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    montant_partiel = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True , default="0")
     creer_par = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, blank=True , related_name='paiement')
     est_annule = models.BooleanField(default=False)
     Etat_CHOICES=(

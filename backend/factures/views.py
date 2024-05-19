@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView,  CreateAPIView, RetrieveAPIView
 from rest_framework import generics
 from .models import Facture
-from .serializers import FactureSerializer
+from .serializers import FactureSerializer , FactureAjoutSerializer
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from commandes.models import Commande
@@ -95,7 +95,7 @@ class FactureListView(ListAPIView):
 
 class FactureListCreate(CreateAPIView):
     queryset = Facture.objects.all()
-    serializer_class = FactureSerializer
+    serializer_class = FactureAjoutSerializer
 
 
 class FactureVenteList(generics.ListAPIView):
