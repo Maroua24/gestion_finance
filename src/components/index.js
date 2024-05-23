@@ -1,4 +1,5 @@
 export { default as Nav } from "./Nav/Nav";
+export {default as Nav_Item} from './Nav_Item/Nav_Item'
 export { default as Menu } from "./Menu/Menu";
 export { default as Main } from "./Main/Main";
 
@@ -23,15 +24,19 @@ export {default as Item} from './Item/Item'
 
 export {default as Search_input} from './Search_input/Search_input'
 export {default as Client_VIP} from './Client_VIP/Client_VIP'
+
 export {default as Facture_vente} from './Facture_vente/Facture_vente'
+export {default as Facture_Vente_Info} from './Facture_Vente_Info/Facture_Vente_Info'
+
 export {default as Facture_Service} from './Facture_Service/Facture_Service'
+export {default as Facture_Service_Info} from './Facture_Service_Info/Facture_Service_Info'
+
 export {default as Paiment} from './Paiement/Paiment'
 
 export {default as Add_payment} from './Addpayment/Addpayment'
 export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
 
 export {default as Client_info} from './Client_info/Client_info'
-export {default as Facture_Vente_Info} from './Facture_Vente_Info/Facture_Vente_Info'
 export {default as Info} from './Info/Info'
 export {default as Check_box} from './Check_box/Check_box'
 

@@ -1,23 +1,14 @@
-import {Style} from "../index"
-import {Link} from "react-router-dom"
+import {Style,Nav_Item} from "../index"
+
 const Nav = () => {
     return (
         <>
-
-
-
                             <Style>
-                                <p className="m-3 p-2 border border-slate-50 cursor-pointer  hover:bg-[#143C60]
-                                            hover:translate-y-6 transition duration-500
-                                            ">
-                                    <b> <Link to={``} className="text-[#143C60] hover:text-[--light-color]">Facture impayees</Link> </b>
-                                </p>
-
-                                <p className="m-3 p-2 border border-slate-50 cursor-pointer  hover:bg-[#143C60]
-                                            hover:translate-y-6 transition duration-500
-                                            ">
-                                    <b> <Link to={``} className="text-[#143C60] hover:text-[--light-color]">Facture payees</Link> </b>
-                                </p>
+                                <Nav_Item item="Facture Impayees"/>
+                                <Nav_Item item="Facture payees"/>
+                                <Nav_Item item="Les paiements"/>
+                                <Nav_Item item="Les commandes"/>
+                                <Nav_Item item="Les avoires"/>
                             </Style>
         </>
     )

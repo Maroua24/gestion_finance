@@ -1,5 +1,5 @@
-import { Page, Text, Document, StyleSheet, View } from '@react-pdf/renderer';
-import {useSelector} from "react-redux";
+import { Page, Text, Document, StyleSheet, View,Image } from '@react-pdf/renderer';
+import image from '../../images/facture_tamplate.png'
 
 const Facture_Service_PDF = ({Facture,Factures}) => {
 
@@ -8,6 +8,16 @@ const Facture_Service_PDF = ({Facture,Factures}) => {
             paddingTop: 35,
             paddingBottom: 65,
             paddingHorizontal: 35,
+        },
+        background: {
+            position:"absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            zIndex:0,
         },
         title: {
             fontSize: 24,
@@ -34,8 +44,6 @@ const Facture_Service_PDF = ({Facture,Factures}) => {
             textAlign: "center",
             color: "gray",
         },
-
-
         table: {
             display: "table",
             width: "auto",
@@ -43,6 +51,7 @@ const Facture_Service_PDF = ({Facture,Factures}) => {
             borderWidth: 1,
             borderRightWidth: 0,
             borderBottomWidth: 0,
+            zIndex:1,
         },
         tableRow: {
             margin: "auto",
@@ -65,6 +74,11 @@ const Facture_Service_PDF = ({Facture,Factures}) => {
         <Document>
             <Page size="A4" style={styles.body}>
                 <Text style={styles.header} fixed>Facture Service</Text>
+
+                <Image
+                    style={styles.background}
+                    src={image}
+                />
                 <Text style={styles.text}>
                     {Facture.date_creation}
                     {Facture.date_comptabilisation}

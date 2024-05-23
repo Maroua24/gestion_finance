@@ -25,12 +25,6 @@ const Menu =() => {
                         <Item item="Avoires service"/>
                         <Item href="/Facture_Impayees" item="Facture impayees"/>
                         <Item href="/paiment" item="Paiement"/>
-                        <Item item="Paiement proformats"/>
-                        <Item item="Dates mise en demande"/>
-                        <Item item="Facture A ne pas envoyer"/>
-                        <Item item="Log Email"/>
-                        <Item item="Transaction CIB"/>
-                        <Item item="Facture non envoyer"/>
                     </ul>
                 </div>
             )}

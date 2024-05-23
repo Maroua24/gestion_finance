@@ -19,8 +19,8 @@ const Facture_Service = () => {
     const isLoading = useSelector(state => state.FactureServiceList.isLoading)
 
     useEffect(()=>{
-        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
     },[dispatch]);
 
     const viewPDF = (client) => {
@@ -87,6 +87,11 @@ const Facture_Service = () => {
                                 <td>{Facture.date_comptabilisation}</td>
                                 <td>{Facture.date_decheance}</td>
                                 <td>{Facture.non_payée}</td>
+                                {/* <td className="pl-6">{Facture.id}</td>
+                                <td className="p-3 ">13/03/2018</td>
+                                <td>20/02/2020</td>
+                                <td>12/04/2021</td>
+                                <td>false</td> */}
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl

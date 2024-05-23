@@ -82,10 +82,10 @@ const Paiment = () => {
                                 <td>{Paiment.date_decheance}</td>
                                 <td>{Paiment.non_payée}</td> */}
                                 <td className="pl-6">{Paiment.id}</td>
-                                <td className="p-3 ">{Paiment.name}</td>
-                                <td>{Paiment.username}</td>
-                                <td>{Paiment.website}</td>
-                                <td>{Paiment.email}</td>
+                                <td className="p-3 ">13/03/2018</td>
+                                <td>20/02/2020</td>
+                                <td>12/04/2021</td>
+                                <td>false</td>
                                 <td>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl

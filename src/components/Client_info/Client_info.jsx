@@ -17,11 +17,7 @@ const ClientInfo = () => {
                 <h2 className="shadow-lg p-3 text-[#071F90] m-3 sm:text-[20px] md:text-2xl lg:text-2xl xl:text-4xl 2xl:text-5xl">
                     <b>Information du client:</b>
                 </h2>
-
-                <div class="animate-bounce w-[200px] cursor-pointer ml-[50%]">
-                    <FaRegArrowAltCircleDown className="w-9 h-9 text-blue-800" />
-                </div>
-
+                <Nav/>
                 <div className="md:flex">
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="ID : " API={client.id}/>
@@ -79,7 +75,6 @@ const ClientInfo = () => {
                     <Info name="valid : " API={client.company.catchPhrase}/>
                 </div>
                 </div>
-                <Nav/>
                 </div>
 
                 </Style>

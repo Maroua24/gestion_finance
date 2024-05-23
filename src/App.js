@@ -1,6 +1,8 @@
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import "./App.css"
-import {Style,Log_in,Main,Nav,Client,AddClient,EditClient,Client_VIP, Facture_Service,Facture_vente,Paiment,Add_payment,FactureImpayees,Client_info,Facture_Vente_Info,ProtectedRouters} from "./components/index"
+import {Style,Log_in,Main,Nav,Client,AddClient,EditClient,Client_VIP, 
+    Facture_Service,Facture_Service_Info,Facture_vente,Paiment,Add_payment,FactureImpayees,
+    Client_info,Facture_Vente_Info,ProtectedRouters} from "./components/index"
 
 const App = () => {
     return(
@@ -10,7 +12,7 @@ const App = () => {
                     <Routes>
                         <Route path='/' element={<Log_in/>}/>
 
-                        <Route element={<ProtectedRouters/>}>
+                        {/* <Route element={<ProtectedRouters/>}> */}
                             <Route path='/Main' element={<Main/>}/>
 
                             <Route path='/client'    element={<Client/>} />
@@ -24,12 +26,13 @@ const App = () => {
                             <Route path='/Facture_Vente_Info/:id' element={<Facture_Vente_Info/>} />
 
                             <Route path='/Facture_Service' element={<Facture_Service/>}/>
+                            <Route path='/Facture_Service_Info/:id' element={<Facture_Service_Info/>}/>
 
                             <Route path='/Facture_Impayees' element={<FactureImpayees/>}/>
 
                             <Route path='/Paiment' element={<Paiment/>}/>
                             <Route path='/Add_payment/:id' element={<Add_payment/>}/>
-                        </Route>
+                        {/* </Route> */}
                     </Routes>
                 </Style>
             </Router>
