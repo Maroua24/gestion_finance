@@ -7,7 +7,7 @@ import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input,Facture_Service_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 
 const Facture_Service = () => {
 
@@ -23,10 +23,12 @@ const Facture_Service = () => {
         //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
     },[dispatch]);
 
-    const viewPDF = (client) => {
-        const pdfContent = <Facture_Service_PDF client={client} />;
-        const pdfBlob = new Blob([pdfContent], { type: 'application/pdf' });
-        const pdfURL = URL.createObjectURL(pdfBlob);
+    const viewPDF = async (client) => {
+        const doc = <Facture_Service_PDF client={client} />;
+        const asPdf = pdf([]);
+        asPdf.updateContainer(doc);
+        const blob = await asPdf.toBlob();
+        const pdfURL = URL.createObjectURL(blob);
         window.open(pdfURL);
     };
 

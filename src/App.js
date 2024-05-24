@@ -2,7 +2,7 @@ import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import "./App.css"
 import {Style,Log_in,Main,Nav,Client,AddClient,EditClient,Client_VIP, 
     Facture_Service,Facture_Service_Info,Facture_vente,Paiment,Add_payment,FactureImpayees,
-    Client_info,Facture_Vente_Info,ProtectedRouters} from "./components/index"
+    Client_info,Facture_Vente_Info,ProtectedRouters,Admin} from "./components/index"
 
 const App = () => {
     return(
@@ -14,6 +14,7 @@ const App = () => {
 
                         {/* <Route element={<ProtectedRouters/>}> */}
                             <Route path='/Main' element={<Main/>}/>
+                            <Route path='/admin' element={<Admin/>}/>
 
                             <Route path='/client'    element={<Client/>} />
                             <Route path='/AddClient' element={<AddClient/>} />

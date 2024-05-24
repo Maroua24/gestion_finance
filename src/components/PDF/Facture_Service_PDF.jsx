@@ -1,25 +1,18 @@
 import React from 'react';
 import { Page, Text, Document, StyleSheet, View, Image } from '@react-pdf/renderer';
-import backgroundImage from '../../images/facture_tamplate.png';
-
+import background_Image from '../../images/facture_tamplate.png'
 const Facture_Service_PDF = ({ Facture, Factures }) => {
   const styles = StyleSheet.create({
-    page: {
-      flexDirection: 'column',
-    },
-    background: {
-      position: 'absolute',
-      minWidth: '100%',
-      minHeight: '100%',
-      zIndex: -1,
+    body: {
+      margin: 0
     },
     content: {
-      position: 'relative',
-      zIndex: 1,
+      position:'absolute',
       paddingTop: 35,
       paddingBottom: 65,
       paddingHorizontal: 35,
       fontFamily: 'Times-Roman',
+      zIndex: 1,
     },
     header: {
       fontSize: 24,
@@ -27,11 +20,13 @@ const Facture_Service_PDF = ({ Facture, Factures }) => {
       marginBottom: 20,
     },
     text: {
+      position:'absolute',
       marginVertical: 10,
       fontSize: 14,
       textAlign: 'justify',
     },
     table: {
+      position:'absolute',
       marginTop: 10,
       borderWidth: 1,
       borderStyle: 'solid',
@@ -61,14 +56,17 @@ const Facture_Service_PDF = ({ Facture, Factures }) => {
 
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <Image src={backgroundImage} style={styles.background} />
+      <Page size="A4" style={styles.body}>
+        <View>
+          <Image src={background_Image}  style={styles.backgroundImage} />
+        </View>
         <View style={styles.content}>
           <Text style={styles.header}>Facture Service</Text>
+
           <Text style={styles.text}>
-            Date de création: {Facture.date_creation} {"\n"}
-            Date de comptabilisation: {Facture.date_comptabilisation} {"\n"}
-            Date d'échéance: {Facture.date_decheance} {"\n"}
+            Date de création: {Facture.date_creation}
+            Date de comptabilisation: {Facture.date_comptabilisation}
+            Date d'échéance: {Facture.date_decheance}
             Non payée: {Facture.non_payée}
           </Text>
           <View style={styles.table}>

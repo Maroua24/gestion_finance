@@ -7,7 +7,9 @@ export { default as Dashboard } from "./Dashboard/Dashboard";
 
 export { default as Client } from "./Client/Client";
 export { default as AddClient } from "./AddClient/AddClient";
-export {default as EditClient} from './EditClient/EditClient'
+export { default as EditClient} from './EditClient/EditClient';
+export { default as Client_info} from './Client_info/Client_info'
+
 
 export {default as Style} from "./Style/Style";
 export {default as Log_in} from "./Log-in/Log-in"
@@ -32,11 +34,10 @@ export {default as Facture_Service} from './Facture_Service/Facture_Service'
 export {default as Facture_Service_Info} from './Facture_Service_Info/Facture_Service_Info'
 
 export {default as Paiment} from './Paiement/Paiment'
-
 export {default as Add_payment} from './Addpayment/Addpayment'
+
 export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
 
-export {default as Client_info} from './Client_info/Client_info'
 export {default as Info} from './Info/Info'
 export {default as Check_box} from './Check_box/Check_box'
 
@@ -45,3 +46,4 @@ export {default as Facture_Service_PDF} from './PDF/Facture_Service_PDF'
 export {default as Facture_Impayees_PDF} from './PDF/Facture_Impayees_PDF'
 
 export {default as ProtectedRouters} from './Protected/ProtectedRoutes'
+export {default as Admin} from './Admin/Admin'
