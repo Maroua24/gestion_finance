@@ -122,25 +122,29 @@ const Add_payment = () => {
                         </Style>
                         </div>
 
+                        <div className="ml-1 mt-8">
                         <Style>
                         <Style>
-                                <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                    Devise:
-                                </p>
-                                <p className="text-red-500  mr-3 ">*</p>
-                            </Style>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Action
+                            <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                Devise:
+                            </p>
+                            <p className="text-red-500  mr-3 ">*</p>
+                        </Style>
+                        <div className="btn-group">
+                            <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                EUR
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="#">GBP</a></li>
+                                <li><a className="dropdown-item" href="#">USD</a></li>
+                                <li><a className="dropdown-item" href="#">CAD</a></li>
+                                <li><a className="dropdown-item" href="#">AUD</a></li>
+                                <li><a className="dropdown-item" href="#">JPY</a></li>
+
                             </ul>
                         </div>
                         </Style>
-
+                        </div>
                         <Input label="Montant d'encaissenment:" name="Montant d'encaissenment" type="Number" id="Code_client" placeholder="Montant d'encaissenment"/>
                         <Input label="Montant de reglement:" name="Montant de reglement" type="Number" id="Montant de reglement" placeholder="Montant de reglement"/>
                         <Input label="Etat:" name="Montant de reglement" type="Number" id="Montant de reglement" placeholder="Montant de reglement"/>

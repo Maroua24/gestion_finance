@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom";
-import { FaDownload } from "react-icons/fa";
-import { FaFilePdf } from "react-icons/fa6";
-import { IoMdInformationCircleOutline } from "react-icons/io";
-import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_Impayees_PDF} from '../index'
+import {Menu,Search_input} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 
 const Paiment = () => {

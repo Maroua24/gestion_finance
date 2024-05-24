@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { FaCircleDollarToSlot } from "react-icons/fa6";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input} from '../index'
@@ -125,6 +126,14 @@ const Client = () => {
                                                                     '>
                                                     <Link to={`/Client_info/${client.id}`}>
                                                         <IoMdInformationCircleOutline />
+                                                    </Link>
+                                                </button>
+
+                                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                    sm:text-sm md:text-xl lg:text-2xl
+                                                                    xl:text-3xl 2xl:text-4xl'>
+                                                    <Link to={`/Add_payment/${client.id}`}>
+                                                        <FaCircleDollarToSlot />
                                                     </Link>
                                                 </button>
                                             </td>
