@@ -38,6 +38,7 @@ const Add_payment = () => {
                             value={client.id}
                 />
             </div>
+
                     <div className="ml-6 mt-8">
                         <Style>
                             <Style>
@@ -47,15 +48,15 @@ const Add_payment = () => {
                                 <p className="text-red-500 sm:mr-[95px] md:mr-[137px] lg:mr-[150px] xl:mr-[177px] 2xl:mr-[215px]">*</p>
                             </Style>
                             <div>
-                                <Check_box label="oui" />
-                                <Check_box label="Non" />
+                                <Check_box choice="Oui" name="Avance" />
+                                <Check_box choice="Non" name="Avance" />
                             </div>
                         </Style>
                     </div>
 
                     <div className="ml-6 mt-8">
-                        <Style>
                             <Style>
+                                <Style>
                                 <Style>
                                     <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                                         Mode de regiement:
@@ -63,37 +64,15 @@ const Add_payment = () => {
                                     <p className="text-red-500 sm:mr-[30px] md:mr-[35px] lg:mr-[40px] xl:mr-[45px] 2xl:mr-[50px]">*</p>
                                 </Style>
                                 <div>
-                                    <Check_box label="Espece" />
-                                    <Check_box label="Cheque" />
-                                    <Check_box label="Virement" />
-                                    <Check_box label="CIB" />
-                                    <Check_box label="Avance" />
-                                    <Check_box label="Autre" />
+                                    <Check_box choice="Espece" name="regiement"/>
+                                    <Check_box choice="Cheque" name="regiement"/>
+                                    <Check_box choice="Virement" name="regiement"/>
+                                    <Check_box choice="CIB" name="regiement"/>
+                                    <Check_box choice="Autre" name="regiement"/>
                                 </div>
-                            </Style>
-                                
-                                <Style>
-                                    <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                        Payer le timbre
-                                    </p>
-                                    <p className="text-red-500">*</p>
                                 </Style>
-                                    <div class="form-check">
-                                        <input className="form-check-input" type="radio"  id="flexRadioDefault1"/>
-                                            <label className="form-check-label text-xs
-                                                        md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
-                                                        for="flexRadioDefault1">
-                                                Oui
-                                            </label>
 
-                                        <input className="form-check-input" type="radio"  id="flexRadioDefault1"/>
-                                            <label className="form-check-label text-xs
-                                                        md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
-                                                        for="flexRadioDefault1">
-                                                Non
-                                            </label>
-        </div>
-
+                                <div>
                                 <p className="block text-xs  ml-3 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                                     Banque d'encaissenment:
                                 </p>
@@ -124,8 +103,24 @@ const Add_payment = () => {
                                         <li><a class="dropdown-item" href="#">Succursale de banque</a></li>
                                     </ul>
                                 </div>
-                        </Style>
-                        
+                                </div>
+                            </Style>
+                                
+                                <Style>
+                                <Style>
+                                    <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                        Payer le timbre
+                                    </p>
+                                    <p className="text-red-500">*</p>
+                                </Style>
+                                <div>
+                                    <Check_box choice="Oui" name="timbre"/>
+                                    <Check_box choice="Non" name="timbre"/>
+                                </div>
+                                </Style>
+                                <div>
+
+                                </div>
 
                         <div className="ml-1 mt-8">
                         <Style>
@@ -139,8 +134,8 @@ const Add_payment = () => {
                                 </p>
                             </Style>
                             <div>
-                                <Check_box label="Payer" />
-                                <Check_box label="Payer & Reactive" />
+                                <Check_box choice="Payer" name="Operations"/>
+                                <Check_box choice="Payer & Reactive" name="Operations"/>
                             </div>
                         </Style>
                         </div>
@@ -154,8 +149,8 @@ const Add_payment = () => {
                                 <p className="text-red-500  mr-3 ">*</p>
                             </Style>
                             <div>
-                                <Check_box label="oui" />
-                                <Check_box label="Non" />
+                                <Check_box choice="oui" name="avance"/>
+                                <Check_box choice="Non" name="avance"/>
                             </div>
                         </Style>
                         </div>
