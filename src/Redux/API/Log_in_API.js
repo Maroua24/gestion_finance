@@ -9,11 +9,11 @@ export const logIn = createAsyncThunk('posts/auth',async (values) => {
         },
         body: JSON.stringify({
             email : values.email,
-            website : values.website
+            password : values.password
         })
     }).then((res)=> res.json())
     .then(result => {
         const token = result.token
-        Cookies.set('JsonWebToken', token, { expires: 7 });
+        Cookies.set('UserToken', token, { expires: 7 });
     })
 })

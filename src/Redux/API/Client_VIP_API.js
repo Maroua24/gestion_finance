@@ -1,7 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
+import Cookies from 'js-cookie';
 
 export const addClientVIP = createAsyncThunk('posts/addClientVIP',async (values) => {
-    const token = ''
+    const token = Cookies.get('UserToken');
+
     return fetch("http://127.0.0.1:8000/api/clients/create/",{method:"POST",
         headers:{
             Accept:"application/json", //I accept JSON format
