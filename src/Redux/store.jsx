@@ -6,6 +6,7 @@ import FactureImpayeesReducer from './FactureImpayees/FactureImpayeesSlice'
 import Client_VIP_Reducer from './ClientVIP/Client_VIP_Slice'
 import PaimentReducer from './Paiement/PaiementSlice'
 import authReducer from './Log_in/Log_in_Slice'
+import AvoiresReducer from './Avoires/AvoiresSlice'
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     FactureVenteList : FactureVenteReducer,
     FactureImpayeesList: FactureImpayeesReducer,
     PaimentList : PaimentReducer,
-    authentication : authReducer
+    authentication : authReducer,
+    AvoiresReducerList : AvoiresReducer,
   },
 })

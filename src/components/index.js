@@ -45,5 +45,9 @@ export {default as Facture_Vente_PDF} from './PDF/Facture_Vente_PDF'
 export {default as Facture_Service_PDF} from './PDF/Facture_Service_PDF'
 export {default as Facture_Impayees_PDF} from './PDF/Facture_Impayees_PDF'
 
+export {default as Avoires } from './Avoires/Avoires'
+export { default as Avoires_Vente} from './Avoires_Vente/Avoires_vente'
+export {default as Avoires_Service} from './Avoires_Service/Avoires_Service'
+
 export {default as ProtectedRouters} from './Protected/ProtectedRoutes'
 export {default as Admin} from './Admin/Admin'

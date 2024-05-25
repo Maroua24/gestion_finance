@@ -22,7 +22,22 @@ const Add_payment = () => {
                     Ajouter un paiment:
                 </h1>
                 <div style={{ display: "block" }}>
-                    <Input label="Code Client" name="Code client" type="Number" id="Code_client"  value={client.id}/>
+
+            <div className="block flex-wrap h-5 m-4 md:h-8 lg:h-11 xl:h-14 2xl:h-16">
+                <label className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                        Code Client
+                </label>
+                <input
+                    type="text"
+                    id="input"
+                    className="bg-transparent border border-solid w-full h-5 border-2 border-outset focus:border-transparent
+                            md:h-[30px] md:text-lg
+                            lg:h-[35px] lg:text-xl
+                            xl:h-[40px] xl:text-2xl
+                            2xl:h-[50px] 2xl:text-3xl cursor-not-allowed"
+                            value={client.id}
+                />
+            </div>
                     <div className="ml-6 mt-8">
                         <Style>
                             <Style>
@@ -56,7 +71,30 @@ const Add_payment = () => {
                                     <Check_box label="Autre" />
                                 </div>
                             </Style>
-                                <p className="text-xs ml-3 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                
+                                <Style>
+                                    <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                        Payer le timbre
+                                    </p>
+                                    <p className="text-red-500">*</p>
+                                </Style>
+                                    <div class="form-check">
+                                        <input className="form-check-input" type="radio"  id="flexRadioDefault1"/>
+                                            <label className="form-check-label text-xs
+                                                        md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
+                                                        for="flexRadioDefault1">
+                                                Oui
+                                            </label>
+
+                                        <input className="form-check-input" type="radio"  id="flexRadioDefault1"/>
+                                            <label className="form-check-label text-xs
+                                                        md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
+                                                        for="flexRadioDefault1">
+                                                Non
+                                            </label>
+        </div>
+
+                                <p className="block text-xs  ml-3 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                                     Banque d'encaissenment:
                                 </p>
                                     <p className="text-red-500">*</p>

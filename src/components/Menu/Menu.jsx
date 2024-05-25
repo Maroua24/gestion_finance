@@ -21,8 +21,9 @@ const Menu =() => {
                         <Item href="/client_VIP" item="Client VIP"/>
                         <Item href="/Facture_vente" item="Factures vente"/>
                         <Item href="/Facture_Service" item="Factures service"/>
-                        <Item item="Avoires vente"/>
-                        <Item item="Avoires service"/>
+                        <Item href="/avoires" item="Avoires"/>
+                        <Item href="/avoires_vente" item="Avoires vente"/>
+                        <Item href="/avoires_service" item="Avoires service"/>
                         <Item href="/Facture_Impayees" item="Facture impayees"/>
                         <Item href="/paiment" item="Paiement"/>
                     </ul>

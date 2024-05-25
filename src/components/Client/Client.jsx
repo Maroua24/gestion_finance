@@ -112,12 +112,13 @@ const Client = () => {
                                                 {highlightMatch(client.pays, Search)}
                                             </td>
                                             <td>
-                                                <button to={`/edit/${client.id}`}
-                                                        className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl
                                                                     '>
-                                                    <a href="/Update"><GrDocumentUpdate  /></a>
+                                                    <Link to={`/Update/${client.id}`}>
+                                                        <GrDocumentUpdate  />
+                                                    </Link>
                                                 </button>
 
                                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]

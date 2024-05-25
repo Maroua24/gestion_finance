@@ -1,8 +1,8 @@
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import "./App.css"
-import {Style,Log_in,Main,Nav,Client,AddClient,EditClient,Client_VIP, 
+import {Style,Log_in,Main,Nav,Client,AddClient,EditClient,Client_VIP,
     Facture_Service,Facture_Service_Info,Facture_vente,Paiment,Add_payment,FactureImpayees,
-    Client_info,Facture_Vente_Info,ProtectedRouters,Admin} from "./components/index"
+    Client_info,Facture_Vente_Info,ProtectedRouters,Admin,Avoires_Vente,Avoires_Service,Avoires} from "./components/index"
 
 const App = () => {
     return(
@@ -18,7 +18,7 @@ const App = () => {
 
                             <Route path='/client'    element={<Client/>} />
                             <Route path='/AddClient' element={<AddClient/>} />
-                            <Route path='/Update'    element={<EditClient/>}/>
+                            <Route path='/Update/:id'    element={<EditClient/>}/>
                             <Route path='/Client_info/:id' element={<Client_info/>}/>
 
                             <Route path='/client_VIP' element={<Client_VIP/>}/>
@@ -33,6 +33,10 @@ const App = () => {
 
                             <Route path='/Paiment' element={<Paiment/>}/>
                             <Route path='/Add_payment/:id' element={<Add_payment/>}/>
+
+                            <Route path='/avoires' element={<Avoires/>}/>
+                            <Route path="/avoires_vente" element={<Avoires_Vente/>}/>
+                            <Route path="/avoires_service" element={<Avoires_Service/>}/>
                         {/* </Route> */}
                     </Routes>
                 </Style>
