@@ -6,7 +6,6 @@ import { FaCircleDollarToSlot } from "react-icons/fa6";
 
 const Facture_payees_Item = (props) => {
 
-    const [showTable, setShowTable] = useState(false);
     const id = props.id;
     const clientId = parseInt(id);
 
@@ -14,13 +13,10 @@ const Facture_payees_Item = (props) => {
     const isLoading = useSelector(state => state.FactureVenteList.isLoading);
     const clientInvoices = FactureVenteList ? FactureVenteList.filter(invoice => invoice.id === clientId) : [];
 
-    const handleToggleTable = () => {
-        setShowTable(prevShowTable => !prevShowTable);
-    };
-
     return (
         <>
-            <div onClick={handleToggleTable}>
+        <div className="w-full">
+            <div className="inline-block w-full" onClick={props.onToggle}>
                 <p className="m-3 p-2 border border-slate-50 cursor-pointer hover:bg-[#143C60]">
                     <b>
                         <Link to={props.link} className="text-[#143C60] hover:text-[--light-color]">
@@ -30,10 +26,9 @@ const Facture_payees_Item = (props) => {
                 </p>
             </div>
 
-            {showTable && (
-            <div>
-                {
-                    <table className="min-w-full">
+            {props.isOpen && (
+            <div className="w-full">
+                    <table className="w-full">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -73,9 +68,10 @@ const Facture_payees_Item = (props) => {
                             ))}
                         </tbody>
                     </table>
-                }
+                
             </div>
             )}
+            </div>
         </>
     );
 }

@@ -1,29 +1,31 @@
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux";
+import { useState } from 'react';
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 
 
-const Facture_Impayees_Item = (props) => {
+const Facture_payees_Item = (props) => {
 
     const id = props.id;
     const clientId = parseInt(id);
 
-    const FactureImpayeesList = useSelector(state => state.FactureImpayeesList.FactureImpayeesList);
-    const isLoading = useSelector(state => state.FactureImpayeesList.isLoading);
-    const clientInvoices = FactureImpayeesList ? FactureImpayeesList.filter(invoice => invoice.id === clientId) : [];
+    const AvoiresReducerList = useSelector(state => state.AvoiresReducerList.AvoiresReducerList);
+    const isLoading = useSelector(state => state.AvoiresReducerList.isLoading);
+    const clientInvoices = AvoiresReducerList ? AvoiresReducerList.filter(invoice => invoice.id === clientId) : [];
 
     return (
         <>
-        <div className="flex-1">
+        <div className="w-full">
             <div className="inline-block w-full" onClick={props.onToggle}>
                 <p className="m-3 p-2 border border-slate-50 cursor-pointer hover:bg-[#143C60]">
                     <b>
                         <Link to={props.link} className="text-[#143C60] hover:text-[--light-color]">
-                            Facture Impayees
+                            Avoires
                         </Link>
                     </b>
                 </p>
             </div>
+
             {props.isOpen && (
             <div className="w-full">
                     <table className="w-full">
@@ -66,11 +68,12 @@ const Facture_Impayees_Item = (props) => {
                             ))}
                         </tbody>
                     </table>
+                
             </div>
-            ) }
-        </div>
+            )}
+            </div>
         </>
     );
 }
 
-export default Facture_Impayees_Item;
+export default Facture_payees_Item;
