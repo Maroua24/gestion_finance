@@ -73,12 +73,14 @@ const Add_payment = () => {
                                 </Style>
 
                                 <div>
-                                <p className="block text-xs  ml-3 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                    Banque d'encaissenment:
-                                </p>
+                                    <Style>
+                                    <p className="block text-xs  ml-9 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                        Banque d'encaissenment:
+                                    </p>
                                     <p className="text-red-500">*</p>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle h-9" data-bs-toggle="dropdown" aria-expanded="false">
+                                    </Style>
+                                <div class="btn-group ml-9">
+                                    <button type="button" class="btn btn-primary dropdown-toggle h-9  text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl" data-bs-toggle="dropdown" aria-expanded="false">
                                         Veuillez choisir une banque
                                     </button>
                                     <ul class="dropdown-menu">
@@ -105,7 +107,6 @@ const Add_payment = () => {
                                 </div>
                                 </div>
                             </Style>
-                                
                                 <Style>
                                 <Style>
                                     <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">

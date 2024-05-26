@@ -51,3 +51,6 @@ export {default as Avoires_Service} from './Avoires_Service/Avoires_Service'
 
 export {default as ProtectedRouters} from './Protected/ProtectedRoutes'
 export {default as Admin} from './Admin/Admin'
+
+export {default as Facture_Impayees_item} from './Facture_Impayees_Item/Facture_Impayees_Item'
+export {default as Facture_payees_Item} from './Facture_payees_Item/Facture_payees_Item'

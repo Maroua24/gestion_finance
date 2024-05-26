@@ -1,17 +1,16 @@
-import {Style,Nav_Item} from "../index"
+import { Style, Nav_Item,Facture_Impayees_item,Facture_payees_Item } from "../index"
+import { Link } from "react-router-dom"
+import { useSelector } from "react-redux";
 
-const Nav = () => {
+const Nav = (props) => {
     return (
         <>
-                            <Style>
-                                <Nav_Item item="Facture Impayees"/>
-                                <Nav_Item item="Facture payees"/>
-                                <Nav_Item item="Les paiements"/>
-                                <Nav_Item item="Les commandes"/>
-                                <Nav_Item item="Les avoires"/>
-                            </Style>
+        <Style>
+            <Facture_Impayees_item id={props.id} />
+            <Facture_payees_Item id={props.id}/>
+        </Style>
         </>
-    )
+    );
 }
 
-export default Nav
+export default Nav;
