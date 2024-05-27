@@ -2,7 +2,7 @@ import {Style} from "../index"
 const Input = (props) => {
     return(
         <>
-            <div className="block flex-wrap h-5 m-4 md:h-8 lg:h-11 xl:h-14 2xl:h-16">
+            <div className="block flex-wrap h-5 m-4 md:h-8 lg:h-11 xl:h-14 2xl:h-16 ">
                 <label className="text-xs
                                 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                     <Style>
@@ -22,7 +22,6 @@ const Input = (props) => {
                     value={props.value}
                     onChange={props.onChange}
                     placeholder={props.placeholder}
-                    required
                 />
             </div>
         </>
