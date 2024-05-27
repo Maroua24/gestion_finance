@@ -10,6 +10,15 @@ from .serializers import (
     FactureVenteStatistiquesSerializer,
     PaiementStatistiqueSerializer
 )
+from django.http import HttpResponse
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from django.views import View
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from io import BytesIO
+
+
 
 class ClientStatistiques(APIView):
     def get(self, request):
@@ -41,3 +50,37 @@ class PaiementStatistiques(APIView):
         serializer = PaiementStatistiqueSerializer({'total_paiements': total_paiements})
         return Response(serializer.data)
 
+
+class GenererRapportPDF(View):
+    def get(self, request, *args, **kwargs):
+        try:
+            # Collecte des données des statistiques
+            total_clients = Client.objects.count()
+            total_factures = Facture.objects.count()
+            total_factures_vente = Facture.objects.filter(type_facture='Vente').count()
+            total_factures_service = Facture.objects.filter(type_facture='Service').count()
+            total_paiements = Paiement.objects.count()
+            
+            buffer = BytesIO()
+            pdf = canvas.Canvas(buffer, pagesize=A4)
+            
+            pdf.drawString(25, 800, f"Rapport des Statistiques")
+            pdf.drawString(25, 780, f"Total Clients: {total_clients}")
+            pdf.drawString(25, 760, f"Total Factures: {total_factures}")
+            pdf.drawString(25, 740, f"Total Factures Vente: {total_factures_vente}")
+            pdf.drawString(25, 720, f"Total Factures Service: {total_factures_service}")
+            pdf.drawString(25, 700, f"Total Paiements: {total_paiements}")
+            
+            pdf.showPage()
+            pdf.save()
+
+            pdf_data = buffer.getvalue()
+
+            response = HttpResponse(pdf_data, content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename="rapport_statistiques.pdf"'
+            # pour le téléchargement automatique
+            # response['Content-Disposition'] = 'attachment; filename="rapport_statistiques.pdf"'
+
+            return response
+        except Exception as e:
+            return HttpResponse(f'Erreur lors de la génération du rapport: {str(e)}', status=500)
