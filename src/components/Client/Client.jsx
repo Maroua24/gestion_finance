@@ -17,8 +17,8 @@ const Client = () => {
     const isLoading = useSelector(state => state.ClientList.isLoading);
 
     useEffect(()=>{
-        dispatch(getAll("http://127.0.0.1:8000/api/clients/"));
-        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        //dispatch(getAll("http://127.0.0.1:8000/api/clients/"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
 
     const handleSort = (key) => {

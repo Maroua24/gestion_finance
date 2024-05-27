@@ -9,7 +9,7 @@ const ClientInfo = () => {
     const client = useSelector(state => state.ClientList.ClientsList.find(c => c.id === clientId));
 
     return (
-
+        <>
             <div className="">
                 <Style>
                     <Menu/>
@@ -78,7 +78,8 @@ const ClientInfo = () => {
                 </div>
 
                 </Style>
-</div>
+</div> 
+</>
     );
 };
 
