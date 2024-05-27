@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {addClient} from '../API/ClientAPI'
 import {getAll} from '../API/GetAll'
-
+import {UpdateClient} from '../API/Update_Client'
 const initialState = {
     ClientsList:[],
     isLoading:false,
@@ -39,6 +39,21 @@ const ClientSlice = createSlice({
                 state.ClientsList=[]
             })
             .addCase(addClient.rejected,(state,action) => {
+                state.isLoading=false
+                state.ClientsList=[]
+                state.error = action.error.message
+            })
+        //Update a client
+        builder
+            .addCase(UpdateClient.pending, state => {
+                state.isLoading = true
+                state.error = ''
+            })
+            .addCase(UpdateClient.fulfilled, (state) => {
+                state.isLoading = false
+                state.ClientsList=[]
+            })
+            .addCase(UpdateClient.rejected,(state,action) => {
                 state.isLoading=false
                 state.ClientsList=[]
                 state.error = action.error.message

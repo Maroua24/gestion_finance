@@ -60,8 +60,6 @@ const AddClient = () => {
             Email: '',
             Secteur_activite: '',
             Condition_de_paiement: '',
-            Cre_le: '',
-            Cre_par: '',
             Nom: '',
             Prenom: '',
             Fonction: '',
@@ -132,8 +130,6 @@ const AddClient = () => {
 
                         <Input label="Secteur d'activite:" name="Secteur_activite" type="text" id="Secteur_activite" value={inputValue.Secteur_activite}  onChange={handleInput}/>
                         <Input label="Condition de paiement:" name="Condition_de_paiement" type="text" id="Condition_de_paiement" value={inputValue.Condition_de_paiement} onChange={handleInput}/>
-
-                        <Input label="Cre le:" name="Cre_le" type="date" id="Cre_le" value={inputValue.Cre_le} onChange={handleInput}/>
 
                     <Input label="Nom:" name="Nom" type="text" id="Nom" value={inputValue.Nom} onChange={handleInput}/>
                     <Input label="Prenom:" name="Prenom" type="text" id="Prenom" value={inputValue.Prenom} onChange={handleInput}/>
