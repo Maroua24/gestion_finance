@@ -219,4 +219,30 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+# settings.py
+
+# Nombre maximal de tentatives de connexion avant le blocage
+AXES_FAILURE_LIMIT = 5
+
+# Bloquer automatiquement les utilisateurs après le nombre maximal d'échecs
+AXES_LOCK_OUT_AT_FAILURE = True
+
+# Vous pouvez spécifier un modèle personnalisé pour le verrouillage
+AXES_LOCKOUT_TEMPLATE = None
+
+# Backends d'authentification utilisés par Django
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Par défaut
+    'axes.backends.AxesBackend',  # Ajoutez cette ligne
+]
+
+# Autres configurations de sécurité recommandées
+SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+
 

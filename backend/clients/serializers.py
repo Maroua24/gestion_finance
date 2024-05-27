@@ -19,5 +19,10 @@ class InfoClientSerializer(serializers.ModelSerializer):
         model = Client
         fields = ['id', 'nom', 'devise' , 'cree_par']
 
+class ClientAjoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = '__all__'
+
 
        

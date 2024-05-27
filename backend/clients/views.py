@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView,  DestroyAPIView
 from .models import Client
-from .serializers import ClientSerializer
+from .serializers import ClientSerializer , ClientAjoutSerializer
 
 from rest_framework.permissions import AllowAny,IsAuthenticated ,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -61,7 +61,7 @@ class FacturesClientAPIView(ListAPIView):
     serializer_class = FactureSerializer
 
     def get_queryset(self):
-        # Récupérer le client spécifié par l'ID dans les paramètres de requête
+        
         client_id = self.kwargs['client_id']
         return Facture.objects.filter(client_id=client_id)
 
@@ -90,7 +90,7 @@ class ClientCreateView(CreateAPIView):
     # permission_classes = (AllowAny,)
     permission_classes = [IsAuthenticated]
     queryset = Client.objects.all()
-    serializer_class = ClientSerializer 
+    serializer_class = ClientAjoutSerializer
 
     def perform_create(self, serializer):
       serializer.save(creer_par=self.request.user) 
