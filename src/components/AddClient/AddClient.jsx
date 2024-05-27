@@ -1,8 +1,8 @@
-import { Select, Input , Style,Menu} from "../index"
+import { Select, Input , Style,Menu,Validation} from "../index"
 import { useState} from "react";
 import { useDispatch} from "react-redux";
 import { addClient } from "../../Redux/API/ClientAPI";
-import Validation from '../Validation/Validation'
+
 const AddClient = () => {
 
     const dispatch = useDispatch();

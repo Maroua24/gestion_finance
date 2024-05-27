@@ -30,8 +30,6 @@ export const addClient = createAsyncThunk('posts/addClient',async (values) => {
             Email: values.Email,
             Secteur_activite: values.Secteur_activite,
             Condition_de_paiement: values.Condition_de_paiement,
-            Cre_le: values.Cre_le,
-            Cre_par: values.Cre_par,
             Nom: values.Nom,
             Prenom: values.Prenom,
             Fonction: values.Fonction,
@@ -39,6 +37,7 @@ export const addClient = createAsyncThunk('posts/addClient',async (values) => {
             Fax: values.Fax,
             Dossier_valide: values.Dossier_valide,
             valid: values.valid,
+            Status: values.Status,
             VIP: values.VIP,
         })
     }).then((res)=> res.json());

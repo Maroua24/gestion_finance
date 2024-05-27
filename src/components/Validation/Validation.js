@@ -79,6 +79,15 @@ const Validation = (inputValue) => {
     if (inputValue.Fax === "") {
         errors.Fax = "Fax is Required!";
     }
+    if(inputValue.Montant_encaissenment === ""){
+        errors.Montant_encaissenment = "Montant d'encaissenment is Required!"
+    }
+    if(inputValue.Montant_de_reglement === ""){
+        errors.Montant_de_reglement = "Montant de reglement is Required!"
+    }
+    if(inputValue.Etat === ""){
+        errors.Etat = "Etat is Required!"
+    }
 
     return errors;
 };
