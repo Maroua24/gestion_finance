@@ -17,7 +17,7 @@ const Input = (props) => {
                             md:h-[30px] md:text-lg
                             lg:h-[35px] lg:text-xl
                             xl:h-[40px] xl:text-2xl
-                            2xl:h-[50px] 2xl:text-3xl`}
+                            2xl:h-[50px] 2xl:text-3xl ${props.cursor}`}
                     name={props.name}
                     value={props.value}
                     onChange={props.onChange}

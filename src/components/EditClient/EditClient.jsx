@@ -144,7 +144,10 @@ const EditClient = () => {
 
                         <Select label="Dossier valide:" name="Dossier_valide" value_1="Y" value_2="N" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleChange} />
                         <Select label="Status:" name="Status" value_1="A" value_2="I" choix1="Actif" choix2="Inactif" id="status" value={inputValue.Status} onChange={handleChange} />
-                        <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md">Envoyer</button>
+                        <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md
+                                                        md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+                            Envoyer
+                        </button>
                     </div>
             </form>
         </>

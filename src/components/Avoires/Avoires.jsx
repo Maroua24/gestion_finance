@@ -62,16 +62,16 @@ return (
                         Avoires
                     .map((Avoires) => (
                         <tr key={Avoires.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                            {/* <td className="pl-6">{Avoires.id}</td>
+                            <td className="pl-6">{Avoires.id}</td>
                             <td className="p-3 ">{Avoires.Date_de_comptabilisation}</td>
                             <td>{Avoires.date_comptabilisation}</td>
                             <td>{Avoires.date_decheance}</td>
-                              <td>{Avoires.type}</td> */}
-                            <td className="pl-6">{Avoires.id}</td>
+                            <td>{Avoires.type}</td>
+                            {/* <td className="pl-6">{Avoires.id}</td>
                             <td className="p-3 ">13/03/2018</td>
                                 <td>20/02/2020</td>
                                 <td>12/04/2021</td>
-                                <td>facture</td>
+                                <td>facture</td> */}
                                 <td>
                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl

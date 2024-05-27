@@ -13,7 +13,7 @@ const App = () => {
                     <Routes>
                         <Route path='/' element={<Log_in/>}/>
 
-                        <Route element={<ProtectedRouters/>}>
+                        {/* <Route element={<ProtectedRouters/>}> */}
                             <Route path='/Main' element={<Main/>}/>
                             <Route path='/admin' element={<Admin/>}/>
 
@@ -39,7 +39,7 @@ const App = () => {
                             <Route path='/Edit_Facture/:id' element={<Edit_Facture/>}/>
                             <Route path="/avoires_vente" element={<Avoires_Vente/>}/>
                             <Route path="/avoires_service" element={<Avoires_Service/>}/>
-                        </Route>
+                        {/* </Route> */}
                     </Routes>
                 </Style>
             </Router>
