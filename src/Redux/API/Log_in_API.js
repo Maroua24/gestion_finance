@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit'
 import Cookies from 'js-cookie';
 
 export const logIn = createAsyncThunk('posts/auth',async (values) => {
-    return fetch("https://jsonplaceholder.typicode.com/users",{method:"POST",
+    return fetch("http://127.0.0.1:8000/api/users",{method:"POST",
         headers:{
             Accept:"application/json",
             "Content-type":"application/json",

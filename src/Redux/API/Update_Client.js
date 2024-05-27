@@ -5,7 +5,7 @@ export const UpdateClient = createAsyncThunk('posts/UpdateClient', async (values
     const token = Cookies.get('UserToken');
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/clients/update/", {
+        const response = await fetch("http://127.0.0.1:8000/api/clients/<int:pk>/update/", {
             method: "PUT",
             headers: {
                 Accept: "application/json",

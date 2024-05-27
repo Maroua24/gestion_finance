@@ -19,8 +19,8 @@ const Facture_vente = () => {
     const isLoading = useSelector(state => state.FactureVenteList.isLoading)
 
     useEffect(()=>{
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        //dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
     },[dispatch]);
 
     const viewPDF = (client) => {

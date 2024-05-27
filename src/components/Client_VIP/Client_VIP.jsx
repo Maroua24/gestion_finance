@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { FaCircleDollarToSlot } from "react-icons/fa6";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
-const ClientVIP = () => {
+
+const Client = () => {
 
     const [Search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState(null);
 
     const dispatch = useDispatch();
-    const ClientsVIP = useSelector(state => state.Client_VIP_List.ClientsVIPList);
-    const isLoading = useSelector(state => state.Client_VIP_List.isLoading);
+    const Clients = useSelector(state => state.ClientList.ClientsList);
+    const isLoading = useSelector(state => state.ClientList.isLoading);
 
     useEffect(()=>{
-        dispatch(getAll("http://127.0.0.1:8000/api/clients/create/"));
+        dispatch(getAll("http://127.0.0.1:8000/api/clients/"));
         //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
 
@@ -42,7 +44,7 @@ const ClientVIP = () => {
                 <h1 className="text-[--statistic-color] p-4 sm:text-3xl
                                 md:text-5xl lg:text-7xl
                             ">
-                    Client VIP:
+                    Client VIP
                 </h1>
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}
@@ -77,7 +79,7 @@ const ClientVIP = () => {
                                     <strong>Loading...</strong>
                                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                                 </div>:
-                                ClientsVIP
+                                Clients
                                 .filter((client) => {
                                     return Search.toLowerCase() === ''
                                         ? client
@@ -110,12 +112,13 @@ const ClientVIP = () => {
                                                 {highlightMatch(client.pays, Search)}
                                             </td>
                                             <td>
-                                                <button to={`/edit/${client.id}`}
-                                                        className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl
                                                                     '>
-                                                    <a href="/Update"><GrDocumentUpdate  /></a>
+                                                    <Link to={`/Update/${client.id}`}>
+                                                        <GrDocumentUpdate  />
+                                                    </Link>
                                                 </button>
 
                                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
@@ -124,6 +127,14 @@ const ClientVIP = () => {
                                                                     '>
                                                     <Link to={`/Client_info/${client.id}`}>
                                                         <IoMdInformationCircleOutline />
+                                                    </Link>
+                                                </button>
+
+                                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                    sm:text-sm md:text-xl lg:text-2xl
+                                                                    xl:text-3xl 2xl:text-4xl'>
+                                                    <Link to={`/Add_payment/${client.id}`}>
+                                                        <FaCircleDollarToSlot />
                                                     </Link>
                                                 </button>
                                             </td>
@@ -138,5 +149,5 @@ const ClientVIP = () => {
     )
 }
 
-export default ClientVIP
+export default Client
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, Text, Document, StyleSheet, View, Image } from '@react-pdf/renderer';
-import background_Image from '../../images/facture_tamplate.png'
+// import background_Image from '../../images/facture_tamplate.png'
 const Facture_Service_PDF = ({ Facture, Factures }) => {
   const styles = StyleSheet.create({
     body: {
@@ -57,9 +57,9 @@ const Facture_Service_PDF = ({ Facture, Factures }) => {
   return (
     <Document>
       <Page size="A4" style={styles.body}>
-        <View>
+        {/* <View>
           <Image src={background_Image}  style={styles.backgroundImage} />
-        </View>
+        </View> */}
         <View style={styles.content}>
           <Text style={styles.header}>Facture Service</Text>
 
