@@ -5,7 +5,7 @@ from .models import Paiement
 from .serializers import PaiementSerializer , PaiementSerializer
 from factures.models import Facture
 from rest_framework.views import APIView
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 class ListePaiements(generics.ListAPIView):
     queryset = Paiement.objects.all()
@@ -18,8 +18,7 @@ class PaiementCreateView(APIView):
         facture = get_object_or_404(Facture, pk=pk)
         
         if facture.non_payee:
-            creer_par = request.user  # Utilisateur qui crée le paiement
-            
+            creer_par = request.user 
             etat = request.data.get('etat')
             est_annule = request.data.get('est_annule')
             mode_reglement = request.data.get('mode_reglement')
@@ -28,9 +27,16 @@ class PaiementCreateView(APIView):
             if etat == 'partiel':
                 montant = Decimal(facture.montant)
                 montant_p = request.data.get('montant_partiel')
-                montant_partiel =  Decimal(montant_p)
+
+                try:
+                    montant_partiel = Decimal(montant_p)
+                except (TypeError, ValueError, InvalidOperation):
+                    return Response({'error': 'Montant partiel invalide.'}, status=status.HTTP_400_BAD_REQUEST)
+
+                
                 if montant_partiel and montant_partiel <= montant:
                     montant_partiel = montant_partiel
+                    reste_a_payer = montant - montant_partiel
                     montant -= montant_partiel
                     facture.montant = montant
                     facture.save()
@@ -38,6 +44,7 @@ class PaiementCreateView(APIView):
                     return Response({'error': 'Montant partiel incorrect.'}, status=status.HTTP_400_BAD_REQUEST)
             elif etat == 'complet':
                 montant = facture.montant
+                reste_a_payer = 0
             else:
                 return Response({'error': 'État de paiement invalide.'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -53,8 +60,8 @@ class PaiementCreateView(APIView):
                 commentaire=commentaire,
                 montant_partiel = montant_partiel if etat == 'partiel' else None
             )
-
-            facture.non_payee = False
+            if reste_a_payer == 0 : 
+             facture.non_payee = False
             facture.save()
 
             serializer = PaiementSerializer(paiement)
