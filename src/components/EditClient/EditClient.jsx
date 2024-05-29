@@ -6,7 +6,6 @@ import {UpdateClient} from "../../Redux/API/Update_Client"
 
 const EditClient = () => {
 
-
     const { id } = useParams();
     const ClientId = parseInt(id);
     const client = useSelector(state => state.PaimentList.PaimentList.find(c => c.id === ClientId));

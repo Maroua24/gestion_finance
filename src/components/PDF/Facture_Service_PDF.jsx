@@ -3,7 +3,10 @@ import {useSelector} from "react-redux";
 import logo from "../../images/logo_icosnet_sgs.png"
 import stamp from "../../images/stamp-removebg-preview.png"
 
-const Facture_Vente_PDF = ({Facture,Factures}) => {
+const Facture_Vente_PDF = ({id,Facture,Factures}) => {
+
+  const ClientId = parseInt(id);
+  const FACTURE = Facture.find(c => c.id === ClientId);
 
     const styles = StyleSheet.create({
         body: {
@@ -33,17 +36,11 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
             marginBottom: 20,
         },
         image:{
-          marginBottom:6,
-          height:"10%"
+          height:"100%",
+          width:"100%"
         },
         pageNumber: {
-            position: "absolute",
             fontSize: 12,
-            bottom: 30,
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            color: "gray",
         },
         table: {
             display: "table",
@@ -77,6 +74,7 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
             borderTopWidth: 0,
             width: "15%",
             textAlign: "center",
+            fontWeight: "bold",
         },
         banque:{
           fontSize: 8,
@@ -94,18 +92,22 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
         },
         stamp:{
           width:"40%"
-        }
+        },
     });
 
     return (
         <Document>
             <Page size="A4" style={styles.body}>
+            <View style={styles.row}>
               <Image style={styles.image} src={logo} />
+              Page
               <Text
                 style={styles.pageNumber}
                 render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
                 fixed
               />
+            </View>
+            <Text>{'\n'}</Text>
               <View style={styles.row}>
                 <View style={styles.column}>
                   <Text style={styles.header} fixed>
@@ -125,15 +127,16 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
                 <View style={styles.column}>
                   <Text>
                   </Text>
-                    <Text style={styles.title}>Facture N : 88888{'\n'}</Text>
-                    {'\n'}
+                    <Text style={styles.title}>Facture N : 999988888{'\n'}</Text>
+                    <Text>{'\n'}</Text>
                     <Text style={styles.sous_titre}>
                     Alger le : 23/4/1023 {'\n'}
-                    Client: jjjj {'\n'}
+                    <Text style={styles.bold}>Client:</Text> jjjj {'\n'}
                     {'\n'}
-                    Code client : 8980 {'\n'}
-                    Adresse: alger {'\n'}
+                    <Text style={styles.bold}>Code client:</Text> 8980 {'\n'}
+                    <Text style={styles.bold}>Adresse:</Text> alger {'\n'}
                     </Text>
+                    <Text>{'\n'}</Text>
                 <Text style={styles.header}>
                     "Adresse client" {'\n'}
                     "Adresse client" {'\n'}
@@ -156,9 +159,10 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
                         <Text style={styles.tableCell}>R%</Text>
                         <Text style={styles.tableCell}>TVA%</Text>
                     </View>
-                    {Factures.map((Facture) => (
+                    {/* {FACTURE.map((Facture) => ( */}
                         <View key={Facture.id} style={styles.tableRow}>
-                          {/* <Text style={styles.tableCell}>kkk</Text>
+                          <Text style={styles.tableCell}>{FACTURE.id}</Text>
+                          {/* <Text >kkk</Text>
                           <Text style={styles.tableCell}>kkkk</Text>
                           <Text style={styles.tableCell}>000</Text>
                           <Text style={styles.tableCell}>jjj</Text>
@@ -168,7 +172,7 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
                           <Text style={styles.tableCell}>----</Text> */}
                             {/* {/* <Text style={styles.tableCell}>{Facture.date_creation}</Text> */}
                         </View>
-                    ))}
+                    {/* ))} */}
                 </View>
 
                 <View style={styles.sec_table}>
@@ -181,14 +185,11 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
                         <Text style={styles.tableCell}>9999000</Text>
                     </View>
                 </View>
-                
-                
+
                     <Text style={styles.somme}>
                       Arrete la presnete a la somme de : douze mile neuf dinar algeriens
                     </Text>
-                  
-                  
-                
+
                 <View style={styles.row}>
                   <View style={styles.column}>
                     <Text style={styles.header}>
@@ -204,20 +205,17 @@ const Facture_Vente_PDF = ({Facture,Factures}) => {
                 </View>
 
                 <Text style={styles.banque}>
-                  Comptes bancaires:{'\n'}
-                  {'\n'}
-                  Banque BNP: Lot N 01 Amara ll Route de Oued Fayet Alger RIB : 027007030000202/00117 SWIFT BNPADZAL {'\n'}
-                  {'\n'}
-                  Banque NATIXIS: Immeuble El Ksar, Lot 34/35 Zone d'affaires Mercure Bab Ezzouar RIB: 020 00168 7290412001 56 SWIFT:NATXDZAL {'\n'}
-                  {'\n'}
-                  Banque SGA: Agence de CHERAGA KAOUCHE Lotissement Kaouche, Cheraga RIB: 021 00003 1130049870/46 SWIFT:SOGEDZAL {'\n'}
+                  <Text  className="font-black">Comptes bancaires:</Text>
+                  {'\n\n'}
+                  <Text style={styles.bold}>Banque BNP: </Text>
+                  Lot N 01 Amara ll Route de Oued Fayet Alger RIB : 027007030000202/00117 SWIFT BNPADZAL
+                  {'\n\n'}
+                  <Text style={styles.bold}>Banque NATIXIS: </Text>
+                  Immeuble El Ksar, Lot 34/35 Zone d'affaires Mercure Bab Ezzouar RIB: 020 00168 7290412001 56 SWIFT:NATXDZAL
+                  {'\n\n'}
+                  <Text style={styles.bold}>Banque SGA: </Text>
+                  Agence de CHERAGA KAOUCHE Lotissement Kaouche, Cheraga RIB: 021 00003 1130049870/46 SWIFT:SOGEDZAL
                 </Text>
-
-                <Text
-                    style={styles.pageNumber}
-                    render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
-                    fixed
-                />
 
             </Page>
         </Document>
