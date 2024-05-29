@@ -17,6 +17,15 @@ const Nav = (props) => {
     const FactureVenteList = useSelector(state => state.FactureVenteList.FactureVenteList);
     const clientInvoices = FactureVenteList ? FactureVenteList.filter(invoice => invoice.id === clientId) : [];
 
+    // const FactureImpayeesList = useSelector(state => state.FactureImpayeesList.FactureImpayeesList);
+    // const clientFactureImpayees = FactureImpayeesList ? FactureImpayeesList.filter(invoice => invoice.id === clientId) : [];
+
+    // const AvoiresList = useSelector(state => state.AvoiresList.AvoiresList);
+    // const clientAvoires = AvoiresList ? AvoiresList.filter(invoice => invoice.id === clientId) : [];
+
+    // const CommandeList = useSelector(state => state.CommandeList.CommandeList);
+    // const clientCommande = CommandeList ? CommandeList.filter(invoice => invoice.id === clientId) : [];
+
     return (
         <>
             <table className="w-full">

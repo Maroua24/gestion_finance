@@ -1,93 +1,227 @@
-import React from 'react';
-import { Page, Text, Document, StyleSheet, View, Image } from '@react-pdf/renderer';
-// import background_Image from '../../images/facture_tamplate.png'
-const Facture_Service_PDF = ({ Facture, Factures }) => {
-  const styles = StyleSheet.create({
-    body: {
-      margin: 0
-    },
-    content: {
-      position:'absolute',
-      paddingTop: 35,
-      paddingBottom: 65,
-      paddingHorizontal: 35,
-      fontFamily: 'Times-Roman',
-      zIndex: 1,
-    },
-    header: {
-      fontSize: 24,
-      textAlign: 'center',
-      marginBottom: 20,
-    },
-    text: {
-      position:'absolute',
-      marginVertical: 10,
-      fontSize: 14,
-      textAlign: 'justify',
-    },
-    table: {
-      position:'absolute',
-      marginTop: 10,
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: '#000000',
-    },
-    tableRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      height: 24,
-    },
-    tableCell: {
-      width: '33%',
-      borderRight: '1px solid #000000',
-      borderBottom: '1px solid #000000',
-      textAlign: 'center',
-    },
-    pageNumber: {
-      position: 'absolute',
-      fontSize: 12,
-      bottom: 30,
-      left: 0,
-      right: 0,
-      textAlign: 'center',
-      color: 'gray',
-    },
-  });
+import { Page, Text, Document, StyleSheet, View ,Image} from '@react-pdf/renderer';
+import {useSelector} from "react-redux";
+import logo from "../../images/logo_icosnet_sgs.png"
+import stamp from "../../images/stamp-removebg-preview.png"
 
-  return (
-    <Document>
-      <Page size="A4" style={styles.body}>
-        {/* <View>
-          <Image src={background_Image}  style={styles.backgroundImage} />
-        </View> */}
-        <View style={styles.content}>
-          <Text style={styles.header}>Facture Service</Text>
+const Facture_Vente_PDF = ({Facture,Factures}) => {
 
-          <Text style={styles.text}>
-            Date de création: {Facture.date_creation}
-            Date de comptabilisation: {Facture.date_comptabilisation}
-            Date d'échéance: {Facture.date_decheance}
-            Non payée: {Facture.non_payée}
-          </Text>
-          <View style={styles.table}>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>Date de création</Text>
-              <Text style={styles.tableCell}>Date de comptabilisation</Text>
-              <Text style={styles.tableCell}>Date d'échéance</Text>
-            </View>
-            {Factures.map((facture) => (
-              <View key={facture.id} style={styles.tableRow}>
-                <Text style={styles.tableCell}>{facture.date_creation}</Text>
-                <Text style={styles.tableCell}>{facture.date_comptabilisation}</Text>
-                <Text style={styles.tableCell}>{facture.date_decheance}</Text>
-              </View>
-            ))}
-          </View>
-          <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`} fixed />
-        </View>
-      </Page>
-    </Document>
-  );
-};
+    const styles = StyleSheet.create({
+        body: {
+            paddingTop: 35,
+            paddingBottom: 65,
+            paddingHorizontal: 35,
+        },
+        title: {
+            fontSize: 20,
+        },
+        text: {
+            margin: 12,
+            fontSize: 14,
+            textAlign: "justify",
+            fontFamily: "Times-Roman",
+        },
+        somme:{
+          fontSize: 12,
+          padding:5,
+          textAlign: "center",
+          borderStyle: "solid",
+          borderWidth: 1,
+          margin:5,
+        },
+        header: {
+            fontSize: 10,
+            marginBottom: 20,
+        },
+        image:{
+          marginBottom:6,
+          height:"10%"
+        },
+        pageNumber: {
+            position: "absolute",
+            fontSize: 12,
+            bottom: 30,
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            color: "gray",
+        },
+        table: {
+            display: "table",
+            width: "auto",
+            borderStyle: "solid",
+            borderWidth: 1,
+            borderRightWidth: 0,
+            borderBottomWidth: 0,
+        },
+        sec_table: {
+          display: "table",
+          width: "100%",
+          // borderStyle: "solid",
+          // borderWidth: 1,
+          marginTop:4,
+          marginLeft:170,
+          // borderRightWidth: 0,
+          // borderBottomWidth: 0,
+      },
+        tableRow: {
+            margin: "auto",
+            flexDirection: "row",
+        },
+        tableCell: {
+            fontSize:12,
+            // margin: "auto",
+            marginVertical: 5,
+            borderStyle: "solid",
+            borderWidth: 1,
+            borderLeftWidth: 0,
+            borderTopWidth: 0,
+            width: "15%",
+            textAlign: "center",
+        },
+        banque:{
+          fontSize: 8,
+        },
+        row: {
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+        },
+        column: {
+          width: "50%",
+        },
+        sous_titre:{
+          fontSize:13,
+        },
+        stamp:{
+          width:"40%"
+        }
+    });
 
-export default Facture_Service_PDF;
+    return (
+        <Document>
+            <Page size="A4" style={styles.body}>
+              <Image style={styles.image} src={logo} />
+              <Text
+                style={styles.pageNumber}
+                render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+                fixed
+              />
+              <View style={styles.row}>
+                <View style={styles.column}>
+                  <Text style={styles.header} fixed>
+                    Centre des affaires El Qods{'\n'}
+                    6eme niveau de la tour centrale {'\n'}
+                    16002 Cheraga {'\n'}
+                    {'\n'}
+                  </Text>
+                  <Text style={styles.header} fixed>
+                    Tel:    021 99 33 42 {'\n'}
+                    Fax:    0982 300 301 {'\n'}
+                    Site:   www.icosnet.com.dz {'\n'}
+                    Email:  commericail@icosnet.com {'\n'}
+                            finance@icosnet.com {'\n'}
+                  </Text>
+                </View>
+                <View style={styles.column}>
+                  <Text>
+                  </Text>
+                    <Text style={styles.title}>Facture N : 88888{'\n'}</Text>
+                    {'\n'}
+                    <Text style={styles.sous_titre}>
+                    Alger le : 23/4/1023 {'\n'}
+                    Client: jjjj {'\n'}
+                    {'\n'}
+                    Code client : 8980 {'\n'}
+                    Adresse: alger {'\n'}
+                    </Text>
+                <Text style={styles.header}>
+                    "Adresse client" {'\n'}
+                    "Adresse client" {'\n'}
+                    Tel: 098765368 {'\n'}
+                    RC: 7800435680 {'\n'}
+                    NIF: 00099987765 {'\n'}
+                    ART: // {'\n'}
+                    NIS: {'\n'}
+                </Text>
+                </View>
+                </View>
+
+                    <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableCell}>Ref</Text>
+                        <Text style={styles.tableCell}>Designation</Text>
+                        <Text style={styles.tableCell}>QTE</Text>
+                        <Text style={styles.tableCell}>Prix unitaire</Text>
+                        <Text style={styles.tableCell}>Montant</Text>
+                        <Text style={styles.tableCell}>R%</Text>
+                        <Text style={styles.tableCell}>TVA%</Text>
+                    </View>
+                    {Factures.map((Facture) => (
+                        <View key={Facture.id} style={styles.tableRow}>
+                          {/* <Text style={styles.tableCell}>kkk</Text>
+                          <Text style={styles.tableCell}>kkkk</Text>
+                          <Text style={styles.tableCell}>000</Text>
+                          <Text style={styles.tableCell}>jjj</Text>
+                          <Text style={styles.tableCell}>777</Text>
+                          <Text style={styles.tableCell}>ooo</Text>
+                          <Text style={styles.tableCell}>jjj</Text>
+                          <Text style={styles.tableCell}>----</Text> */}
+                            {/* {/* <Text style={styles.tableCell}>{Facture.date_creation}</Text> */}
+                        </View>
+                    ))}
+                </View>
+
+                <View style={styles.sec_table}>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableCell}>Totale DZD TTC</Text>
+                        <Text style={styles.tableCell}>9999000</Text>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableCell}>Totale DZD TTC</Text>
+                        <Text style={styles.tableCell}>9999000</Text>
+                    </View>
+                </View>
+                
+                
+                    <Text style={styles.somme}>
+                      Arrete la presnete a la somme de : douze mile neuf dinar algeriens
+                    </Text>
+                  
+                  
+                
+                <View style={styles.row}>
+                  <View style={styles.column}>
+                    <Text style={styles.header}>
+                      Modalite de paiment: {'\n'}
+                      Echence de paiment:  {'\n'}
+                      Date depot facture : 9/9/2021 {'\n'}
+                      Zone de recouvrement: {'\n'}
+                    </Text>
+                  </View>
+                  <View style={styles.column}>
+                    <Image  style={styles.stamp}  src={stamp} />
+                  </View>
+                </View>
+
+                <Text style={styles.banque}>
+                  Comptes bancaires:{'\n'}
+                  {'\n'}
+                  Banque BNP: Lot N 01 Amara ll Route de Oued Fayet Alger RIB : 027007030000202/00117 SWIFT BNPADZAL {'\n'}
+                  {'\n'}
+                  Banque NATIXIS: Immeuble El Ksar, Lot 34/35 Zone d'affaires Mercure Bab Ezzouar RIB: 020 00168 7290412001 56 SWIFT:NATXDZAL {'\n'}
+                  {'\n'}
+                  Banque SGA: Agence de CHERAGA KAOUCHE Lotissement Kaouche, Cheraga RIB: 021 00003 1130049870/46 SWIFT:SOGEDZAL {'\n'}
+                </Text>
+
+                <Text
+                    style={styles.pageNumber}
+                    render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
+                    fixed
+                />
+
+            </Page>
+        </Document>
+    );
+}
+
+export default Facture_Vente_PDF;
