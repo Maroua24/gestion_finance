@@ -41,9 +41,8 @@ export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
 export {default as Info} from './Info/Info'
 export {default as Check_box} from './Check_box/Check_box'
 
-export {default as Facture_Vente_PDF} from './PDF/Facture_Vente_PDF'
 export {default as Facture_Service_PDF} from './PDF/Facture_Service_PDF'
-export {default as Facture_Impayees_PDF} from './PDF/Facture_Impayees_PDF'
+export {default as Avoire_PDF} from './PDF/Avoire_PDF'
 
 export {default as Avoires } from './Avoires/Avoires'
 export {default as Edit_Facture} from './Edit_Facture/Edit_Facture'
@@ -53,8 +52,7 @@ export {default as Avoires_Service} from './Avoires_Service/Avoires_Service'
 export {default as ProtectedRouters} from './Protected/ProtectedRoutes'
 export {default as Admin} from './Admin/Admin'
 
-export {default as Facture_Impayees_item} from './Facture_Impayees_Item/Facture_Impayees_Item'
-export {default as Facture_payees_Item} from './Facture_payees_Item/Facture_payees_Item'
+
 export {default as Avoires_Item } from './Avoires_Item/Avoires_Item'
 
 export {default as Type_Banque} from './Type_Banque/Type_Banque'

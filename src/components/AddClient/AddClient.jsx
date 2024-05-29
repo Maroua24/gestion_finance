@@ -9,65 +9,65 @@ const AddClient = () => {
     const [errors,setErrors] = useState({})
 
     const [inputValue, setInputValue] = useState({
-        Categorie_de_compte: '',
-        Raison_sociale: '',
-        Sigle: '',
-        Code_TVA: '',
-        Nature_du_compte: '',
-        NIF: '',
-        NIS: '',
-        Registre_de_commerce: '',
-        Article_imposition: '',
-        Devise: '',
-        Rue: '',
-        Ville: '',
-        Region: '',
-        Type_de_region: '',
-        Code_postal: '',
-        Pays: '',
-        Telephone: '',
-        Email: '',
-        Secteur_activite: '',
-        Condition_de_paiement: '',
-        Cre_le: '',
-        Cre_par: '',
-        Nom: '',
-        Prenom: '',
-        Fonction: '',
-        Type_de_client: '',
-        Fax: '',
-        Dossier_valide: '',
-        valid: '',
+        categorie_compte: '',
+        raison_sociale: '',
+        sigle: '',
+        code_tva: '',
+        nature_compte: '',
+        nif: '',
+        nis: '',
+        registre_commerce: '',
+        article_imposition: '',
+        devise: '',
+        rue: '',
+        ville: '',
+        region: '',
+        type_de_regionn: '',
+        code_postale: '',
+        pays: '',
+        telephone: '',
+        email: '',
+        secteur_activite: '',
+        condition_paiement: '',
+        nom: '',
+        prenom: '',
+        fonction: '',
+        type_client: '',
+        fax: '',
+        dossier_valide: '',
+        statut: '',
+        est_vip: '',
     });
     const clearInputValues = () => {
         setInputValue({
-            Categorie_de_compte: '',
-            Raison_sociale: '',
-            Sigle: '',
-            Code_TVA: '',
-            Nature_du_compte: '',
-            NIF: '',
-            NIS: '',
-            Registre_de_commerce: '',
-            Article_imposition: '',
-            Devise: '',
-            Rue: '',
-            Ville: '',
-            Region: '',
-            Type_de_region: '',
-            Code_postal: '',
-            Pays: '',
-            Telephone: '',
-            Email: '',
-            Secteur_activite: '',
-            Condition_de_paiement: '',
-            Nom: '',
-            Prenom: '',
-            Fonction: '',
-            Type_de_client: '',
-            Fax: '',
-            Dossier_valide: '',
-            valid: '',
+        categorie_compte: '',
+        raison_sociale: '',
+        sigle: '',
+        code_tva: '',
+        nature_compte: '',
+        nif: '',
+        nis: '',
+        registre_commerce: '',
+        article_imposition: '',
+        devise: '',
+        rue: '',
+        ville: '',
+        region: '',
+        type_de_regionn: '',
+        code_postale: '',
+        pays: '',
+        telephone: '',
+        email: '',
+        secteur_activite: '',
+        condition_paiement: '',
+        nom: '',
+        prenom: '',
+        fonction: '',
+        type_client: '',
+        fax: '',
+        dossier_valide: '',
+        statut: '',
+        est_vip: '',
         });
     };
 
@@ -83,6 +83,7 @@ const AddClient = () => {
             dispatch(addClient(inputValue));
             clearInputValues();
         }
+        console.log(inputValue)
     }
 
 
@@ -95,50 +96,50 @@ const AddClient = () => {
                     Ajouter un client:
                 </h1>
                 <div style={{ display: "block" }}>
-                    <Select name="Categorie de compte" value_1="Client" value_2="Supplier" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.Categorie_de_compte} onChange={handleInput}/>
+                    <Select name="categorie_compte" value_1="Client" value_2="Supplier" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.categorie_compte} onChange={handleInput}/>
 
                     <Style>
                         <div>
-                            <Input label="Raison sociale:" name="Raison_sociale" type="text" id="Raison_sociale" value={inputValue.Raison_sociale} onChange={handleInput}/>
-                            {errors.Raison_sociale && <p className="text-red-500 ml-6">{errors.Raison_sociale}</p>}
+                            <Input label="Raison sociale:" name="raison_sociale" type="text" id="Raison_sociale" value={inputValue.raison_sociale} onChange={handleInput}/>
+                            {errors.raison_sociale && <p className="text-red-500 ml-6">{errors.raison_sociale}</p>}
                         </div>
 
                         <div>
-                            <Input label="Sigle:" name="Sigle" type="text" id="Sigle" value={inputValue.Sigle} onChange={handleInput}/>
-                            {errors.Sigle && <p className="text-red-500 ml-6">{errors.Sigle}</p>}
+                            <Input label="Sigle:" name="sigle" type="text" id="sigle" value={inputValue.sigle} onChange={handleInput}/>
+                            {errors.sigle && <p className="text-red-500 ml-6">{errors.sigle}</p>}
                         </div>
                     </Style>
                         <div>
-                            <Input label="Code TVA:" name="Code_TVA" type="text" id="Code_TVA"  value={inputValue.Code_TVA} onChange={handleInput}/>
-                            {errors.Code_TVA && <p className="text-red-500 ml-6">{errors.Code_TVA}</p>}
+                            <Input label="Code TVA:" name="code_tva" type="text" id="code_tva"  value={inputValue.code_tva} onChange={handleInput}/>
+                            {errors.code_tva && <p className="text-red-500 ml-6">{errors.code_tva}</p>}
                         </div>
                         <div>
-                            <Input label="Nature du compte:" name="Nature_du_compte" type="text" id="Nature_du_compte"  value={inputValue.Nature_du_compte} onChange={handleInput}/>
-                            {errors.Nature_du_compte && <p className="text-red-500 ml-6">{errors.Nature_du_compte}</p>}
+                            <Input label="Nature du compte:" name="nature_compte" type="text" id="nature_compte"  value={inputValue.nature_compte} onChange={handleInput}/>
+                            {errors.nature_compte && <p className="text-red-500 ml-6">{errors.nature_compte}</p>}
                         </div>
 
                     <Style>
                         <div>
-                            <Input label="NIF:" name="NIF" type="text" id="NIF"  value={inputValue.NIF} onChange={handleInput}/>
-                            {errors.NIF && <p className="text-red-500 ml-6">{errors.NIF}</p>}
+                            <Input label="NIF:" name="nif" type="text" id="nif"  value={inputValue.nif} onChange={handleInput}/>
+                            {errors.nif && <p className="text-red-500 ml-6">{errors.nif}</p>}
                         </div>
                         <div>
-                            <Input label="NIS:" name="NIS" type="text" id="NIS" value={inputValue.NIS} onChange={handleInput}/>
-                            {errors.NIS && <p className="text-red-500 ml-6">{errors.NIS}</p>}
+                            <Input label="NIS:" name="nis" type="text" id="nis" value={inputValue.nis} onChange={handleInput}/>
+                            {errors.nis && <p className="text-red-500 ml-6">{errors.nis}</p>}
                         </div>
                     </Style>
 
                     <div>
-                        <Input label="Registre de commerce:" name="Registre_de_commerce" type="text" id="Registre_de_commerce"  value={inputValue.Registre_de_commerce} onChange={handleInput}/>
-                        {errors.Registre_de_commerce && <p className="text-red-500 ml-6">{errors.Registre_de_commerce}</p>}
+                        <Input label="Registre de commerce:" name="registre_commerce" type="text" id="registre_commerce"  value={inputValue.registre_commerce} onChange={handleInput}/>
+                        {errors.registre_commerce && <p className="text-red-500 ml-6">{errors.registre_commerce}</p>}
                     </div>
                     <div>
-                        <Input label="Article d'imposition:" name="Article_imposition" type="text" id="Article_imposition" value={inputValue.Article_imposition}  onChange={handleInput}/>
-                        {errors.Article_imposition && <p className="text-red-500 ml-6">{errors.Article_imposition}</p>}
+                        <Input label="Article d'imposition:" name="article_imposition" type="text" id="article_imposition" value={inputValue.article_imposition}  onChange={handleInput}/>
+                        {errors.article_imposition && <p className="text-red-500 ml-6">{errors.article_imposition}</p>}
                     </div>
                     <div>
-                        <Input label="Devise:" name="Devise" type="text" id="Devise" value={inputValue.Devise} onChange={handleInput}/>
-                        {errors.Devise && <p className="text-red-500 ml-6">{errors.Devise}</p>}
+                        <Input label="Devise:" name="devise" type="text" id="devise" value={inputValue.devise} onChange={handleInput}/>
+                        {errors.devise && <p className="text-red-500 ml-6">{errors.devise}</p>}
                     </div>
                     <div>
 
@@ -146,80 +147,80 @@ const AddClient = () => {
 
                     <Style>
                         <div>
-                            <Input label="Rue:" name="Rue" type="text" id="Rue" value={inputValue.Rue}  onChange={handleInput}/>
-                            {errors.Rue && <p className="text-red-500 ml-6">{errors.Rue}</p>}
+                            <Input label="Rue:" name="rue" type="text" id="rue" value={inputValue.rue}  onChange={handleInput}/>
+                            {errors.rue && <p className="text-red-500 ml-6">{errors.rue}</p>}
                         </div>
                         <div>
-                            <Input label="Ville:" name="Ville" type="text" id="Ville" value={inputValue.Ville} onChange={handleInput}/>
-                            {errors.Ville && <p className="text-red-500 ml-6">{errors.Ville}</p>}
-                        </div>
-                    </Style>
-
-                    <Style>
-                        <div>
-                            <Input label="Region:" name="Region" type="text" id="Region" value={inputValue.Region} onChange={handleInput}/>
-                            {errors.Region && <p className="text-red-500 ml-6">{errors.Region}</p>}
-                        </div>
-                        <div>
-                            <Input label="Type de region:" name="Type_de_region" type="text" id="Type_de_region" value={inputValue.Type_de_region} onChange={handleInput}/>
-                            {errors.Type_de_region && <p className="text-red-500 ml-6">{errors.Type_de_region}</p>}
+                            <Input label="Ville:" name="ville" type="text" id="ville" value={inputValue.ville} onChange={handleInput}/>
+                            {errors.ville && <p className="text-red-500 ml-6">{errors.ville}</p>}
                         </div>
                     </Style>
 
                     <Style>
                         <div>
-                            <Input label="Code postal:" name="Code_postal" type="text" id="Code_postal" value={inputValue.Code_postal} onChange={handleInput}/>
-                            {errors.Code_postal && <p className="text-red-500 ml-6">{errors.Code_postal}</p>}
+                            <Input label="Region:" name="region" type="text" id="region" value={inputValue.region} onChange={handleInput}/>
+                            {errors.region && <p className="text-red-500 ml-6">{errors.region}</p>}
                         </div>
                         <div>
-                            <Input label="Pays:" name="Pays" type="text" id="Pays" value={inputValue.Pays} onChange={handleInput}/>
-                            {errors.Pays && <p className="text-red-500 ml-6">{errors.Pays}</p>}
+                            <Input label="Type de region:" name="type_de_region" type="text" id="type_de_region" value={inputValue.type_de_region} onChange={handleInput}/>
+                            {errors.type_de_region && <p className="text-red-500 ml-6">{errors.type_de_region}</p>}
+                        </div>
+                    </Style>
+
+                    <Style>
+                        <div>
+                            <Input label="Code postal:" name="code_postale" type="text" id="code_postale" value={inputValue.code_postale} onChange={handleInput}/>
+                            {errors.code_postale && <p className="text-red-500 ml-6">{errors.code_postale}</p>}
+                        </div>
+                        <div>
+                            <Input label="Pays:" name="pays" type="text" id="pays" value={inputValue.pays} onChange={handleInput}/>
+                            {errors.pays && <p className="text-red-500 ml-6">{errors.pays}</p>}
                         </div>
                     </Style>
 
                     <div>
-                        <Input label="Telephone:" name="Telephone" type="number" id="Telephone" value={inputValue.Telephone} onChange={handleInput}/>
-                        {errors.Telephone && <p className="text-red-500 ml-6">{errors.Telephone}</p>}
+                        <Input label="Telephone:" name="telephone" type="number" id="telephone" value={inputValue.telephone} onChange={handleInput}/>
+                        {errors.telephone && <p className="text-red-500 ml-6">{errors.telephone}</p>}
                     </div>
                     <div>
-                        <Input label="Email:" name="Email" type="email" id="Email" value={inputValue.Email} onChange={handleInput}/>
-                        {errors.Email && <p className="text-red-500 ml-6">{errors.Email}</p>}
+                        <Input label="Email:" name="email" type="email" id="email" value={inputValue.email} onChange={handleInput}/>
+                        {errors.email && <p className="text-red-500 ml-6">{errors.email}</p>}
                     </div>
                     <div>
-                        <Input label="Secteur d'activite:" name="Secteur_activite" type="text" id="Secteur_activite" value={inputValue.Secteur_activite}  onChange={handleInput}/>
-                        {errors.Secteur_activite && <p className="text-red-500 ml-6">{errors.Secteur_activite}</p>}
+                        <Input label="Secteur d'activite:" name="secteur_activite" type="text" id="secteur_activite" value={inputValue.secteur_activite}  onChange={handleInput}/>
+                        {errors.secteur_activite && <p className="text-red-500 ml-6">{errors.secteur_activite}</p>}
                     </div>
                     <div>
-                        <Input label="Condition de paiement:" name="Condition_de_paiement" type="text" id="Condition_de_paiement" value={inputValue.Condition_de_paiement} onChange={handleInput}/>
-                        {errors.Condition_de_paiement && <p className="text-red-500 ml-6">{errors.Condition_de_paiement}</p>}
+                        <Input label="Condition de paiement:" name="condition_paiement" type="text" id="condition_paiement" value={inputValue.condition_paiement} onChange={handleInput}/>
+                        {errors.condition_paiement && <p className="text-red-500 ml-6">{errors.condition_paiement}</p>}
                     </div>
 
                     <div>
-                        <Input label="Nom:" name="Nom" type="text" id="Nom" value={inputValue.Nom} onChange={handleInput}/>
-                        {errors.Nom && <p className="text-red-500 ml-6">{errors.Nom}</p>}
+                        <Input label="Nom:" name="nom" type="text" id="nom" value={inputValue.nom} onChange={handleInput}/>
+                        {errors.nom && <p className="text-red-500 ml-6">{errors.nom}</p>}
                     </div>
                     <div>
-                        <Input label="Prenom:" name="Prenom" type="text" id="Prenom" value={inputValue.Prenom} onChange={handleInput}/>
-                        {errors.Prenom && <p className="text-red-500 ml-6">{errors.Prenom}</p>}
+                        <Input label="Prenom:" name="prenom" type="text" id="prenom" value={inputValue.prenom} onChange={handleInput}/>
+                        {errors.prenom && <p className="text-red-500 ml-6">{errors.prenom}</p>}
                     </div>
                     <Style>
                         <div>
-                            <Input label="Fonction:" name="Fonction" type="text" id="Fonction" value={inputValue.Fonction} onChange={handleInput}/>
-                            {errors.Fonction && <p className="text-red-500 ml-6">{errors.Fonction}</p>}
+                            <Input label="Fonction:" name="fonction" type="text" id="fonction" value={inputValue.fonction} onChange={handleInput}/>
+                            {errors.fonction && <p className="text-red-500 ml-6">{errors.fonction}</p>}
                         </div>
                         <div>
-                            <Input label="Type de client:" name="Type_de_client" type="text" id="Type_de_client" value={inputValue.Type_de_client} onChange={handleInput}/>
-                            {errors.Type_de_client && <p className="text-red-500 ml-6">{errors.Type_de_client}</p>}
+                            <Input label="Type de client:" name="type_client" type="text" id="type_client" value={inputValue.type_client} onChange={handleInput}/>
+                            {errors.type_client && <p className="text-red-500 ml-6">{errors.type_client}</p>}
                         </div>
                     </Style>
                     <div>
-                        <Input label="Fax:" name="Fax" type="number" id="Fax" value={inputValue.Fax} onChange={handleInput}/>
-                        {errors.Fax && <p className="text-red-500 ml-6">{errors.Fax}</p>}
+                        <Input label="Fax:" name="fax" type="number" id="fax" value={inputValue.fax} onChange={handleInput}/>
+                        {errors.fax && <p className="text-red-500 ml-6">{errors.fax}</p>}
                     </div>
 
-                        <Select label="Dossier valide:" name="Dossier valide" value_1="Validé" value_2="Non validé" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleInput}/>
-                        <Select label="Status:" name="Status" value_1="Active" value_2="Inactive" choix1="Actif" choix2="Inactif" id="status" value={inputValue.valid} onChange={handleInput}/>
-                        <Select label="VIP" name="VIP" value_1="False" value_2="True" choix1="Non VIP" choix2="VIP" id="status" value={inputValue.valid} onChange={handleInput}/>
+                        <Select label="Dossier valide:" name="dossier_valide" value_1="Valide" value_2="Non valide" choix1="oui" choix2="Non" id="dossier_valide" value={inputValue.dossier_valide} onChange={handleInput}/>
+                        <Select label="Status:" name="status" value_1="Active" value_2="Inactive" choix1="Active" choix2="Inactive" id="status" value={inputValue.statut} onChange={handleInput}/>
+                        <Select label="VIP" name="est_vip" value_1="False" value_2="True" choix1="Non VIP" choix2="VIP" id="est_vip" value={inputValue.est_vip} onChange={handleInput}/>
                         <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md
                                                         md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                             Envoyer

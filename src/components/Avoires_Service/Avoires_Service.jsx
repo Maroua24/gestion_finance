@@ -5,9 +5,11 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_Service_PDF} from '../index'
+import {Menu,Search_input,Facture_Service_PDF,Avoire_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
+import { CSVLink } from "react-csv";
+
 
 const Avoires_Service = () => {
   const [Search, setSearch] = useState("");
@@ -35,30 +37,36 @@ const Avoires_Service = () => {
       <>
       <Menu/>
 
-          <div>
-          <h1 className="text-[--statistic-color] p-4 sm:text-3xl
-                              md:text-5xl lg:text-7xl">
+        <div>
+        <h1 className="text-[--statistic-color] p-4 sm:text-3xl
+                        md:text-5xl lg:text-7xl">
             Avoires service:
-          </h1>
-              <Search_input
-                  onChange={(e) => setSearch(e.target.value)}
-              />
+        </h1>
+            <Search_input
+                onChange={(e) => setSearch(e.target.value)}
+            />
+            <CSVLink data={FactureServiceList} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
+                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
+                                    2xl:text-3xl
+                                    '>EXEL
+            </CSVLink>
 
 
-              <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">
-                  <thead className='bg-[--statistic-color] text-white font-semibold
-                                      sm:text-[10px] md:text-xl lg:text-2xl
-                                      xl:text-3xl 2xl:text-4xl
-                                  '>
-                      <tr className="m-2 text-center">
-                          <th scope="col" className='py-2 px-4'>id</th>
-                          <th scope="col" className='py-2 px-4'>Date de creation</th>
-                          <th scope="col" className='py-2 px-4'>Date de comptabilisation</th>
-                          <th scope="col" className='py-2 px-4'>Date de decheance</th>
-                          <th scope="col" className='py-2 px-4'>Etat</th>
-                          <th scope="col" className='py-2 px-4'>Action</th>
-                      </tr>
-                  </thead>
+            <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">
+                <thead className='bg-[--statistic-color] text-white font-semibold
+                                    sm:text-[10px] md:text-xl lg:text-2xl
+                                    xl:text-3xl 2xl:text-4xl
+                                '>
+                    <tr className="m-2 text-center">
+                        <th scope="col" className='py-2 px-4'>id</th>
+                        <th scope="col" className='py-2 px-4'>Date de creation</th>
+                        <th scope="col" className='py-2 px-4'>Date de comptabilisation</th>
+                        <th scope="col" className='py-2 px-4'>Date de decheance</th>
+                        <th scope="col" className='py-2 px-4'>Etat</th>
+                        <th scope="col" className='py-2 px-4'>Action</th>
+                    </tr>
+                </thead>
 
                   <tbody className="text-center">
                       {
@@ -101,28 +109,28 @@ const Avoires_Service = () => {
                                       </Link>
                                   </button>
                                   <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                  sm:text-sm md:text-xl lg:text-2xl
-                                                                  xl:text-3xl 2xl:text-4xl'>
-                                      <PDFDownloadLink document={<Facture_Service_PDF Facture={Facture} Factures={FactureServiceList}/>} fileName="Facture_Service.pdf" >
-                                          {({Loading}) =>
-                                              Loading ? (
-                                                  <LuLoader />
-                                              ) : (
-                                                  <FaDownload />
-                                              )
-                                          }
-                                      </PDFDownloadLink>
-                                  </button>
-                                  <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                  sm:text-sm md:text-xl lg:text-2xl
-                                                                  xl:text-3xl 2xl:text-4xl'
-                                                                  onClick={() => viewPDF(Facture)}>
-                                      <a href="#"><FaFilePdf /></a>
-                                  </button>
-                              </td>
-                          </tr>
-                      ))}
-                  </tbody>
+                                                                sm:text-sm md:text-xl lg:text-2xl
+                                                                xl:text-3xl 2xl:text-4xl'>
+                                        <PDFDownloadLink document={<Avoire_PDF />} fileName="Facture_Service.pdf" >
+                                            {({Loading}) =>
+                                                Loading ? (
+                                                    <LuLoader />
+                                                ) : (
+                                                    <FaDownload />
+                                            )
+                                        }
+                                    </PDFDownloadLink>
+                                </button>
+                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                sm:text-sm md:text-xl lg:text-2xl
+                                                                xl:text-3xl 2xl:text-4xl'
+                                                                onClick={() => viewPDF(Facture)}>
+                                    <a href="#"><FaFilePdf /></a>
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
               </table>
           </div>
 </>

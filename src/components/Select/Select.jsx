@@ -13,7 +13,8 @@ const Select = (props) => {
                             xl:h-[45px] xl:w-[130px] xl:text-2xl
                             2xl:h-[50px] 2xl:w-[150px] 2xl:text-3xl"
                 name="Selector"
-                onChange={props.handleInput}
+                onChange={props.onChange}
+                value={props.value}
                 >
 
                 <option value={props.v1}>{props.choix1}</option>

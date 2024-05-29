@@ -5,9 +5,11 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_Vente_PDF} from '../index'
+import {Menu,Search_input,Facture_Service_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import { CSVLink } from "react-csv";
+
 
 const Facture_vente = () => {
 
@@ -24,7 +26,7 @@ const Facture_vente = () => {
     },[dispatch]);
 
     const viewPDF = (client) => {
-        const pdfContent = <Facture_Vente_PDF client={client} />;
+        const pdfContent = <Facture_Service_PDF client={client} />;
         const pdfBlob = new Blob([pdfContent], { type: 'application/pdf' });
         const pdfURL = URL.createObjectURL(pdfBlob);
         window.open(pdfURL);
@@ -43,6 +45,13 @@ const Facture_vente = () => {
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}
                 />
+
+            <CSVLink data={FactureVenteList} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
+                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
+                                    2xl:text-3xl
+                                    '>EXEL
+            </CSVLink>
 
 
                 <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">
@@ -98,7 +107,7 @@ const Facture_vente = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_Vente_PDF Facture={Facture} Factures={FactureVenteList}/>} fileName="Facture_Vente.pdf" >
+                                        <PDFDownloadLink document={<Facture_Service_PDF Facture={Facture} Factures={FactureVenteList}/>} fileName="Facture_Vente.pdf" >
                                             {({Loading}) =>
                                                 Loading ? (
                                                     <LuLoader />

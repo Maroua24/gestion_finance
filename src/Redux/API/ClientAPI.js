@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit'
 import Cookies from 'js-cookie';
 
 export const addClient = createAsyncThunk('posts/addClient',async (values) => {
-    const token = Cookies.get('UserToken');
+    const token = Cookies.get('csrftoken');
     return fetch("http://127.0.0.1:8000/api/clients/create/",{method:"POST",
         headers:{
             Accept:"application/json", //I accept JSON format
@@ -10,35 +10,34 @@ export const addClient = createAsyncThunk('posts/addClient',async (values) => {
             Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-            Categorie_de_compte: values.Categorie_de_compte,
-            Raison_sociale: values.Raison_sociale,
-            Sigle: values.Sigle,
-            Code_TVA: values.Code_TVA,
-            Nature_du_compte: values.Nature_du_compte,
-            NIF: values.NIF,
-            NIS: values.NIS,
-            Registre_de_commerce: values.Registre_de_commerce,
-            Article_imposition: values.Article_imposition,
-            Devise: values.Devise,
-            Rue: values.Rue,
-            Ville: values.Ville,
-            Region: values.Region,
-            Type_de_region: values.Type_de_region,
-            Code_postal: values.Code_postal,
-            Pays: values.Pays,
-            Telephone: values.Telephone,
-            Email: values.Email,
-            Secteur_activite: values.Secteur_activite,
-            Condition_de_paiement: values.Condition_de_paiement,
-            Nom: values.Nom,
-            Prenom: values.Prenom,
-            Fonction: values.Fonction,
-            Type_de_client: values.Type_de_client,
-            Fax: values.Fax,
-            Dossier_valide: values.Dossier_valide,
-            valid: values.valid,
-            Status: values.Status,
-            VIP: values.VIP,
+            categorie_compte: values.categorie_compte,
+            raison_sociale: values.raison_sociale,
+            sigle: values.sigle,
+            code_tva: values.code_tva,
+            nature_compte: values.nature_compte,
+            nif: values.nif,
+            nis: values.nis,
+            registre_commerce: values.registre_commerce,
+            article_imposition: values.article_imposition,
+            devise: values.devise,
+            rue: values.rue,
+            ville: values.ville,
+            region: values.region,
+            type_de_region: values.type_de_region,
+            code_postale: values.code_postale,
+            pays: values.pays,
+            telephone: values.telephone,
+            email: values.email,
+            secteur_activite: values.secteur_activite,
+            condition_paiement: values.condition_paiement,
+            nom: values.nom,
+            prenom: values.prenom,
+            fonction: values.fonction,
+            type_client: values.type_client,
+            fax: values.fax,
+            dossier_valide: values.dossier_valide,
+            statut: values.statut,
+            est_vip: values.est_vip,
         })
     }).then((res)=> res.json());
 })

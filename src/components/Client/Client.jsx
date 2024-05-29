@@ -4,8 +4,9 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input} from '../index'
+import {Menu,Search_input,Style} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
+import { CSVLink } from "react-csv";
 
 const Client = () => {
 
@@ -49,7 +50,6 @@ const Client = () => {
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}
                 />
-
                 <button className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
                                     hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
                                     md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
@@ -58,6 +58,12 @@ const Client = () => {
                     <a href="/AddClient" className='font-semibold'>Ajouter +</a>
                 </button>
 
+                <CSVLink data={Clients} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
+                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
+                                    2xl:text-3xl
+                                    '>EXEL
+                </CSVLink>
                 <table className="ml-5 sm:mr-4 xl:mr-8">
                     <thead className='bg-[--statistic-color] text-white font-semibold
                                         sm:text-[10px] md:text-xl lg:text-2xl

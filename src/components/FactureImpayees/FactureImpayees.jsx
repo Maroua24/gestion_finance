@@ -5,7 +5,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_Impayees_PDF} from '../index'
+import {Menu,Search_input,Facture_Service_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
@@ -24,7 +24,7 @@ const Facture_Impayees = () => {
     },[dispatch]);
 
     const viewPDF = (client) => {
-        const pdfContent = <Facture_Impayees_PDF client={client} />;
+        const pdfContent = <Facture_Service_PDF client={client} />;
         const pdfBlob = new Blob([pdfContent], { type: 'application/pdf' });
         const pdfURL = URL.createObjectURL(pdfBlob);
         window.open(pdfURL);
@@ -98,7 +98,7 @@ const Facture_Impayees = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_Impayees_PDF Facture={Facture} Factures={FactureImpayeesList}/>} fileName="Facture_Impayees.pdf" >
+                                        <PDFDownloadLink document={<Facture_Service_PDF Facture={Facture} Factures={FactureImpayeesList}/>} fileName="Facture_Impayees.pdf" >
                                             {({Loading}) =>
                                                 Loading ? (
                                                     <LuLoader />
