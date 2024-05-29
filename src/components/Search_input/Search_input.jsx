@@ -14,12 +14,12 @@ const Search_input = (props) => {
                                 "
                     onChange={props.onChange}
                 />
-                <IoSearchSharp
+                {/* <IoSearchSharp
                     className='text-[--light-color] bg-[--statistic-color] absolute mt-2 p-1 rounded-xl
                                 sm:ml-[77%] md:ml-[80%] lg:text-3xl lg:ml-[82%]
                                 xl:ml-[74%]
                                 '
-                />
+                /> */}
             </Style>
         </form>
     )

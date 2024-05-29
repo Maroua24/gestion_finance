@@ -53,7 +53,7 @@ const Add_payment = () => {
                 <h1 className="text-[--statistic-color] p-4 sm:text-3xl
                                 md:text-5xl lg:text-7xl
                             ">
-                    Ajouter un paiment:
+                    Ajouter un paiement:
                 </h1>
                 <div style={{ display: "block" }}>
 

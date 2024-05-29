@@ -27,7 +27,7 @@ const Paiment = () => {
             <h1 className="text-[--statistic-color] p-4 sm:text-3xl
                                 md:text-5xl lg:text-7xl
                             ">
-                    Paiment:
+                    Paiement:
                 </h1>
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}

@@ -1,12 +1,24 @@
 import { Page, Text, Document, StyleSheet, View ,Image} from '@react-pdf/renderer';
-import {useSelector} from "react-redux";
+import {useDispatch,useSelector} from "react-redux";
 import logo from "../../images/logo_icosnet_sgs.png"
 import stamp from "../../images/stamp-removebg-preview.png"
+import {Get_All_Fac} from '../../Redux/API/Get_All_Fac'
+import { useEffect} from 'react';
 
-const Facture_Vente_PDF = ({id,Facture,Factures}) => {
+const Facture_Vente_PDF = ({id}) => {
 
-  const ClientId = parseInt(id);
-  const FACTURE = Facture.find(c => c.id === ClientId);
+  const Id = parseInt(id);
+  const Facture = useSelector(state => state.FacturesList.FactureList.find(c => c.id === Id));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(Get_All_Fac());
+  }, [dispatch]);
+
+        //dispatch(getAll("http://127.0.0.1:8000/api/factures/"));
+
+  // const ClientId = parseInt(id);
+  // const FACTURE = Facture.find(c => c.id === ClientId);
 
     const styles = StyleSheet.create({
         body: {
@@ -127,19 +139,19 @@ const Facture_Vente_PDF = ({id,Facture,Factures}) => {
                 <View style={styles.column}>
                   <Text>
                   </Text>
-                    <Text style={styles.title}>Facture N : 999988888{'\n'}</Text>
+                    <Text style={styles.title}>Facture N : F20240000{'\n'}</Text>
                     <Text>{'\n'}</Text>
                     <Text style={styles.sous_titre}>
                     Alger le : 23/4/1023 {'\n'}
-                    <Text style={styles.bold}>Client:</Text> jjjj {'\n'}
+                    <Text style={styles.bold}>Client:</Text> ABC Company {'\n'}
                     {'\n'}
-                    <Text style={styles.bold}>Code client:</Text> 8980 {'\n'}
-                    <Text style={styles.bold}>Adresse:</Text> alger {'\n'}
+                    <Text style={styles.bold}>Code client:</Text> ABC {'\n'}
+                    <Text style={styles.bold}>Adresse:</Text> New York {'\n'}
                     </Text>
                     <Text>{'\n'}</Text>
                 <Text style={styles.header}>
-                    "Adresse client" {'\n'}
-                    "Adresse client" {'\n'}
+                    "New York" {'\n'}
+                    "New York" {'\n'}
                     Tel: 098765368 {'\n'}
                     RC: 7800435680 {'\n'}
                     NIF: 00099987765 {'\n'}
@@ -161,9 +173,9 @@ const Facture_Vente_PDF = ({id,Facture,Factures}) => {
                     </View>
                     {/* {FACTURE.map((Facture) => ( */}
                         <View key={Facture.id} style={styles.tableRow}>
-                          <Text style={styles.tableCell}>{FACTURE.id}</Text>
-                          {/* <Text >kkk</Text>
-                          <Text style={styles.tableCell}>kkkk</Text>
+                          {/* <Text style={styles.tableCell}>{Facture.id}</Text> */}
+                          <Text style={styles.tableCell}>{Facture.userId}</Text>
+                          {/* <Text style={styles.tableCell}>kkkk</Text>
                           <Text style={styles.tableCell}>000</Text>
                           <Text style={styles.tableCell}>jjj</Text>
                           <Text style={styles.tableCell}>777</Text>

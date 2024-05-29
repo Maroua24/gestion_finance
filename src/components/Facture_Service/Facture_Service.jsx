@@ -8,16 +8,21 @@ import { useEffect, useState } from 'react';
 import {Menu,Search_input,Facture_Service_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
-
 const Facture_Service = () => {
 
     const [Search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState(null);
 
+    // const Dispatch2 = useDispatch();
+    // const FactureList = useSelector(state => state.FactureList.FactureList);
+    // useEffect(()=>{
+    //     dispatch(Get_All_Fac());
+    //     //dispatch(getAll("http://127.0.0.1:8000/api/factures/"));
+    // },[Dispatch2]);
+
     const dispatch = useDispatch();
     const FactureServiceList = useSelector(state => state.FactureServiceList.FactureServiceList);
     const isLoading = useSelector(state => state.FactureServiceList.isLoading)
-
     useEffect(()=>{
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
         //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
@@ -100,7 +105,7 @@ const Facture_Service = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_Service_PDF id={Facture.id} Facture={FactureServiceList}/>} fileName="Facture_Service.pdf" >
+                                        <PDFDownloadLink document={<Facture_Service_PDF id={Facture.id}/>} fileName="Facture_Service.pdf" >
                                             {({Loading}) =>
                                                 Loading ? (
                                                     <LuLoader />
