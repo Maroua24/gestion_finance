@@ -4,24 +4,41 @@ import logo from "../../images/logo_icosnet_sgs.png"
 import stamp from "../../images/stamp-removebg-preview.png"
 //import { Get_Fac } from '../../Redux/API/Get_All_Fac'
 import { getFacById } from '../../Redux/action';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Facture_Service_PDF = ({ id }) => {
-    console.log('TEST');
-
-    const dispatch = useDispatch();
+    const [Data, setData] = useState([]);
+    // const dispatch = useDispatch();
     // useEffect(() => {
     //     // dispatch(Get_Fac(id));
     //     dispatch(Get_Fac(id)).then(response => {
     //         console.log("icosnet"+response);})
     // }, []);
+    // useEffect(() => {
+    //     dispatch(getFacById(id));
+    // }, [dispatch, id]);
+    // console.log(getFacById(id))
+    // const Facture = useSelector(state => state.FacturesList.FactureList);
+    // //dispatch(getAll("http://127.0.0.1:8000/api/factures/"));
+    // console.log(Facture)
     useEffect(() => {
-        dispatch(getFacById(id));
-    }, [dispatch, id]);
-    console.log(getFacById(id))
-    const Facture = useSelector(state => state.FacturesList.FactureList);
-    //dispatch(getAll("http://127.0.0.1:8000/api/factures/"));
-    console.log(Facture)
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    console.log(id)
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setData(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+        }) //set  the data
+
+        .catch((error) => console.error(error));
+    }, []);
+
     const styles = StyleSheet.create({
         body: {
             paddingTop: 35,
@@ -137,11 +154,12 @@ const Facture_Service_PDF = ({ id }) => {
                             Email:  commericail@icosnet.com {'\n'}
                             finance@icosnet.com {'\n'}
                         </Text>
+                        
                     </View>
                     <View style={styles.column}>
                         <Text>
                         </Text>
-                        <Text style={styles.title}>Facture N : F20240000{'\n'}</Text>
+                        <Text style={styles.title}>Facture N : {Data.id}{'\n'}</Text>
                         <Text>{'\n'}</Text>
                         <Text style={styles.sous_titre}>
                             Alger le : 23/4/1023 {'\n'}
@@ -173,8 +191,8 @@ const Facture_Service_PDF = ({ id }) => {
                         <Text style={styles.tableCell}>R%</Text>
                         <Text style={styles.tableCell}>TVA%</Text>
                     </View>
-                    <Text style={styles.tableCell}>{Facture.id}</Text>
-                    <Text style={styles.tableCell}>{Facture.userId}</Text>
+                    {/* <Text style={styles.tableCell}>{Facture.id}</Text>
+                    <Text style={styles.tableCell}>{Facture.userId}</Text> */}
                     {/* {FACTURE.map((Facture) => ( */}
                     {/* <View key={Facture.id} style={styles.tableRow}>
                           
@@ -184,7 +202,7 @@ const Facture_Service_PDF = ({ id }) => {
                           <Text style={styles.tableCell}>777</Text>
                           <Text style={styles.tableCell}>ooo</Text>
                           <Text style={styles.tableCell}>jjj</Text>
-                          <Text style={styles.tableCell}>----</Text> 
+                          <Text style={styles.tableCell}>----</Text>
                             {/* {/* <Text style={styles.tableCell}>{Facture.date_creation}</Text>
                         </View> */}
                     {/* ))} */}

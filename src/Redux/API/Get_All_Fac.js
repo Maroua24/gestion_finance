@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const Get_Fac = ('posts/getFacById', async (id) => {
     //const { rejectWithValue } = thunkAPI;
-    const url = 'https://jsonplaceholder.typicode.com/posts/${id}';
+    const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
     try {
         const res = await axios.get(url);
         return res.data;
@@ -13,3 +13,4 @@ export const Get_Fac = ('posts/getFacById', async (id) => {
         return err.message;
     }
 });
+

@@ -1,4 +1,4 @@
-import { GET_FAC_REQUEST, GET_FAC_SUCCESS, GET_FAC_FAILURE } from './actions';
+import { GET_FAC_REQUEST, GET_FAC_SUCCESS, GET_FAC_FAILURE } from './action';
 
 const initialState = {
     loading: false,

@@ -7,7 +7,7 @@ import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input,Facture_Service_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink ,pdf} from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
 import { MdVisibility } from "react-icons/md";
 
@@ -22,15 +22,18 @@ const Facture_vente = () => {
     const isLoading = useSelector(state => state.FactureVenteList.isLoading)
 
     useEffect(()=>{
-        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        //dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
     },[dispatch]);
 
-    const viewPDF = (client) => {
-        const pdfContent = <Facture_Service_PDF client={client} />;
-        const pdfBlob = new Blob([pdfContent], { type: 'application/pdf' });
-        const pdfURL = URL.createObjectURL(pdfBlob);
+    const viewPDF = async  (id) => {
+        const doc = <Facture_Service_PDF id={id} />;
+        const asPdf = pdf([]);
+        asPdf.updateContainer(doc);
+        const blob = await asPdf.toBlob();
+        const pdfURL = URL.createObjectURL(blob);
         window.open(pdfURL);
+        console.log(id)
     };
 
     return (
@@ -115,7 +118,7 @@ const Facture_vente = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'
-                                                                    onClick={() => viewPDF(Facture)}>
+                                                                    onClick={() => viewPDF(Facture.id)}>
                                         <a href="#"><MdVisibility /></a>
                                     </button>
                                 </td>
