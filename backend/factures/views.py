@@ -20,6 +20,70 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from clients.models import Client
+from io import BytesIO
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from factures.models import Facture
+
+class RapportFacturesVenteView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Liste des colonnes
+        # columns = [
+        #     'ID Facture', 'Client', 'Date Création', 'Date Comptabilisation', 'Date Échéance', 
+        #     'Non Payée', 'Montant', 'Lignes de Commande'
+        # ]
+
+        # Récupération des données des factures de vente
+        factures_vente = Facture.objects.filter(type_facture='Vente')
+        factures_data = []
+        for facture in factures_vente:
+            commande_lignes = ", ".join([f"{ligne.produit.nom} x {ligne.quantity}" for ligne in facture.commande_ligne.all()])
+            facture_data = {
+                'facture_id': facture.facture_id,
+                'client': facture.client.nom,
+                'date_creation': facture.date_creation.strftime('%Y-%m-%d'),
+                'date_comptabilisation': facture.date_comptabilisation.strftime('%Y-%m-%d') if facture.date_comptabilisation else '',
+                'date_decheance': facture.date_decheance.strftime('%Y-%m-%d') if facture.date_decheance else '',
+                'non_payee': 'Oui' if facture.non_payee else 'Non',
+                'montant': str(facture.montant),
+                'commande_lignes': commande_lignes
+            }
+            factures_data.append(facture_data)
+
+        # Envoi des données sous forme de JSON
+        return Response({ 'data': factures_data})
+
+class RapportFacturesServiceView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Liste des colonnes
+        # columns = [
+        #     'ID Facture', 'Client', 'Date Création', 'Date Comptabilisation', 'Date Échéance', 
+        #     'Non Payée', 'Montant', 'Lignes de Commande'
+        # ]
+
+        # Récupération des données des factures de vente
+        factures_service = Facture.objects.filter(type_facture='Service')
+        factures_data = []
+        for facture in factures_service:
+            commande_lignes = ", ".join([f"{ligne.produit.nom} x {ligne.quantity}" for ligne in facture.commande_ligne.all()])
+            facture_data = {
+                'facture_id': facture.facture_id,
+                'client': facture.client.nom,
+                'date_creation': facture.date_creation.strftime('%Y-%m-%d'),
+                'date_comptabilisation': facture.date_comptabilisation.strftime('%Y-%m-%d') if facture.date_comptabilisation else '',
+                'date_decheance': facture.date_decheance.strftime('%Y-%m-%d') if facture.date_decheance else '',
+                'non_payee': 'Oui' if facture.non_payee else 'Non',
+                'montant': str(facture.montant),
+                'commande_lignes': commande_lignes
+            }
+            factures_data.append(facture_data)
+
+        # Envoi des données sous forme de JSON
+        return Response({ 'data': factures_data})
+
+
 class PDFFactureView(APIView):
     def get(self, request, id, *args, **kwargs):
         try:
@@ -30,6 +94,7 @@ class PDFFactureView(APIView):
             data = {
                 'id_facture': facture.facture_id,
                 'client': facture.client.nom,
+                'raison_sociale' : facture.client.raison_sociale ,
                 'rue': facture.client.rue,
                 'ville': facture.client.ville,
                 'pays': facture.client.pays,

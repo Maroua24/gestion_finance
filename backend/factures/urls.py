@@ -7,11 +7,14 @@ from .views import (
     FactureListCreate , 
     FactureListView ,
     PDFFactureView , 
-    
+    RapportFacturesServiceView,
+    RapportFacturesVenteView
 ) 
 
 
 urlpatterns = [ 
+    path('facture_vente/rapport/', RapportFacturesServiceView.as_view(), name='rapport-facture-service'),
+    path('facture_service/rapport/', RapportFacturesVenteView.as_view(), name='rapport-facture-vente'),
     path('factures/', FactureListView.as_view(), name='facture-list'),
     path('factures/vente/', FactureVenteList.as_view(), name='facture-vente-list'),
     path('factures/service/', FactureServiceList.as_view(), name='facture-service-list'),

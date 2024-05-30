@@ -3,10 +3,12 @@ from .views import (
     ClientListView, ClientDetailView, 
     ClientCreateView,ClientDeleteView, 
     VueListeClientsVIP ,FacturesClientAPIView ,
-    PaiementHistoryView , HistouriqueView
-)
+    PaiementHistoryView , HistouriqueView ,
+    RapportClientsView
+) 
 
 urlpatterns = [
+    path('clients/rapport/', RapportClientsView.as_view(), name='clients-rapport'),
     path('clients/', ClientListView.as_view(), name='client-list'),
     path('clients/<int:pk>/', ClientDetailView.as_view(), name='client-detail'),
     path('clients/create/', ClientCreateView.as_view(), name='client-create'),
