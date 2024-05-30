@@ -1,5 +1,7 @@
 export { default as Nav } from "./Nav/Nav";
 export {default as Nav_Item} from './Nav_Item/Nav_Item'
+export {default as Nav_Table} from './Nav_Table/Nav_Table'
+
 export { default as Menu } from "./Menu/Menu";
 export { default as Main } from "./Main/Main";
 

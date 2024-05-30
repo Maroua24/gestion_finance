@@ -1,9 +1,10 @@
 function Check_box(props) {
+
     return (
         <div>
 
             <div class="form-check">
-            <input className="form-check-input" 
+            <input className="form-check-input"
             type="radio"
             id="flexRadioDefault1"
             name={props.name}

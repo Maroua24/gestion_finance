@@ -16,23 +16,41 @@ const Add_payment = () => {
     const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState({
-        Numero_du_cheque:'',
-        Virement:'',
-        Numero_carte_CIB:'',
-        Preciser:'',
-        commentaire:'',
+        Numero_du_cheque: '',
+        Virement: '',
+        Numero_carte_CIB: '',
+        Preciser: '',
+        commentaire: '',
+        Montant_encaissenment: '',
+        Montant_de_reglement: '',
+        Etat: ''
     });
+
+    const [checkBox, setCheckBox] = useState({
+        Avance: '',
+        Timbre: '',
+        Operations: '',
+        AvanceStock: '',
+        Devise: ''
+    })
     const clearInputValues = () => {
         setInputValue({
-            Numero_du_cheque:'',
-            Virement:'',
-            Numero_carte_CIB:'',
-            Preciser:'',
-            commentaire:'',
+            Numero_du_cheque: '',
+            Virement: '',
+            Numero_carte_CIB: '',
+            Preciser: '',
+            commentaire: '',
+            Montant_encaissenment: '',
+            Montant_de_reglement: '',
+            Etat: ''
         });
     };
     const handleInput=(e) => {
         setInputValue({...inputValue,[e.target.name]: e.target.value});
+    }
+    const handleCheckbox=(e) => {
+        setCheckBox({...checkBox,[e.target.name]: e.target.value})
+        setPaymentMode(e.target.value);
     }
     const handleSubmit=(e)=> {
         e.preventDefault();
@@ -42,10 +60,11 @@ const Add_payment = () => {
             // dispatch(addClient(inputValue));
             clearInputValues();
         }
+        console.log(checkBox)
     }
-    const handlePaymentMode = (event) => {
-        setPaymentMode(event.target.value);
-    };
+    // const handlePaymentMode = (event) => {
+    //     setPaymentMode(event.target.value);
+    // };
     return (
         <>
             <Menu/>
@@ -97,8 +116,8 @@ const Add_payment = () => {
                                 <p className="text-red-500 sm:mr-[95px] md:mr-[137px] lg:mr-[150px] xl:mr-[177px] 2xl:mr-[215px]">*</p>
                             </Style>
                             <div>
-                                <Check_box choice="Oui" name="Avance" />
-                                <Check_box choice="Non" name="Avance" />
+                                <Check_box choice="Oui" name="Avance" onChange={handleCheckbox}/>
+                                <Check_box choice="Non" name="Avance" onChange={handleCheckbox}/>
                             </div>
                         </Style>
                     </div>
@@ -113,12 +132,12 @@ const Add_payment = () => {
                                     <p className="text-red-500 sm:mr-[30px] md:mr-[35px] lg:mr-[40px] xl:mr-[45px] 2xl:mr-[50px]">*</p>
                                 </Style>
                                 <div>
-                                    <Check_box choice="Espece" name="regiement" onChange={handlePaymentMode}/>
-                                    <Check_box choice="Cheque" name="regiement" onChange={handlePaymentMode}/>
-                                    <Check_box choice="Virement" name="regiement" onChange={handlePaymentMode}/>
-                                    <Check_box choice="CIB" name="regiement" onChange={handlePaymentMode}/>
-                                    <Check_box choice="Avance" name="regiement" onChange={handlePaymentMode}/>
-                                    <Check_box choice="Autre" name="regiement" onChange={handlePaymentMode}/>
+                                    <Check_box choice="Espece" name="regiement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Cheque" name="regiement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Virement" name="regiement"  onChange={handleCheckbox} />
+                                    <Check_box choice="CIB" name="regiement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Avance" name="regiement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Autre" name="regiement"   onChange={handleCheckbox} />
                                 </div>
                                 </Style>
                                 {PaymentMode === 'Espece' && (
@@ -182,8 +201,8 @@ const Add_payment = () => {
                                 </p>
                             </Style>
                             <div>
-                                <Check_box choice="Payer" name="Operations"/>
-                                <Check_box choice="Payer & Reactive" name="Operations"/>
+                                <Check_box choice="Payer" name="Operations" onChange={handleCheckbox}/>
+                                <Check_box choice="Payer & Reactive" name="Operations" onChange={handleCheckbox}/>
                             </div>
                         </Style>
                         </div>
@@ -197,8 +216,8 @@ const Add_payment = () => {
                                 <p className="text-red-500  mr-3 ">*</p>
                             </Style>
                             <div>
-                                <Check_box choice="oui" name="avance"/>
-                                <Check_box choice="Non" name="avance"/>
+                                <Check_box choice="oui" name="avance" onChange={handleCheckbox}/>
+                                <Check_box choice="Non" name="avance" onChange={handleCheckbox}/>
                             </div>
                         </Style>
                         </div>
@@ -244,7 +263,7 @@ const Add_payment = () => {
                         <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                             Commentaire:
                         </p>
-                        <textarea name="Commentaire" className="w-full border border-solid border-2 border-outset" value={inputValue.commentaire} ></textarea>
+                        <textarea name="Commentaire" className="w-full border border-solid border-2 border-outset" value={inputValue.commentaire} >kk</textarea>
                     </div>
                     <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md
                                                     md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">

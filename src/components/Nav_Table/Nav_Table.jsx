@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+import { FaCircleDollarToSlot } from "react-icons/fa6";
 
 const Nav_Table = (props) => {
+    const API = props.API
     return (
         <>
             <table className="w-full">
@@ -15,7 +18,7 @@ const Nav_Table = (props) => {
                                 </thead>
                                 <tbody>
                                     {
-                                        clientInvoices.map(invoice => (
+                                        API.map(invoice => (
                                             <tr key={invoice.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                                 <td className="pl-6">{invoice.id}</td>
                                                 <td className="p-3">{invoice.date_creation}</td>

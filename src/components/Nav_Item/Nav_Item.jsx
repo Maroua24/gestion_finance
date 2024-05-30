@@ -1,6 +1,6 @@
 
 const Nav_Item = (props) => {
-    
+
     const id = props.id;
     const clientId = parseInt(id);
     //const client = useSelector(state => state.ClientList.ClientsList.find(c => c.id === clientId));

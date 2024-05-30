@@ -1,4 +1,4 @@
-import { Style, Nav_Item, Facture_Impayees_item, Facture_payees_Item, Avoires_Item } from "../index";
+import { Style, Nav_Item, Facture_Impayees_item, Facture_payees_Item, Avoires_Item,Nav_Table } from "../index";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -15,13 +15,13 @@ const Nav = (props) => {
     const clientId = parseInt(id);
 
     const FactureVenteList = useSelector(state => state.FactureVenteList.FactureVenteList);
-    const clientInvoices = FactureVenteList ? FactureVenteList.filter(invoice => invoice.id === clientId) : [];
+    const Facture_client = FactureVenteList ? FactureVenteList.filter(invoice => invoice.id === clientId) : [];
 
-    // const FactureImpayeesList = useSelector(state => state.FactureImpayeesList.FactureImpayeesList);
-    // const clientFactureImpayees = FactureImpayeesList ? FactureImpayeesList.filter(invoice => invoice.id === clientId) : [];
+    const FactureImpayeesList = useSelector(state => state.FactureImpayeesList.FactureImpayeesList);
+    const FactureImpayees = FactureImpayeesList ? FactureImpayeesList.filter(invoice => invoice.id === clientId) : [];
 
-    // const AvoiresList = useSelector(state => state.AvoiresList.AvoiresList);
-    // const clientAvoires = AvoiresList ? AvoiresList.filter(invoice => invoice.id === clientId) : [];
+    const AvoiresList = useSelector(state => state.AvoiresReducerList.AvoiresList);
+    const clientAvoires = AvoiresList ? AvoiresList.filter(invoice => invoice.id === clientId) : [];
 
     // const CommandeList = useSelector(state => state.CommandeList.CommandeList);
     // const clientCommande = CommandeList ? CommandeList.filter(invoice => invoice.id === clientId) : [];
@@ -57,184 +57,19 @@ const Nav = (props) => {
                     <tr>
                         <td colSpan="5">
                         {openTable === 'FactureImpayees' && (
-                            <table className="w-full">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Date Creation</th>
-                                        <th>Date Comptabilisation</th>
-                                        <th>Date Decheance</th>
-                                        <th>Non Payée</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        clientInvoices.map(invoice => (
-                                            <tr key={invoice.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                                <td className="pl-6">{invoice.id}</td>
-                                                <td className="p-3">{invoice.date_creation}</td>
-                                                <td>{invoice.date_comptabilisation}</td>
-                                                <td>{invoice.date_decheance}</td>
-                                                <td>{invoice.non_payée}</td>
-                                                <td>
-                                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                            sm:text-sm md:text-xl lg:text-2xl
-                                                            xl:text-3xl 2xl:text-4xl'>
-                                                        <Link to={`/Add_payment/${invoice.id}`}>
-                                                            <FaCircleDollarToSlot />
-                                                        </Link>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>)}
+                            <Nav_Table API={Facture_client} />)}
 
                         {openTable === 'Facturepayees' && (
-                            <table className="w-full">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Date Creation</th>
-                                        <th>Date Comptabilisation</th>
-                                        <th>Date Decheance</th>
-                                        <th>Non Payée</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        clientInvoices.map(invoice => (
-                                            <tr key={invoice.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                                <td className="pl-6">{invoice.id}</td>
-                                                <td className="p-3">{invoice.date_creation}</td>
-                                                <td>{invoice.date_comptabilisation}</td>
-                                                <td>{invoice.date_decheance}</td>
-                                                <td>{invoice.non_payée}</td>
-                                                <td>
-                                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                            sm:text-sm md:text-xl lg:text-2xl
-                                                            xl:text-3xl 2xl:text-4xl'>
-                                                        <Link to={`/Add_payment/${invoice.id}`}>
-                                                            <FaCircleDollarToSlot />
-                                                        </Link>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>)}
+                            <Nav_Table API={FactureImpayees} />)}
 
                         {openTable === 'Avoires' && (
-                            <table className="w-full">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Date Creation</th>
-                                        <th>Date Comptabilisation</th>
-                                        <th>Date Decheance</th>
-                                        <th>Non Payée</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        clientInvoices.map(invoice => (
-                                            <tr key={invoice.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                                <td className="pl-6">{invoice.id}</td>
-                                                <td className="p-3">{invoice.date_creation}</td>
-                                                <td>{invoice.date_comptabilisation}</td>
-                                                <td>{invoice.date_decheance}</td>
-                                                <td>{invoice.non_payée}</td>
-                                                <td>
-                                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                            sm:text-sm md:text-xl lg:text-2xl
-                                                            xl:text-3xl 2xl:text-4xl'>
-                                                        <Link to={`/Add_payment/${invoice.id}`}>
-                                                            <FaCircleDollarToSlot />
-                                                        </Link>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>)}
+                            <Nav_Table API={clientAvoires} />)}
 
                         {openTable === 'Paiement' && (
-                            <table className="w-full">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Date Creation</th>
-                                        <th>Date Comptabilisation</th>
-                                        <th>Date Decheance</th>
-                                        <th>Non Payée</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        clientInvoices.map(invoice => (
-                                            <tr key={invoice.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                                <td className="pl-6">{invoice.id}</td>
-                                                <td className="p-3">{invoice.date_creation}</td>
-                                                <td>{invoice.date_comptabilisation}</td>
-                                                <td>{invoice.date_decheance}</td>
-                                                <td>{invoice.non_payée}</td>
-                                                <td>
-                                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                            sm:text-sm md:text-xl lg:text-2xl
-                                                            xl:text-3xl 2xl:text-4xl'>
-                                                        <Link to={`/Add_payment/${invoice.id}`}>
-                                                            <FaCircleDollarToSlot />
-                                                        </Link>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>)}
+                            <Nav_Table API={Facture_client} />)}
 
                         {openTable === 'Commande' && (
-                            <table className="w-full">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Date Creation</th>
-                                        <th>Date Comptabilisation</th>
-                                        <th>Date Decheance</th>
-                                        <th>Non Payée</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        clientInvoices.map(invoice => (
-                                            <tr key={invoice.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                                <td className="pl-6">{invoice.id}</td>
-                                                <td className="p-3">{invoice.date_creation}</td>
-                                                <td>{invoice.date_comptabilisation}</td>
-                                                <td>{invoice.date_decheance}</td>
-                                                <td>{invoice.non_payée}</td>
-                                                <td>
-                                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                            sm:text-sm md:text-xl lg:text-2xl
-                                                            xl:text-3xl 2xl:text-4xl'>
-                                                        <Link to={`/Add_payment/${invoice.id}`}>
-                                                            <FaCircleDollarToSlot />
-                                                        </Link>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>)}
+                            <Nav_Table API={Facture_client} />)}
                         </td>
                     </tr>
                 </tbody>

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {getAll} from '../API/GetAll'
+import {addPaiement} from '../API/Paiement_API'
 
 const initialState = {
     PaimentList:[],
@@ -8,7 +9,7 @@ const initialState = {
 }
 
 const PaimentSlice = createSlice({
-    name:"Paiment",
+    name:"Paiement",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -26,6 +27,20 @@ const PaimentSlice = createSlice({
             .addCase(getAll.rejected, (state, action) => {
                 state.isLoading=false;
                 state.error=action?.error?.message;
+            })
+        builder
+            .addCase(addPaiement.pending, state => {
+                state.isLoading = true
+                state.error = ''
+            })
+            .addCase(addPaiement.fulfilled, (state) => {
+                state.isLoading = false
+                state.PaimentList=[]
+            })
+            .addCase(addPaiement.rejected,(state,action) => {
+                state.isLoading=false
+                state.PaimentList=[]
+                state.error = action.error.message
             })
     }
 })
