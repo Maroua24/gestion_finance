@@ -13,26 +13,26 @@ import { MdVisibility } from "react-icons/md";
 
 
 const Avoires_vente = () => {
-  const [Search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState(null);
+    const [Search, setSearch] = useState("");
+    const [sortBy, setSortBy] = useState(null);
 
   const dispatch = useDispatch();
   const FactureServiceList = useSelector(state => state.FactureServiceList.FactureServiceList);
   const isLoading = useSelector(state => state.FactureServiceList.isLoading)
 
   useEffect(()=>{
-      dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
       //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
   },[dispatch]);
 
-const viewPDF = async (client) => {
-    const doc = <Facture_Service_PDF client={client} />;
-    const asPdf = pdf([]);
-    asPdf.updateContainer(doc);
-    const blob = await asPdf.toBlob();
-    const pdfURL = URL.createObjectURL(blob);
-    window.open(pdfURL);
-};
+// const viewPDF = async (client) => {
+//     const doc = <Facture_Service_PDF client={client} />;
+//     const asPdf = pdf([]);
+//     asPdf.updateContainer(doc);
+//     const blob = await asPdf.toBlob();
+//     const pdfURL = URL.createObjectURL(blob);
+//     window.open(pdfURL);
+// };
 
     return (
         <>
@@ -102,27 +102,27 @@ const viewPDF = async (client) => {
                               <td>20/02/2020</td>
                               <td>12/04/2021</td>
                               <td>false</td> */}
-                              <td>
-                                  <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                  sm:text-sm md:text-xl lg:text-2xl
-                                                                  xl:text-3xl 2xl:text-4xl'>
-                                      <Link to={`/Facture_Service_Info/${Facture.id}`}>
-                                          <IoMdInformationCircleOutline />
-                                      </Link>
-                                  </button>
-                                  <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                  sm:text-sm md:text-xl lg:text-2xl
-                                                                  xl:text-3xl 2xl:text-4xl'>
-                                        {/* <PDFDownloadLink document={<Facture_Service_PDF Facture={Facture} Factures={FactureServiceList}/>} fileName="Facture_Service.pdf" >
+                            <td>
+                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                sm:text-sm md:text-xl lg:text-2xl
+                                                                xl:text-3xl 2xl:text-4xl'>
+                                    <Link to={`/Facture_Service_Info/${Facture.id}`}>
+                                        <IoMdInformationCircleOutline />
+                                    </Link>
+                                </button>
+                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                sm:text-sm md:text-xl lg:text-2xl
+                                                                xl:text-3xl 2xl:text-4xl'>
+                                        <PDFDownloadLink document={<Facture_Service_PDF Facture={Facture} Factures={FactureServiceList}/>} fileName="Facture_Service.pdf" >
                                             <FaDownload />
-                                        </PDFDownloadLink> */}
+                                        </PDFDownloadLink>
                                   </button>
-                                  <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                  {/* <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                   sm:text-sm md:text-xl lg:text-2xl
                                                                   xl:text-3xl 2xl:text-4xl'
                                                                   onClick={() => viewPDF(Facture)}>
                                       <a href="#"><MdVisibility /></a>
-                                  </button>
+                                  </button> */}
                               </td>
                           </tr>
                       ))}

@@ -31,6 +31,7 @@ const Facture_Service = () => {
             console.log(response);})        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
     },[dispatch]);
 
+    console.log("###########"+FactureServiceList)
     const viewPDF = async (client) => {
         const doc = <Facture_Service_PDF client={client} />;
         const asPdf = pdf([]);
@@ -43,7 +44,7 @@ const Facture_Service = () => {
     return (
         <>
         <Menu/>
-
+            
             <div>
             <h1 className="text-[--statistic-color] p-4 sm:text-3xl
                                 md:text-5xl lg:text-7xl
@@ -95,6 +96,7 @@ const Facture_Service = () => {
                         //         Facture.email.toLowerCase().includes(Search) ||
                         //         Facture.website.toLowerCase().includes(Search)
                         // })
+
                         .map((Facture) => (
                             <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                 <td className="pl-6">{Facture.id}</td>
@@ -113,10 +115,11 @@ const Facture_Service = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        {/* <PDFDownloadLink document={<Facture_Service_PDF id={Facture.id}/>} fileName="Facture_Service.pdf" >
+                                                                        {Facture.id}
+                                        { <PDFDownloadLink document={<Facture_Service_PDF id={Facture.id}/>} fileName="Facture_Service.pdf" >
                                                 <FaDownload />
-                                            }
-                                        </PDFDownloadLink> */}
+                                            
+                                        </PDFDownloadLink> }
                                     </button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
 import {Nav,Info,Menu,Style} from "../index"
 
+
 const ClientInfo = () => {
     const { id } = useParams();
     const clientId = parseInt(id);
