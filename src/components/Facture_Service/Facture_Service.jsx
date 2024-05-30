@@ -9,6 +9,7 @@ import {Menu,Search_input,Facture_Service_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
+import { MdVisibility } from "react-icons/md";
 
 const Facture_Service = () => {
 
@@ -26,8 +27,8 @@ const Facture_Service = () => {
     const FactureServiceList = useSelector(state => state.FactureServiceList.FactureServiceList);
     const isLoading = useSelector(state => state.FactureServiceList.isLoading)
     useEffect(()=>{
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users")).then(response => {
+            console.log(response);})        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
     },[dispatch]);
 
     const viewPDF = async (client) => {
@@ -112,21 +113,16 @@ const Facture_Service = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_Service_PDF id={Facture.id}/>} fileName="Facture_Service.pdf" >
-                                            {({Loading}) =>
-                                                Loading ? (
-                                                    <LuLoader />
-                                                ) : (
-                                                    <FaDownload />
-                                                )
+                                        {/* <PDFDownloadLink document={<Facture_Service_PDF id={Facture.id}/>} fileName="Facture_Service.pdf" >
+                                                <FaDownload />
                                             }
-                                        </PDFDownloadLink>
+                                        </PDFDownloadLink> */}
                                     </button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'
                                                                     onClick={() => viewPDF(Facture)}>
-                                        <a href="#"><FaFilePdf /></a>
+                                        <a href="#"><MdVisibility /></a>
                                     </button>
                                 </td>
                             </tr>

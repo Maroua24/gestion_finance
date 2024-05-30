@@ -8,6 +8,7 @@ import PaimentReducer from './Paiement/PaiementSlice'
 import authReducer from './Log_in/Log_in_Slice'
 import AvoiresReducer from './Avoires/AvoiresSlice'
 import FactureReducer from './Facture/FacturesSlice'
+import CommandesSlice from './Commandes/CommandesSlice'
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     PaimentList : PaimentReducer,
     authentication : authReducer,
     AvoiresReducerList : AvoiresReducer,
+    CommandesList: CommandesSlice,
   },
 })

@@ -9,6 +9,7 @@ import {Menu,Search_input,Facture_Service_PDF,Avoire_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
+import { MdVisibility } from "react-icons/md";
 
 
 const Avoires_Service = () => {
@@ -111,21 +112,15 @@ const Avoires_Service = () => {
                                   <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                 sm:text-sm md:text-xl lg:text-2xl
                                                                 xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Avoire_PDF />} fileName="Facture_Service.pdf" >
-                                            {({Loading}) =>
-                                                Loading ? (
-                                                    <LuLoader />
-                                                ) : (
-                                                    <FaDownload />
-                                            )
-                                        }
-                                    </PDFDownloadLink>
+                                        {/* <PDFDownloadLink document={<Avoire_PDF />} fileName="Facture_Service.pdf" >
+                                            <FaDownload />
+                                        </PDFDownloadLink> */}
                                 </button>
                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                 sm:text-sm md:text-xl lg:text-2xl
                                                                 xl:text-3xl 2xl:text-4xl'
                                                                 onClick={() => viewPDF(Facture)}>
-                                    <a href="#"><FaFilePdf /></a>
+                                    <a href="#"><MdVisibility /></a>
                                 </button>
                             </td>
                         </tr>

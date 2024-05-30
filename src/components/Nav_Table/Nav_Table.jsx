@@ -3,6 +3,7 @@ import { FaCircleDollarToSlot } from "react-icons/fa6";
 
 const Nav_Table = (props) => {
     const API = props.API
+    const test = props.API
     return (
         <>
             <table className="w-full">
