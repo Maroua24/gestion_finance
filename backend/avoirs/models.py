@@ -13,7 +13,7 @@ class Avoir(models.Model):
 
     type_facture = models.CharField(max_length=10, choices=TYPE_CHOICES)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='avoir_ids_avoir')
-    commande_ligne = models.ForeignKey(Commande_ligne, on_delete=models.CASCADE, related_name='avoir_ids_avoir')
+    commande_ligne = models.ManyToManyField(Commande_ligne, related_name='avoirs')
     avoir_id = models.CharField(max_length=20, unique=True, editable=False)
     date_creation = models.DateField(auto_now_add=True)
     date_comptabilisation = models.DateField(null=True, blank=True)

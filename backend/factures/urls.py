@@ -8,7 +8,11 @@ from .views import (
     FactureListView ,
     PDFFactureView , 
     RapportFacturesServiceView,
-    RapportFacturesVenteView
+    RapportFacturesVenteView,
+    FactureDetail ,
+    FactureServiceDetail ,
+    FactureVenteDetail,
+    FactureNonPayeeDetail
 ) 
 
 
@@ -18,10 +22,13 @@ urlpatterns = [
     path('factures/', FactureListView.as_view(), name='facture-list'),
     path('factures/vente/', FactureVenteList.as_view(), name='facture-vente-list'),
     path('factures/service/', FactureServiceList.as_view(), name='facture-service-list'),
-    path('factures/non-payee/', FactureNonPayeeList.as_view(), name='facture-non-payee-list'),
+    path('factures/non_payee/', FactureNonPayeeList.as_view(), name='facture-non-payee-list'),
     path('factures/ajouter/', FactureListCreate.as_view(), name='facture-ajouter'),
-    path('factures/<int:id>/pdf/', PDFFactureView.as_view(), name='facture-pdf'),
-    # path('factures/<int:pk>/', FactureDetail.as_view(), name='facture-detail'),
+    path('facture/<int:id>/pdf/', PDFFactureView.as_view(), name='facture-pdf'),
+    path('facture/<int:pk>/', FactureDetail.as_view(), name='facture-detail'),
+    path('facture_vente/<int:pk>/', FactureVenteDetail.as_view(), name='facture-vente-detail'),
+    path('facture_service/<int:pk>/', FactureServiceDetail.as_view(), name='facture-service-detail'),
+    path('facture_non_payee/<int:pk>/', FactureNonPayeeDetail.as_view(), name='facture-non_payee-detail'),
     
 
 

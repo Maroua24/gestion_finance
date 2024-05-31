@@ -82,3 +82,26 @@ class PaiementPartielList(generics.ListAPIView):
 class PaiementCompletList(generics.ListAPIView):
     queryset = Paiement.objects.filter(etat='complet')
     serializer_class = PaiementSerializer 
+
+
+class RapportPaiementView(APIView):
+    def get(self, request, *args, **kwargs):
+        paiements = Paiement.objects.all()
+        paiements_data = []
+        for paiement in paiements:
+            paiement_dict = {
+                'id_paiement': paiement.id_paiement,
+                'date_paiement': paiement.date_paiement.strftime('%Y-%m-%d'),
+                'facture': paiement.facture.facture_id,  # Supposons que Facture ait un champ id_facture
+                'montant': paiement.montant,
+                'montant_partiel': paiement.montant_partiel,
+                'creer_par': paiement.creer_par.username if paiement.creer_par else '',
+                'est_annule': paiement.est_annule,
+                'etat': paiement.etat,
+                'mode_reglement': paiement.mode_reglement,
+                'devise': paiement.devise.devise if paiement.devise else '',
+                'commentaire': paiement.commentaire,
+            }
+            paiements_data.append(paiement_dict)
+
+        return Response({ 'data': paiements_data}) 

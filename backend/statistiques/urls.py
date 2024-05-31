@@ -5,7 +5,8 @@ from .views import (
     FactureServiceStatistiques , 
     FactureStatistiques , 
     PaiementStatistiques , 
-    GenererRapportPDF
+    AvoirStatistiques,
+    #GenererRapportPDF ,
     )
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     path('factures-vente/statistiques/', FactureVenteStatistiques.as_view(), name='facture_vente_Statistiques'),
     path('factures-service/statistiques/', FactureServiceStatistiques.as_view(), name='facture_service_Statistiques'),
     path('paiements/statistiques/', PaiementStatistiques.as_view(), name='paiements_Statistiques'),
-    path('rapport/', GenererRapportPDF.as_view(), name='rapport_pdf'),
+    path('avoirs/statistiques/', AvoirStatistiques.as_view(), name='avoir_Statistiques'),
+    #path('rapport/', GenererRapportPDF.as_view(), name='rapport_pdf'),
 
 ]

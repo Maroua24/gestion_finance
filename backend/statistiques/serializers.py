@@ -15,3 +15,6 @@ class FactureServiceStatistiquesSerializer(serializers.Serializer):
 
 class PaiementStatistiqueSerializer(serializers.Serializer):
     total_paiements = serializers.IntegerField()
+
+class AvoirStatistiquesSerializer(serializers.Serializer):
+    total_avoirs = serializers.IntegerField()

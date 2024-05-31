@@ -29,13 +29,7 @@ from factures.models import Facture
 
 class RapportFacturesVenteView(APIView):
     def get(self, request, *args, **kwargs):
-        # Liste des colonnes
-        # columns = [
-        #     'ID Facture', 'Client', 'Date Création', 'Date Comptabilisation', 'Date Échéance', 
-        #     'Non Payée', 'Montant', 'Lignes de Commande'
-        # ]
-
-        # Récupération des données des factures de vente
+        
         factures_vente = Facture.objects.filter(type_facture='Vente')
         factures_data = []
         for facture in factures_vente:
@@ -57,13 +51,7 @@ class RapportFacturesVenteView(APIView):
 
 class RapportFacturesServiceView(APIView):
     def get(self, request, *args, **kwargs):
-        # Liste des colonnes
-        # columns = [
-        #     'ID Facture', 'Client', 'Date Création', 'Date Comptabilisation', 'Date Échéance', 
-        #     'Non Payée', 'Montant', 'Lignes de Commande'
-        # ]
-
-        # Récupération des données des factures de vente
+        
         factures_service = Facture.objects.filter(type_facture='Service')
         factures_data = []
         for facture in factures_service:
@@ -71,6 +59,7 @@ class RapportFacturesServiceView(APIView):
             facture_data = {
                 'facture_id': facture.facture_id,
                 'client': facture.client.nom,
+                
                 'date_creation': facture.date_creation.strftime('%Y-%m-%d'),
                 'date_comptabilisation': facture.date_comptabilisation.strftime('%Y-%m-%d') if facture.date_comptabilisation else '',
                 'date_decheance': facture.date_decheance.strftime('%Y-%m-%d') if facture.date_decheance else '',
@@ -213,10 +202,21 @@ class FactureListView(ListAPIView):
     queryset = Facture.objects.all()
     serializer_class = FactureSerializer
 
-# class FactureDetail(RetrieveAPIView):
-#     queryset = Facture.objects.all()
-#     serializer_class = FactureSerializer
-#     lookup_field = 'id'
+class FactureVenteDetail(RetrieveAPIView):
+    queryset = Facture.objects.filter(type_facture='Vente')
+    serializer_class = FactureSerializer
+
+class FactureServiceDetail(RetrieveAPIView):
+    queryset = Facture.objects.filter(type_facture='Service')
+    serializer_class = FactureSerializer
+
+class FactureDetail(RetrieveAPIView):
+    queryset = Facture.objects.all()
+    serializer_class = FactureSerializer
+    
+class FactureNonPayeeDetail(RetrieveAPIView):
+    queryset = Facture.objects.filter(non_payee=True)
+    serializer_class = FactureSerializer
 
 class FactureListCreate(CreateAPIView):
     queryset = Facture.objects.all()
