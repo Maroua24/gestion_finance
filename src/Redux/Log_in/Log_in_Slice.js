@@ -1,15 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit'
-import {logIn} from '../API/Log_in_API'
+// src/slices/authSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+import { logIn } from '../API/Log_in_API';
 
 const initialState = {
     isLoading: false,
     isLoggedIn: false,
     error: null,
-}
+};
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState:initialState,
+    initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -22,10 +23,11 @@ const authSlice = createSlice({
                 state.isLoggedIn = true;
                 state.error = null;
             })
-            .addCase(logIn.rejected, (state) => {
+            .addCase(logIn.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = 'Failed to log in';
+                state.error = action.payload.message || 'Failed to log in';
             });
     },
 });
+
 export default authSlice.reducer;

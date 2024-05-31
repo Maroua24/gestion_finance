@@ -1,19 +1,28 @@
-import {createAsyncThunk} from '@reduxjs/toolkit'
+// src/Redux/API/Log_in_API.js
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
-export const logIn = createAsyncThunk('posts/auth',async (values) => {
-    return fetch("http://127.0.0.1:8000/api/users",{method:"POST",
-        headers:{
-            Accept:"application/json",
-            "Content-type":"application/json",
+export const logIn = createAsyncThunk('posts/auth', async (values, { rejectWithValue }) => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
         },
         body: JSON.stringify({
-            email : values.email,
-            password : values.password
-        })
-    }).then((res)=> res.json())
-    .then(result => {
-        const token = result.token
-        Cookies.set('UserToken', token, { expires: 7 });
-    })
-})
+            email: values.email,
+            password: values.password,
+        }),
+    });
+
+    if (!response.ok) {
+        const error = await response.json();
+        return rejectWithValue(error);
+    }
+
+    const result = await response.json();
+    const token = result.token;
+    Cookies.set('UserToken', token, { expires: 7 });
+
+    return result;
+});
