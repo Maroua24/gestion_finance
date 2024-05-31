@@ -24,7 +24,7 @@ const Avoires_Service = () => {
 
     useEffect(()=>{
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
+        //dispatch(getAll("http://127.0.0.1:8000/api/avoirs/service/"));
     },[dispatch]);
 
     useEffect(() => {

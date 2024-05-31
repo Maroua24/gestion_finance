@@ -22,8 +22,8 @@ const Avoires_vente = () => {
     const isLoading = useSelector(state => state.FactureServiceList.isLoading)
 
     useEffect(()=>{
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/avoirs/vente/"));
     },[dispatch]);
 
     useEffect(() => {
