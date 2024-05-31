@@ -43,7 +43,7 @@ export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
 export {default as Info} from './Info/Info'
 export {default as Check_box} from './Check_box/Check_box'
 
-export {default as Facture_Service_PDF} from './PDF/Facture_Service_PDF'
+export {default as Facture_PDF} from './PDF/Facture_PDF'
 export {default as Avoire_PDF} from './PDF/Avoire_PDF'
 
 export {default as Avoires } from './Avoires/Avoires'

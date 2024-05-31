@@ -5,7 +5,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_Service_PDF} from '../index'
+import {Menu,Search_input,Facture_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
@@ -113,7 +113,7 @@ const Avoires_vente = () => {
                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                 sm:text-sm md:text-xl lg:text-2xl
                                                                 xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_Service_PDF Facture={Facture} Factures={FactureServiceList}/>} fileName="Facture_Service.pdf" >
+                                        <PDFDownloadLink document={<Facture_PDF Facture={Facture} Factures={FactureServiceList}/>} fileName="Facture_Service.pdf" >
                                             <FaDownload />
                                         </PDFDownloadLink>
                                   </button>

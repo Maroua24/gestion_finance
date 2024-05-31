@@ -5,7 +5,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_Service_PDF,Avoire_PDF} from '../index'
+import {Menu,Search_input,Facture_PDF,Avoire_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
@@ -26,7 +26,7 @@ const Avoires_Service = () => {
   },[dispatch]);
 
   const viewPDF = async (client) => {
-      const doc = <Facture_Service_PDF client={client} />;
+      const doc = <Facture_PDF client={client} />;
       const asPdf = pdf([]);
       asPdf.updateContainer(doc);
       const blob = await asPdf.toBlob();

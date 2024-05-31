@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../../images/logo_icosnet_sgs.png"
 import stamp from "../../images/stamp-removebg-preview.png"
 //import { Get_Fac } from '../../Redux/API/Get_All_Fac'
-import { getFacById } from '../../Redux/action';
+// import { getFacById } from '../../Redux/action';
 import { useEffect, useState } from 'react';
 
-const Facture_Service_PDF = ({ id }) => {
+const Facture_PDF = ({ id }) => {
     const [Data, setData] = useState([]);
     // const dispatch = useDispatch();
     // useEffect(() => {
@@ -154,16 +154,15 @@ const Facture_Service_PDF = ({ id }) => {
                             Email:  commericail@icosnet.com {'\n'}
                             finance@icosnet.com {'\n'}
                         </Text>
-                        
                     </View>
                     <View style={styles.column}>
                         <Text>
                         </Text>
-                        <Text style={styles.title}>Facture N : {Data.id}{'\n'}</Text>
+                        <Text style={styles.title}>Facture N : <Text>{Data.id}</Text>{'\n'}</Text>
                         <Text>{'\n'}</Text>
                         <Text style={styles.sous_titre}>
                             Alger le : 23/4/1023 {'\n'}
-                            <Text style={styles.bold}>Client:</Text> ABC Company {'\n'}
+                            <Text style={styles.bold}>Client:</Text> {Data.userId} {'\n'}
                             {'\n'}
                             <Text style={styles.bold}>Code client:</Text> ABC {'\n'}
                             <Text style={styles.bold}>Adresse:</Text> New York {'\n'}
@@ -255,4 +254,4 @@ const Facture_Service_PDF = ({ id }) => {
     );
 }
 
-export default Facture_Service_PDF;
+export default Facture_PDF;

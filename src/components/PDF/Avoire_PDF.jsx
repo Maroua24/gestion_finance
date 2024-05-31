@@ -2,7 +2,6 @@ import { Page, Text, Document, StyleSheet, View ,Image} from '@react-pdf/rendere
 import {useDispatch,useSelector} from "react-redux";
 import logo from "../../images/logo_icosnet_sgs.png"
 import stamp from "../../images/stamp-removebg-preview.png"
-import {Get_Fac} from '../../Redux/API/Get_All_Fac'
 import { useEffect} from 'react';
 
 const Facture_Vente_PDF = ({id}) => {

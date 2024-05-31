@@ -5,7 +5,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_Service_PDF} from '../index'
+import {Menu,Search_input,Facture_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
@@ -33,7 +33,7 @@ const Facture_Service = () => {
 
     console.log("###########"+FactureServiceList)
     const viewPDF = async (client) => {
-        const doc = <Facture_Service_PDF client={client} />;
+        const doc = <Facture_PDF client={client} />;
         const asPdf = pdf([]);
         asPdf.updateContainer(doc);
         const blob = await asPdf.toBlob();
@@ -116,9 +116,8 @@ const Facture_Service = () => {
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
                                                                         {Facture.id}
-                                        { <PDFDownloadLink document={<Facture_Service_PDF id={Facture.id}/>} fileName="Facture_Service.pdf" >
+                                        { <PDFDownloadLink document={<Facture_PDF id={Facture.id}/>} fileName="Facture_Service.pdf" >
                                                 <FaDownload />
-                                            
                                         </PDFDownloadLink> }
                                     </button>
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
