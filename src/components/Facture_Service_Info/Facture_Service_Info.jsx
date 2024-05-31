@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {Info,Menu,Style,Nav_Item,Nav_Table} from "../index"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 import {Link} from "react-router-dom"
 
 
 const Facture_Service_Info = () => {
     const [openTable, setOpenTable] = useState(null);
+    const [Avoires, setAvoires] = useState();
 
     const handleToggleTable = (table) => {
         setOpenTable(prevTable => (prevTable === table ? null : table));
@@ -19,6 +20,28 @@ const Facture_Service_Info = () => {
 
     const FactureVenteList = useSelector(state => state.FactureVenteList.FactureVenteList);
     const clientInvoices = FactureVenteList ? FactureVenteList.filter(invoice => invoice.id === clientId) : [];
+
+    useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            redirect: "follow"
+        };
+        console.log(id)
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (Array.isArray(result)) {
+                    setAvoires(result);
+                } else {
+                    setAvoires([result]);
+                }
+                console.log(result)
+            }) //set the data
+            .catch((error) => {
+                console.error(error);
+                setAvoires([]);
+            });
+    }, [id]);
 
     return (
             <div >
@@ -32,7 +55,7 @@ const Facture_Service_Info = () => {
                     <Nav_Item onClick={() => handleToggleTable('Avoires')}
                         label="Avoires" />
                         {openTable === 'Avoires' && (
-                            <Nav_Table API={clientInvoices}
+                            <Nav_Table API={Avoires}
                         />)}
                 </div>
                 <div className="md:flex">

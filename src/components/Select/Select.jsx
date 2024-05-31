@@ -3,7 +3,7 @@ const Select = (props) => {
     return(
         <>
             <label className="ml-5 text-light-color text-xs md:text-lg xl:text-2xl 2xl:text-3xl">
-                {props.name}
+                {props.label}
             </label>
             <select
                 id={props.id}
@@ -12,13 +12,12 @@ const Select = (props) => {
                             lg:h-[40px] lg:w-[110px] lg:text-xl
                             xl:h-[45px] xl:w-[130px] xl:text-2xl
                             2xl:h-[50px] 2xl:w-[150px] 2xl:text-3xl"
-                name="Selector"
+                name={props.name}
                 onChange={props.onChange}
                 value={props.value}
                 >
-
-                <option value={props.v1}>{props.choix1}</option>
-                <option value={props.v2}>{props.choix2}</option>
+                <option value={props.value_1}>{props.choix1}</option>
+                <option value={props.value_2}>{props.choix2}</option>
             </select><br></br>
         </>
     )

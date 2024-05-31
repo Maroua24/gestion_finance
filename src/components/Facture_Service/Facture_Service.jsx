@@ -16,19 +16,13 @@ const Facture_Service = () => {
     const [Search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState(null);
 
-    // const Dispatch2 = useDispatch();
-    // const FactureList = useSelector(state => state.FactureList.FactureList);
-    // useEffect(()=>{
-    //     dispatch(Get_All_Fac());
-    //     //dispatch(getAll("http://127.0.0.1:8000/api/factures/"));
-    // },[Dispatch2]);
-
     const dispatch = useDispatch();
     const FactureServiceList = useSelector(state => state.FactureServiceList.FactureServiceList);
     const isLoading = useSelector(state => state.FactureServiceList.isLoading)
+
     useEffect(()=>{
         dispatch(getAll("https://jsonplaceholder.typicode.com/users")).then(response => {
-            console.log(response);})
+        console.log(response);})
         //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
     },[dispatch]);
 
@@ -45,7 +39,6 @@ const Facture_Service = () => {
     return (
         <>
         <Menu/>
-            
             <div>
             <h1 className="text-[--statistic-color] p-4 sm:text-3xl
                                 md:text-5xl lg:text-7xl

@@ -9,7 +9,7 @@ const AddClient = () => {
     const [errors,setErrors] = useState({})
 
     const [inputValue, setInputValue] = useState({
-        categorie_compte: '',
+        categorie_compte: 'Client',
         raison_sociale: '',
         sigle: '',
         code_tva: '',
@@ -22,7 +22,7 @@ const AddClient = () => {
         rue: '',
         ville: '',
         region: '',
-        type_de_regionn: '',
+        type_de_region: '',
         code_postale: '',
         pays: '',
         telephone: '',
@@ -34,9 +34,9 @@ const AddClient = () => {
         fonction: '',
         type_client: '',
         fax: '',
-        dossier_valide: '',
-        statut: '',
-        est_vip: '',
+        dossier_valide: 'Valide',
+        statut: 'Active',
+        est_vip: 'False',
     });
     const clearInputValues = () => {
         setInputValue({
@@ -72,6 +72,7 @@ const AddClient = () => {
     };
 
     const handleInput=(e) => {
+        console.log(e.target.name, e.target.value);
         setInputValue({...inputValue,[e.target.name]: e.target.value});
     }
 
@@ -96,7 +97,7 @@ const AddClient = () => {
                     Ajouter un client:
                 </h1>
                 <div style={{ display: "block" }}>
-                    <Select name="categorie_compte" value_1="Client" value_2="Supplier" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.categorie_compte} onChange={handleInput}/>
+                    <Select label="Categorie du compte" name="categorie_compte" value_1="Client" value_2="Supplier" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.categorie_compte} onChange={handleInput}/>
 
                     <Style>
                         <div>
