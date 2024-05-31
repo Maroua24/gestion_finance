@@ -5,7 +5,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_PDF} from '../index'
+import {Menu,Search_input,Avoire_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
@@ -25,14 +25,14 @@ const Avoires_vente = () => {
       //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
   },[dispatch]);
 
-// const viewPDF = async (client) => {
-//     const doc = <Facture_Service_PDF client={client} />;
-//     const asPdf = pdf([]);
-//     asPdf.updateContainer(doc);
-//     const blob = await asPdf.toBlob();
-//     const pdfURL = URL.createObjectURL(blob);
-//     window.open(pdfURL);
-// };
+  const viewPDF = async (client) => {
+    const doc = <Avoire_PDF client={client} />;
+    const asPdf = pdf([]);
+    asPdf.updateContainer(doc);
+    const blob = await asPdf.toBlob();
+    const pdfURL = URL.createObjectURL(blob);
+    window.open(pdfURL);
+};
 
     return (
         <>
@@ -113,24 +113,24 @@ const Avoires_vente = () => {
                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                 sm:text-sm md:text-xl lg:text-2xl
                                                                 xl:text-3xl 2xl:text-4xl'>
-                                        <PDFDownloadLink document={<Facture_PDF Facture={Facture} Factures={FactureServiceList}/>} fileName="Facture_Service.pdf" >
+                                        <PDFDownloadLink document={<Avoire_PDF id={Facture.id}/>} fileName="Avoire_Vente.pdf" >
                                             <FaDownload />
                                         </PDFDownloadLink>
-                                  </button>
-                                  {/* <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                  sm:text-sm md:text-xl lg:text-2xl
-                                                                  xl:text-3xl 2xl:text-4xl'
-                                                                  onClick={() => viewPDF(Facture)}>
-                                      <a href="#"><MdVisibility /></a>
-                                  </button> */}
-                              </td>
-                          </tr>
-                      ))}
-                  </tbody>
-              </table>
-          </div>
+                                </button>
+                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                                sm:text-sm md:text-xl lg:text-2xl
+                                                                xl:text-3xl 2xl:text-4xl'
+                                                                onClick={() => viewPDF(Facture.id)}>
+                                    <a href="#"><MdVisibility /></a>
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
 </>
-  )
+)
 }
 
 export default Avoires_vente

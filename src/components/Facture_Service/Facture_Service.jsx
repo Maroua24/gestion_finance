@@ -28,7 +28,8 @@ const Facture_Service = () => {
     const isLoading = useSelector(state => state.FactureServiceList.isLoading)
     useEffect(()=>{
         dispatch(getAll("https://jsonplaceholder.typicode.com/users")).then(response => {
-            console.log(response);})        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
+            console.log(response);})
+        //dispatch(getAll("http://127.0.0.1:8000/api/factures_service/"));
     },[dispatch]);
 
     console.log("###########"+FactureServiceList)
@@ -91,12 +92,8 @@ const Facture_Service = () => {
                         //     return Search.toLowerCase() === ''
                         //         ? Facture
                         //         :
-                        //         Facture.name.toLowerCase().includes(Search) ||
-                        //         Facture.username.toLowerCase().includes(Search) ||
-                        //         Facture.email.toLowerCase().includes(Search) ||
-                        //         Facture.website.toLowerCase().includes(Search)
+                        //         Facture.name.toLowerCase().includes(Search)
                         // })
-
                         .map((Facture) => (
                             <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                 <td className="pl-6">{Facture.id}</td>
@@ -123,7 +120,7 @@ const Facture_Service = () => {
                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'
-                                                                    onClick={() => viewPDF(Facture)}>
+                                                                    onClick={() => viewPDF(Facture.id)}>
                                         <a href="#"><MdVisibility /></a>
                                     </button>
                                 </td>

@@ -1,17 +1,30 @@
 import { Page, Text, Document, StyleSheet, View ,Image} from '@react-pdf/renderer';
-import {useDispatch,useSelector} from "react-redux";
+// import {useDispatch,useSelector} from "react-redux";
 import logo from "../../images/logo_icosnet_sgs.png"
 import stamp from "../../images/stamp-removebg-preview.png"
-import { useEffect} from 'react';
+import { useEffect,useState} from 'react';
 
-const Facture_Vente_PDF = ({id}) => {
+const Avoires_PDF = ({id}) => {
 
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(Get_Fac(id));
-    // }, [dispatch,id]);
-    // const Facture = useSelector(state => state.FacturesList.FactureList);
-    //     //dispatch(getAll("http://127.0.0.1:8000/api/factures/"));
+  const [Data, setData] = useState([]);
+
+  useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    console.log(id)
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setData(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+        }) //set  the data
+
+        .catch((error) => console.error(error));
+    }, []);
 
     const styles = StyleSheet.create({
         body: {
@@ -231,4 +244,4 @@ const Facture_Vente_PDF = ({id}) => {
     );
 }
 
-export default Facture_Vente_PDF;
+export default Avoires_PDF;
