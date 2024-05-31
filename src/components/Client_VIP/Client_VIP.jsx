@@ -4,22 +4,46 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input} from '../index'
+import {Menu,Search_input,Style} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
+import { CSVLink } from "react-csv";
 
 const Client = () => {
 
     const [Search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState(null);
+    const [Rapport,setRapport] = useState([])
 
     const dispatch = useDispatch();
-    const Clients = useSelector(state => state.ClientList.ClientsList);
-    const isLoading = useSelector(state => state.ClientList.isLoading);
+    const Clients = useSelector(state => state.Client_VIP_List.ClientsVIPList);
+    const isLoading = useSelector(state => state.Client_VIP_List.isLoading);
 
     useEffect(()=>{
-        dispatch(getAll("http://127.0.0.1:8000/api/clients/"));
+        dispatch(getAll("http://127.0.0.1:8000/api/clients-vip/"));
         //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
+
+    useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            redirect: "follow"
+        };
+        // console.log(id)
+        fetch("http://127.0.0.1:8000/api/clients/rapport/", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (Array.isArray(result)) {
+                    setRapport(result);
+                } else {
+                    setRapport([result]);
+                }
+                console.log(result)
+            }) //set the data
+            .catch((error) => {
+                console.error(error);
+                setRapport([]);
+            });
+    }, []);
 
     const handleSort = (key) => {
         if (sortBy === key) {
@@ -50,13 +74,22 @@ const Client = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <button className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
-                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
-                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
+                <Style>
+                <CSVLink data={Rapport} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[70%]
+                                    md:text-sm md:ml-[71%] lg:text-2xl lg:ml-[70%]
+                                    2xl:text-3xl
+                                    '>Rapport
+                </CSVLink>
+                <button className='py-1 px-2 border-none ml-2  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs
+                                    md:text-sm  lg:text-2xl
                                     2xl:text-3xl
                                     '>
                     <a href="/AddClient" className='font-semibold'>Ajouter +</a>
                 </button>
+
+                </Style>
 
                 <table className="ml-5 sm:mr-4 xl:mr-8">
                     <thead className='bg-[--statistic-color] text-white font-semibold

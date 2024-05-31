@@ -20,7 +20,7 @@ const ClientVIPSlice = createSlice({
                 state.error=null;
             })
             .addCase(getAll.fulfilled, (state, action) => {
-                state.ClientVIPsList = action.payload;
+                state.ClientsVIPList = action.payload;
                 state.isLoading=false;
                 state.error=null;
             })
@@ -36,11 +36,11 @@ const ClientVIPSlice = createSlice({
             })
             .addCase(addClientVIP.fulfilled, (state,action) => {
                 state.isLoading = false
-                state.ClientVIPsList=[]
+                state.ClientsVIPList=[]
             })
             .addCase(addClientVIP.rejected,(state,action) => {
                 state.isLoading=false
-                state.ClientVIPsList=[]
+                state.ClientsVIPList=[]
                 state.error = action.error.message
             })
     }

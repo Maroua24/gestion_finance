@@ -12,6 +12,7 @@ const Client = () => {
 
     const [Search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState(null);
+    const [Rapport,setRapport] = useState([])
 
     const dispatch = useDispatch();
     const Clients = useSelector(state => state.ClientList.ClientsList);
@@ -21,6 +22,29 @@ const Client = () => {
         //dispatch(getAll("http://127.0.0.1:8000/api/clients/"));
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
+
+    useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            redirect: "follow"
+        };
+        // console.log(id)
+        fetch("http://127.0.0.1:8000/api/clients/rapport/", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (Array.isArray(result)) {
+                    setRapport(result);
+                } else {
+                    setRapport([result]);
+                }
+                console.log(result)
+            }) //set the data
+            .catch((error) => {
+                console.error(error);
+                setRapport([]);
+            });
+    }, []);
+
 
     const handleSort = (key) => {
         if (sortBy === key) {
@@ -50,20 +74,22 @@ const Client = () => {
                 <Search_input
                     onChange={(e) => setSearch(e.target.value)}
                 />
-                <button className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
-                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
-                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
+                <Style>
+                <CSVLink data={Rapport} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[70%]
+                                    md:text-sm md:ml-[71%] lg:text-2xl lg:ml-[70%]
+                                    2xl:text-3xl
+                                    '>Rapport
+                </CSVLink>
+                <button className='py-1 px-2 border-none ml-2  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs
+                                    md:text-sm  lg:text-2xl
                                     2xl:text-3xl
                                     '>
                     <a href="/AddClient" className='font-semibold'>Ajouter +</a>
                 </button>
 
-                <CSVLink data={Clients} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
-                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
-                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
-                                    2xl:text-3xl
-                                    '>EXEL
-                </CSVLink>
+                </Style>
                 <table className="ml-5 sm:mr-4 xl:mr-8">
                     <thead className='bg-[--statistic-color] text-white font-semibold
                                         sm:text-[10px] md:text-xl lg:text-2xl

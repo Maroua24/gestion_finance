@@ -16,6 +16,8 @@ const Facture_vente = () => {
 
     const [Search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState(null);
+    const [Rapport,setRapport] = useState([])
+
 
     const dispatch = useDispatch();
     const FactureVenteList = useSelector(state => state.FactureVenteList.FactureVenteList);
@@ -25,6 +27,28 @@ const Facture_vente = () => {
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
         //dispatch(getAll("http://127.0.0.1:8000/api/factures_vente/"));
     },[dispatch]);
+
+    useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            redirect: "follow"
+        };
+        // console.log(id)
+        fetch("http://127.0.0.1:8000/api/facture_vente/rapport/", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (Array.isArray(result)) {
+                    setRapport(result);
+                } else {
+                    setRapport([result]);
+                }
+                console.log(result)
+            }) //set the data
+            .catch((error) => {
+                console.error(error);
+                setRapport([]);
+            });
+    }, []);
 
     const viewPDF = async  (id) => {
         console.log("###################"+id)
@@ -50,12 +74,12 @@ const Facture_vente = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-            <CSVLink data={FactureVenteList} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                <CSVLink data={Rapport} className='py-1 px-2 border-none rounded-md bg-[--statistic-color] my-3
                                     hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
                                     md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
                                     2xl:text-3xl
-                                    '>EXEL
-            </CSVLink>
+                                    '>Rapport
+                </CSVLink>
 
 
                 <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">
