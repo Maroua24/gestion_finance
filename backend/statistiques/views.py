@@ -25,38 +25,69 @@ from io import BytesIO
 class ClientStatistiques(APIView):
     def get(self, request):
         total_clients = Client.objects.count()
-        serializer = ClientStatistiquesSerializer({'total_clients': total_clients})
+        serializer = ClientStatistiquesSerializer({ total_clients})
+        return Response(serializer.data)
+    
+class ClientVipStatistiques(APIView):
+    def get(self, request):
+        total_clients_vip = Client.objects.filter(est_vip=True).count()
+        serializer = ClientStatistiquesSerializer({ total_clients_vip})
         return Response(serializer.data)
 
 class FactureStatistiques(APIView):
     def get(self, request):
         total_factures = Facture.objects.count()
-        serializer = FactureStatistiquesSerializer({'total_factures': total_factures})
+        serializer = FactureStatistiquesSerializer({ total_factures})
         return Response(serializer.data)
 
 class FactureVenteStatistiques(APIView):
     def get(self, request):
         total_factures_vente = Facture.objects.filter(type_facture='Vente').count()
-        serializer = FactureVenteStatistiquesSerializer({'total_factures_vente': total_factures_vente})
+        serializer = FactureVenteStatistiquesSerializer({total_factures_vente})
         return Response(serializer.data)
 
 class FactureServiceStatistiques(APIView):
     def get(self, request):
         total_factures_service = Facture.objects.filter(type_facture='Service').count()
-        serializer = FactureServiceStatistiquesSerializer({'total_factures_service': total_factures_service})
+        serializer = FactureServiceStatistiquesSerializer({ total_factures_service})
+        return Response(serializer.data)
+
+class PaiementCompletStatistiques(APIView):
+    def get(self, request):
+        total_paiements_complet = Paiement.objects.filter(etat='complet').count()
+        serializer = PaiementStatistiqueSerializer({ total_paiements_complet}) 
+        return Response(serializer.data)
+
+class PaiementPartielStatistiques(APIView):
+    def get(self, request):
+        total_paiements_partiel = Paiement.objects.filter(etat='partiel').count()
+        serializer = PaiementStatistiqueSerializer({ total_paiements_partiel})
         return Response(serializer.data)
 
 class PaiementStatistiques(APIView):
     def get(self, request):
         total_paiements = Paiement.objects.count()
-        serializer = PaiementStatistiqueSerializer({'total_paiements': total_paiements})
+        serializer = PaiementStatistiqueSerializer({total_paiements})
         return Response(serializer.data)
     
 class AvoirStatistiques(APIView):
     def get(self, request):
         total_avoirs = Avoir.objects.count()
-        serializer = AvoirStatistiquesSerializer({'total_avoirs': total_avoirs})
+        serializer = AvoirStatistiquesSerializer({ total_avoirs})
         return Response(serializer.data)
+    
+class AvoirServiceStatistiques(APIView):
+    def get(self, request):
+        total_avoirs_service = Avoir.objects.filter(type_facture='Service').count()
+        serializer = AvoirStatistiquesSerializer({ total_avoirs_service})
+        return Response(serializer.data)
+
+class AvoirVenteStatistiques(APIView):
+    def get(self, request):
+        total_avoirs_vente = Avoir.objects.filter(type_facture='Vente').count()
+        serializer = AvoirStatistiquesSerializer({ total_avoirs_vente})
+        return Response(serializer.data)    
+
 
 
 # class GenererRapportPDF(View):
