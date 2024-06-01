@@ -32,7 +32,7 @@ const Avoires_vente = () => {
         redirect: "follow"
     };
     // console.log(id)
-    fetch("http://127.0.0.1:8000/api/facture_service/rapport/", requestOptions)
+    fetch("http://127.0.0.1:8000/api/avoirs_vente/rapport/", requestOptions)
         .then((response) => response.json())
         .then((result) => {
             if (Array.isArray(result)) {
