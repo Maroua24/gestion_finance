@@ -131,7 +131,7 @@ const Client = () => {
                                     .map((client) => (
                                         <tr key={client.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                             <td className="pl-6">{client.id}</td>
-                                            {/* <td className="p-3 ">
+                                            <td className="p-3 ">
                                                 {highlightMatch(client.nom, Search)}
                                             </td>
                                             <td>
@@ -142,11 +142,7 @@ const Client = () => {
                                             </td>
                                             <td>
                                                 {highlightMatch(client.pays, Search)}
-                                            </td> */}
-                                            <td>ABC Company  </td>
-                                            <td>ABC</td>
-                                            <td>info@abccompany.com</td>
-                                            <td>New York</td>
+                                            </td>
                                             <td>
                                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl

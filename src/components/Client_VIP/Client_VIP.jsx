@@ -19,8 +19,8 @@ const Client = () => {
     const isLoading = useSelector(state => state.Client_VIP_List.isLoading);
 
     useEffect(()=>{
-        dispatch(getAll("http://127.0.0.1:8000/api/clients-vip/"));
-        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        //dispatch(getAll("http://127.0.0.1:8000/api/clients-vip/"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
 
     useEffect(() => {

@@ -8,81 +8,85 @@ const EditClient = () => {
 
     const { id } = useParams();
     const ClientId = parseInt(id);
-    const client = useSelector(state => state.PaimentList.PaimentList.find(c => c.id === ClientId));
+    const client = useSelector(state => state.ClientList.ClientsList.find(c => c.id === ClientId));
     const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState({
-        Categorie_de_compte: '',
-            Raison_sociale: '',
-            Sigle: '',
-            Code_TVA: '',
-            Nature_du_compte: '',
-            NIF: '',
-            NIS: '',
-            Registre_de_commerce: '',
-            Article_imposition: '',
-            Devise: '',
-            Rue: '',
-            Ville: '',
-            Region: '',
-            Type_de_region: '',
-            Code_postal: '',
-            Pays: '',
-            Telephone: '',
-            email: '',
-            Secteur_activite: '',
-            Condition_de_paiement: '',
-            Nom: '',
-            Prenom: '',
-            Fonction: '',
-            Type_de_client: '',
-            Fax: '',
-            Dossier_valide: '',
-            valid: '',
+        categorie_compte: client ? client.categorie_compte : '',
+        raison_sociale: client ? client.raison_sociale : '',
+        sigle: client ? client.sigle : '',
+        code_tva: client ? client.code_tva : '',
+        nature_compte: client ? client.nature_compte : '',
+        nif: client ? client.nif : '',
+        nis: client ? client.nis : '',
+        registre_commerce: client ? client.registre_commerce : '',
+        article_imposition: client ? client.article_imposition : '',
+        devise: client ? client.devise : '',
+        rue: client ? client.rue : '',
+        ville: client ? client.ville : '',
+        region: client ? client.region : '',
+        type_de_region: client ? client.type_de_region : '',
+        code_postale: client ? client.code_postale : '',
+        pays: client ? client.pays : '',
+        telephone: client ? client.telephone : '',
+        email: client ? client.email : '',
+        secteur_activite: client ? client.secteur_activite : '',
+        condition_paiement: client ? client.condition_paiement : '',
+        nom: client ? client.nom : '',
+        prenom: client ? client.prenom : '',
+        fonction: client ? client.fonction : '',
+        type_client: client ? client.type_client : '',
+        fax: client ? client.fax : '',
+        dossier_valide: client ? client.dossier_valide : '',
+        statut: client ? client.statut : '',
+        est_vip: client ? client.est_vip : '',
     });
 
     useEffect(() => {
         if (client) {
+            console.log("Client data:", client);
             setInputValue({
-                Categorie_de_compte: client.Categorie_de_compte,
-                Raison_sociale: client.Raison_sociale,
-                Sigle: client.Sigle,
-                Code_TVA: client.Code_TVA,
-                Nature_du_compte: client.Nature_du_compte,
-                NIF: client.NIF,
-                NIS: client.NIS,
-                Registre_de_commerce: client.Registre_de_commerce,
-                Article_imposition: client.Article_imposition,
-                Devise: client.Devise,
-                Rue: client.Rue,
-                Ville: client.Ville,
-                Region: client.Region,
-                Type_de_region: client.Type_de_region,
-                Code_postal: client.Code_postal,
-                Pays: client.Pays,
-                Telephone: client.Telephone,
+                categorie_compte: client.categorie_compte,
+                raison_sociale: client.raison_sociale,
+                sigle: client.sigle,
+                code_tva: client.code_tva,
+                nature_compte: client.nature_compte,
+                nif: client.nif,
+                nis: client.nis,
+                registre_commerce: client.registre_commerce,
+                article_imposition: client.article_imposition,
+                devise: client.devise,
+                rue: client.rue,
+                ville: client.ville,
+                region: client.region,
+                type_de_region: client.type_de_region,
+                code_postale: client.code_postale,
+                pays: client.pays,
+                telephone: client.telephone,
                 email: client.email,
-                Secteur_activite: client.Secteur_activite,
-                Condition_de_paiement: client.Condition_de_paiement,
-                Nom: client.Nom,
-                Prenom: client.Prenom,
-                Fonction: client.Fonction,
-                Type_de_client: client.Type_de_client,
-                Fax: client.Fax,
-                Dossier_valide: client.Dossier_valide,
-                valid: client.valid
+                secteur_activite: client.secteur_activite,
+                condition_paiement: client.condition_paiement,
+                nom: client.nom,
+                prenom: client.prenom,
+                fonction: client.fonction,
+                type_client: client.type_client,
+                fax: client.fax,
+                dossier_valide: client.dossier_valide,
+                statut: client.statut,
+                est_vip: client.est_vip,
             });
         }
     }, [client]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setInputValue({ ...inputValue, [name]: value });
+        // const { name, value } = e.target;
+        setInputValue({ ...inputValue, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(UpdateClient({ id: ClientId, ...inputValue }));
+        // console.log(inputValue)
+        dispatch(UpdateClient({ClientId, inputValue} ));
     };
 
     return (
@@ -91,58 +95,59 @@ const EditClient = () => {
         <form onSubmit={handleSubmit}  method="post" action="{% url 'formulaire_client' %}">
                 <h1 className="text-[--statistic-color] text-3xl m-3">Modifier les informations du client</h1>
                 <div style={{ display: "block" }}>
-                    <Select name="Categorie_de_compte" value_1="C" value_2="S" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.Categorie_de_compte} onChange={handleChange} />
+                <Select label="Categorie du compte" name="categorie_compte" value_1="Client" value_2="Supplier" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.categorie_compte} onChange={handleChange}/>
 
                     <Style>
-                        <Input label="Raison sociale:" name="Raison_sociale" type="text" id="Raison_sociale" value={inputValue.Raison_sociale}  onChange={handleChange} />
-                        <Input label="Sigle:" name="Sigle" type="text" id="Sigle" value={inputValue.Sigle} onChange={handleChange} />
+                        <Input label="Raison sociale:" name="raison_sociale" type="text" id="raison_sociale" value={inputValue.raison_sociale}  onChange={handleChange} />
+                        <Input label="Sigle:" name="sigle" type="text" id="sigle" value={inputValue.sigle} onChange={handleChange} />
                     </Style>
 
-                    <Input label="Code TVA:" name="Code_TVA" type="text" id="Code_TVA"  value={inputValue.Code_TVA} onChange={handleChange} />
-                    <Input label="Nature du compte:" name="Nature_du_compte" type="text" id="Nature_du_compte"  value={inputValue.Nature_du_compte} onChange={handleChange} />
+                    <Input label="Code TVA:" name="code_tva" type="text" id="code_tva"  value={inputValue.code_tva} onChange={handleChange} />
+                    <Input label="Nature du compte:" name="nature_compte" type="text" id="nature_compte"  value={inputValue.nature_compte} onChange={handleChange} />
 
                     <Style>
-                        <Input label="NIF:" name="NIF" type="text" id="NIF"  value={inputValue.NIF} onChange={handleChange} />
-                        <Input label="NIS:" name="NIS" type="text" id="NIS" value={inputValue.NIS} onChange={handleChange} />
+                        <Input label="NIF:" name="nif" type="text" id="nif"  value={inputValue.nif} onChange={handleChange} />
+                        <Input label="NIS:" name="nis" type="text" id="nis" value={inputValue.nis} onChange={handleChange} />
                     </Style>
 
-                    <Input label="Registre de commerce:" name="Registre de commerce" type="text" id="Registre_de_commerce"  value={inputValue.Registre_de_commerce} onChange={handleChange} />
-                    <Input label="Article d'imposition:" name="Article_dimposition" type="text" id="Article_imposition" value={inputValue.Article_dimposition}  onChange={handleChange} />
-                    <Input label="Devise:" name="Devise" type="text" id="Devise" value={inputValue.Devise} onChange={handleChange} />
+                    <Input label="Registre de commerce:" name="registre_commerce" type="text" id="registre_commerce"  value={inputValue.registre_commerce} onChange={handleChange} />
+                    <Input label="Article d'imposition:" name="article_imposition" type="text" id="article_imposition" value={inputValue.article_imposition}  onChange={handleChange} />
+                    <Input label="Devise:" name="devise" type="text" id="devise" value={inputValue.devise} onChange={handleChange} />
 
                     <Style>
-                        <Input label="Rue:" name="Rue" type="text" id="Rue" value={inputValue.Rue}  onChange={handleChange} />
-                        <Input label="Ville:" name="Ville" type="text" id="Ville" value={inputValue.Ville} onChange={handleChange} />
-                    </Style>
-
-                    <Style>
-                        <Input label="Region:" name="Region" type="text" id="Region" value={inputValue.Region} onChange={handleChange} />
-                        <Input label="Type de region:" name="Type_de_region" type="text" id="Type_de_region" value={inputValue.Type_de_region} onChange={handleChange} />
+                        <Input label="Rue:" name="rue" type="text" id="rue" value={inputValue.rue}  onChange={handleChange} />
+                        <Input label="Ville:" name="ville" type="text" id="ville" value={inputValue.ville} onChange={handleChange} />
                     </Style>
 
                     <Style>
-                        <Input label="Code postal:" name="Code_postal" type="text" id="Code_postal" value={inputValue.Code_postal} onChange={handleChange} />
-                        <Input label="Pays:" name="Pays" type="text" id="Pays" value={inputValue.Pays} onChange={handleChange} />
+                        <Input label="Region:" name="region" type="text" id="region" value={inputValue.region} onChange={handleChange} />
+                        <Input label="Type de region:" name="type_de_region" type="text" id="type_de_region" value={inputValue.type_de_region} onChange={handleChange} />
                     </Style>
-
-                        <Input label="Telephone:" name="Telephone" type="text" id="Telephone" value={inputValue.Telephone} onChange={handleChange} />
-                        <Input label="Email:" name="email" type="email" id="email" value={inputValue.inputValue.email} onChange={handleChange} />
-
-                        <Input label="Secteur d'activite:" name="Secteur_activite" type="text" id="Secteur_activite" value={inputValue.Secteur_dactivite}  onChange={handleChange} />
-                        <Input label="Condition de paiement:" name="Condition_de_paiement" type="text" id="Condition_de_paiement" value={inputValue.Condition_de_paiement} onChange={handleChange} />
-
-                    <Input label="Nom:" name="Nom" type="text" id="Nom" value={inputValue.Nom} onChange={handleChange} />
-                    <Input label="Prenom:" name="Prenom" type="text" id="Prenom" value={inputValue.Prenom} onChange={handleChange} />
 
                     <Style>
-                        <Input label="Fonction:" name="Fonction" type="text" id="Fonction" value={inputValue.Fonction} onChange={handleChange} />
-                        <Input label="Type de client:" name="Type_de_client" type="text" id="Type_de_client" value={inputValue.Type_de_client} onChange={handleChange} />
+                        <Input label="Code postal:" name="code_postale" type="text" id="code_postale" value={inputValue.code_postale} onChange={handleChange} />
+                        <Input label="Pays:" name="pays" type="text" id="pays" value={inputValue.pays} onChange={handleChange} />
                     </Style>
 
-                    <Input label="Fax:" name="Fax" type="text" id="Fax" value={inputValue.Fax} onChange={handleChange} />
+                        <Input label="Telephone:" name="telephone" type="text" id="telephone" value={inputValue.telephone} onChange={handleChange} />
+                        <Input label="Email:" name="email" type="email" id="email" value={inputValue.email} onChange={handleChange} />
 
-                        <Select label="Dossier valide:" name="Dossier_valide" value_1="Y" value_2="N" choix1="oui" choix2="Non" id="Dossier_valide" value={inputValue.Dossier_valide} onChange={handleChange} />
-                        <Select label="Status:" name="Status" value_1="A" value_2="I" choix1="Actif" choix2="Inactif" id="status" value={inputValue.Status} onChange={handleChange} />
+                        <Input label="Secteur d'activite:" name="secteur_activite" type="text" id="secteur_activite" value={inputValue.secteur_activite}  onChange={handleChange} />
+                        <Input label="Condition de paiement:" name="condition_paiement" type="text" id="condition_paiement" value={inputValue.condition_paiement} onChange={handleChange} />
+
+                    <Input label="Nom:" name="nom" type="text" id="nom" value={inputValue.nom} onChange={handleChange} />
+                    <Input label="Prenom:" name="prenom" type="text" id="prenom" value={inputValue.prenom} onChange={handleChange} />
+
+                    <Style>
+                        <Input label="Fonction:" name="fonction" type="text" id="fonction" value={inputValue.fonction} onChange={handleChange} />
+                        <Input label="Type de client:" name="type_client" type="text" id="type_client" value={inputValue.type_client} onChange={handleChange} />
+                    </Style>
+
+                    <Input label="Fax:" name="fax" type="text" id="fax" value={inputValue.fax} onChange={handleChange} />
+
+                    <Select label="Dossier valide:" name="dossier_valide" value_1="Valide" value_2="Non valide" choix1="oui" choix2="Non" id="dossier_valide" value={inputValue.dossier_valide} onChange={handleChange}/>
+                        <Select label="Status:" name="status" value_1="Active" value_2="Inactive" choix1="Active" choix2="Inactive" id="status" value={inputValue.statut} onChange={handleChange}/>
+                        <Select label="VIP" name="est_vip" value_1="False" value_2="True" choix1="Non VIP" choix2="VIP" id="est_vip" value={inputValue.est_vip} onChange={handleChange}/>
                         <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md
                                                         md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                             Envoyer
