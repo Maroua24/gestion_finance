@@ -26,11 +26,12 @@ function Admin() {
     const handleSubmit=(e)=> {
         e.preventDefault();
         dispatch(AddUser(inputValue))
+        console.log(inputValue)
         clearInputValues();
     }
     useEffect(()=>{
-        //dispatch(getAll("http://127.0.0.1:8000/api/users/"));
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/users/"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
     },[dispatch]);
     return (
         <div className='ml-[37%] md:ml-[34%] lg:ml-[31%]'>
@@ -47,7 +48,7 @@ function Admin() {
                 </div>
                 <div className="m-3">
                     <label htmlFor="exampleInputPassword1" className="form-label ">Mot de passe</label>
-                    <input name='website' type="password"
+                    <input name='password' type="password"
                             className="form-control w-full  xl:h-12 xl:text-xl 2xl:h-16 2xl:text-3xl" 
                             id="exampleInputPassword1" placeholder='Mot de passe'
                             value={inputValue.password} onChange={handleInput}/>

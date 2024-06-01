@@ -22,58 +22,58 @@ const ClientInfo = () => {
                 <div className="md:flex">
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="ID : " API={client.id}/>
-                    <Info name="Nom : " API={"ABC company"}/>
-                    <Info name="Prenom : " API={"ABC"}/>
-                    <Info name="Email : " API={"info@abccompany.com"}/>
-                    <Info name="Telephone : " API={"098754468"}/>
+                    <Info name="Nom : " API={client.nom}/>
+                    <Info name="Prenom : " API={client.prenom}/>
+                    <Info name="Email : " API={client.email}/>
+                    <Info name="Telephone : " API={client.telephone}/>
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Categorie de compte : " API={"Client"}/>
-                    <Info name="Nature du compte : " API={"Client"}/>
-                    <Info name="Raison sociale : " API={"Société ABC"}/>
-                    <Info name="Registre de commerce : " API={"RC12345678"}/>
+                    <Info name="Categorie de compte : " API={client.categorie_compte}/>
+                    <Info name="Nature du compte : " API={client.nature_compte}/>
+                    <Info name="Raison sociale : " API={client.raison_sociale}/>
+                    <Info name="Registre de commerce : " API={client.registre_commerce}/>
                 </div>
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Sigle : " API={client.email}/>
-                    <Info name="Code TVA : " API={client.website}/>
-                    <Info name="NIF : " API={client.company.name}/>
-                    <Info name="NIS : " API={client.company.catchPhrase}/>
-                </div>
-
-                <div className="md:flex">
-                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Article imposition : " API={client.id}/>
-                    <Info name="Devise : " API={client.name}/>
-                    <Info name="Code postal : " API={client.company.name}/>
-                    <Info name="Secteur activite : " API={client.name}/>
-                    <Info name="Condition de paiement : " API={client.username}/>
-                </div>
-
-                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Rue : " API={client.username}/>
-                    <Info name="Ville : " API={client.email}/>
-                    <Info name="Region : " API={client.website}/>
-                    <Info name="Type de region : " API={client.phone}/>
-                    <Info name="Pays : " API={client.company.catchPhrase}/>
-                </div>
+                    <Info name="Sigle : " API={client.sigle}/>
+                    <Info name="Code TVA : " API={client.code_tva}/>
+                    <Info name="NIF : " API={client.company.nif}/>
+                    <Info name="NIS : " API={client.nis}/>
                 </div>
 
                 <div className="md:flex">
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Sigle : " API={client.email}/>
-                    <Info name="Cre le : " API={client.website}/>
-                    <Info name="Cre par : " API={client.phone}/>
-                    <Info name="Fonction : " API={client.company.name}/>
+                    <Info name="Article imposition : " API={client.article_imposition}/>
+                    <Info name="Devise : " API={client.devise}/>
+                    <Info name="Code postal : " API={client.code_postale}/>
+                    <Info name="Secteur activite : " API={client.secteur_activite}/>
+                    <Info name="Condition de paiement : " API={client.condition_paiement}/>
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Type de client : " API={client.website}/>
-                    <Info name="Fax : " API={client.phone}/>
-                    <Info name="Dossier valide : " API={client.company.name}/>
-                    <Info name="valid : " API={client.company.catchPhrase}/>
+                    <Info name="Rue : " API={client.rue}/>
+                    <Info name="Ville : " API={client.ville}/>
+                    <Info name="Region : " API={client.region}/>
+                    <Info name="Type de region : " API={client.type_de_region}/>
+                    <Info name="Pays : " API={client.pays}/>
+                </div>
+                </div>
+
+                <div className="md:flex">
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                    <Info name="Sigle : " API={client.sigle}/>
+                    <Info name="Cre le : " API={client.creer_par}/>
+                    <Info name="Cre par : " API={client.cree_le}/>
+                    <Info name="Fonction : " API={client.fonction}/>
+                </div>
+
+                <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
+                    <Info name="Type de client : " API={client.type_client}/>
+                    <Info name="Fax : " API={client.fax}/>
+                    <Info name="Dossier valide : " API={client.dossier_valide}/>
+                    <Info name="VIP : " API={client.est_vip}/>
                 </div>
                 </div>
                 </div>
