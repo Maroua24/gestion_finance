@@ -82,6 +82,7 @@ class PDFFactureView(APIView):
             # Préparation des données
             data = {
                 'id_facture': facture.facture_id,
+                'code_client': facture.client.code_client,
                 'client': facture.client.nom,
                 'raison_sociale' : facture.client.raison_sociale ,
                 'rue': facture.client.rue,

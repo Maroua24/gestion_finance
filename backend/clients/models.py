@@ -18,6 +18,8 @@ class Client(models.Model):
         ('Supplier', 'Supplier'),
     )
 
+
+    code_client = models.CharField(max_length=20, unique=True, editable=False)
     categorie_compte  = models.CharField(max_length=10, choices=categorie)
     raison_sociale = models.CharField(max_length=64)
     sigle = models.CharField(max_length=64)
@@ -48,6 +50,24 @@ class Client(models.Model):
     statut = models.CharField(max_length=10, choices=etat_statut)
     est_vip = models.BooleanField(default=False) 
     creer_par = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, blank=True , related_name='client')
+
+
+    def generate_code(self):
+        last_invoice_number = self.get_last_invoice_number() + 1
+        prefix = 'C'
+        return f"{prefix}{last_invoice_number:04d}"
+
+    @classmethod
+    def get_last_invoice_number(cls):
+        last_invoice = cls.objects.order_by('-code_client').first()
+        if last_invoice and last_invoice.code_client.startswith('C'):
+            return int(last_invoice.code_client[1:])
+        return 0
+
+    def save(self, *args, **kwargs):
+        if not self.code_client:
+            self.code_client = self.generate_code()
+        super().save(*args, **kwargs)
 
     class Meta: 
         verbose_name = "client"
