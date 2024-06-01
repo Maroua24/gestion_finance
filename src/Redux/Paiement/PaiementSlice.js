@@ -28,6 +28,7 @@ const PaimentSlice = createSlice({
                 state.isLoading=false;
                 state.error=action?.error?.message;
             })
+        // Add payment
         builder
             .addCase(addPaiement.pending, state => {
                 state.isLoading = true

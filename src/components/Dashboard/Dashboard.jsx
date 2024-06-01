@@ -4,6 +4,13 @@ import { useEffect,useState } from 'react';
 const Dashboard = () => {
 const [FactureVente, setFactureVente] = useState(null);
 const [FactureService, setFactureService] = useState(null);
+const [AvoiresVente, setAvoiresVente] = useState(null);
+const [AvoiresService, setAvoiresService] = useState(null);
+const [paiement, setpaiement] = useState(null);
+const [paiementComplet, setpaiementComplet] = useState(null);
+const [paimentpartiel, setpaimentpartiel] = useState(null);
+const [Client, setClient] = useState(null);
+const [ClientVIP, setClientVIP] = useState();
 useEffect(() => {
     const requestOptions = {
         method: "GET",
@@ -34,6 +41,110 @@ useEffect(() => {
             // console.log(JSON.parse(result).id)
 })} )//set  the data
 
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/avoirs_vente/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setAvoiresVente(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/avoirs_service/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setAvoiresService(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/paiements/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setpaiement(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/paiements_complet/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setpaiementComplet(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/paiements_partiel/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setpaimentpartiel(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/clients/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setClient(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/clients/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setClientVIP(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
     return (
         <>
         <div className='flex flex-wrap h-200'>
@@ -44,10 +155,29 @@ useEffect(() => {
             />
 
             <PieChart_Card title="Avoires"
-                Key_name1="Nombre des Avoirs vente" Key_value1={6}
-                Key_name2="Nombre des Avoirs services" Key_value2={27}
+                Key_name1="Nombre des Avoirs vente" Key_value1={AvoiresVente}
+                Key_name2="Nombre des Avoirs services" Key_value2={AvoiresService}
             />
 
+
+            <StraightPieChart_Card title="Paiement"
+                Key_name1="Nombre de paiement " Key_value1={paiement}
+                Key_name3="Nombre de paiement complet" Key_value3={paiementComplet}
+                Key_name4="Nombre de paiement partiel" Key_value4={paimentpartiel}
+            />
+
+            <PieChart_Card title="Client"
+                Key_name1="Nombre des client" Key_value1={Client}
+                Key_name2="Nombre des client VIP" Key_value2={ClientVIP}
+            />
+
+            {/* <BarChart_Card title="Paiement"
+                Key_name1="Nombre de paiement par autre" Key_value1={8}
+                Key_name2="Nombre de paiement par cheque" Key_value2={8}
+                Key_name3="Nombre de paiement par CIB" Key_value3={0}
+                Key_name4="Nombre de paiement par espece" Key_value4={7}
+                Key_name5="Nombre de paiement par virement" Key_value5={8}
+            /> */}
 
             {/* <StraightPieChart_Card title="Client VIP"
                 Key_name1="Nombre de Client VIP" Key_value1={6}
@@ -62,20 +192,7 @@ useEffect(() => {
                 Key_name3="Nombre de date a Suspendre" Key_value3={0}
             /> */}
 
-            <StraightPieChart_Card title="Paiement"
-                Key_name1="Nombre de paiement " Key_value1={69}
-                Key_name2="Nombre de paiement annule" Key_value2={4}
-                Key_name3="Nombre de paiement complet" Key_value3={6}
-                Key_name4="Nombre de paiement partie" Key_value4={7}
-            />
 
-            <BarChart_Card title="Paiement"
-                Key_name1="Nombre de paiement par autre" Key_value1={8}
-                Key_name2="Nombre de paiement par cheque" Key_value2={8}
-                Key_name3="Nombre de paiement par CIB" Key_value3={0}
-                Key_name4="Nombre de paiement par espece" Key_value4={7}
-                Key_name5="Nombre de paiement par virement" Key_value5={8}
-            />
 
             {/* <TowLevelPieChart_Card title="Paiement"
                 Key_name1="Nombre de paiement proformat" Key_value1={0}

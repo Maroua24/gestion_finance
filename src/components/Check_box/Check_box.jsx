@@ -8,7 +8,7 @@ function Check_box(props) {
             type="radio"
             id="flexRadioDefault1"
             name={props.name}
-            value={props.choice}
+            value={props.value}
             onChange={props.onChange}/>
             <label className="form-check-label text-xs
                             md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"

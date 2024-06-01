@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 import Cookies from 'js-cookie';
 
-export const addFact = createAsyncThunk('posts/addClient',async (values) => {
+export const addFact = createAsyncThunk('posts/addFact',async (values) => {
     const token = Cookies.get('csrftoken');
     return fetch("http://127.0.0.1:8000/api/factures/",{method:"POST",
         headers:{

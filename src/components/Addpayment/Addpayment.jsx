@@ -1,8 +1,8 @@
-import {Input ,Menu,Style,Check_box,Type_Banque,Validation} from "../index"
+import {Input ,Menu,Style,Check_box,Type_Banque,Validation,Select} from "../index"
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-
+import {addPaiement} from '../../Redux/API/Paiement_API'
 
 
 const Add_payment = () => {
@@ -13,36 +13,54 @@ const Add_payment = () => {
 
     const [PaymentMode, setPaymentMode] = useState('');
     const [errors,setErrors] = useState({})
+    const [selectedBank1, setSelectedBank1] = useState('');
+    const [selectedBank2, setSelectedBank2] = useState('');
+    const [selectedBank3, setSelectedBank3] = useState('');
+
     const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState({
-        Numero_du_cheque: '',
-        Virement: '',
-        Numero_carte_CIB: '',
+        numero_cheque: '',
+        virement: '',
+        numero_carte_cib: '',
         Preciser: '',
         commentaire: '',
         Montant_encaissenment: '',
         Montant_de_reglement: '',
-        Etat: ''
+        Etat: '',
+        cib:'',
+        preciser:'',
     });
 
     const [checkBox, setCheckBox] = useState({
+        etat:'Complet',
         Avance: '',
-        Timbre: '',
+        payer_timbre: '',
         Operations: '',
         AvanceStock: '',
-        Devise: ''
+        mode_reglement:'',
+        banque1: '',
+        banque2: '',
+        banque3: '',
     })
     const clearInputValues = () => {
         setInputValue({
-            Numero_du_cheque: '',
-            Virement: '',
-            Numero_carte_CIB: '',
+            numero_cheque: '',
+            virement: '',
+            numero_carte_cib: '',
             Preciser: '',
             commentaire: '',
             Montant_encaissenment: '',
             Montant_de_reglement: '',
-            Etat: ''
+            Etat: '',
+            cib:'',
+            preciser:'',
+            etat:'Complet',
+            Avance: '',
+            Timbre: '',
+            Operations: '',
+            AvanceStock: '',
+            mode_reglement:'',
         });
     };
     const handleInput=(e) => {
@@ -52,15 +70,27 @@ const Add_payment = () => {
         setCheckBox({...checkBox,[e.target.name]: e.target.value})
         setPaymentMode(e.target.value);
     }
+    const handleBankChange1 = (bank) => {
+        setInputValue({ ...checkBox, banque1: bank });
+    };
+
+    const handleBankChange2 = (bank) => {
+        setInputValue({ ...checkBox, banque2: bank });
+    };
+
+    const handleBankChange3 = (bank) => {
+        setInputValue({ ...checkBox, banque3: bank });
+    };
     const handleSubmit=(e)=> {
         e.preventDefault();
         const validationErrors = Validation(inputValue);
         setErrors(validationErrors);
         if (Object.keys(validationErrors).length === 0) {
-            // dispatch(addClient(inputValue));
+            dispatch(addPaiement(inputValue));
             clearInputValues();
         }
         console.log(checkBox)
+        console.log(inputValue)
     }
     // const handlePaymentMode = (event) => {
     //     setPaymentMode(event.target.value);
@@ -106,6 +136,7 @@ const Add_payment = () => {
                             value={client.id}
                 />
             </div>
+            <Select label="Type de paiement:" name="etat" value_1="Complet" value_2="Partiel" choix1="Complet" choix2="Partiel" id="etat" value={inputValue.etat} onChange={handleInput}/>
 
                     <div className="ml-6 mt-8">
                         <Style>
@@ -116,8 +147,8 @@ const Add_payment = () => {
                                 <p className="text-red-500 sm:mr-[95px] md:mr-[137px] lg:mr-[150px] xl:mr-[177px] 2xl:mr-[215px]">*</p>
                             </Style>
                             <div>
-                                <Check_box choice="Oui" name="Avance" onChange={handleCheckbox}/>
-                                <Check_box choice="Non" name="Avance" onChange={handleCheckbox}/>
+                                <Check_box choice="Oui" name="Avance" value='True' onChange={handleCheckbox}/>
+                                <Check_box choice="Non" name="Avance" value='False' onChange={handleCheckbox}/>
                             </div>
                         </Style>
                     </div>
@@ -132,15 +163,15 @@ const Add_payment = () => {
                                     <p className="text-red-500 sm:mr-[30px] md:mr-[35px] lg:mr-[40px] xl:mr-[45px] 2xl:mr-[50px]">*</p>
                                 </Style>
                                 <div>
-                                    <Check_box choice="Espece" name="regiement"  onChange={handleCheckbox} />
-                                    <Check_box choice="Cheque" name="regiement"  onChange={handleCheckbox} />
-                                    <Check_box choice="Virement" name="regiement"  onChange={handleCheckbox} />
-                                    <Check_box choice="CIB" name="regiement"  onChange={handleCheckbox} />
-                                    <Check_box choice="Avance" name="regiement"  onChange={handleCheckbox} />
-                                    <Check_box choice="Autre" name="regiement"   onChange={handleCheckbox} />
+                                    <Check_box choice="Espèce" value="Espèce" name="mode_reglement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Chèque" value="Chèque" name="mode_reglement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Virement" value="Virement" name="mode_reglement"  onChange={handleCheckbox} />
+                                    <Check_box choice="CIB" value="CIB" name="mode_reglement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Avance" value="Avance" name="mode_reglement"  onChange={handleCheckbox} />
+                                    <Check_box choice="Autre" value="Autre" name="mode_reglement"   onChange={handleCheckbox} />
                                 </div>
                                 </Style>
-                                {PaymentMode === 'Espece' && (
+                                {PaymentMode === 'Espèce' && (
                                 <Style>
                                     <Style>
                                         <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl ml-7">
@@ -149,31 +180,31 @@ const Add_payment = () => {
                                         <p className="text-red-500 mr-5">*</p>
                                     </Style>
                                     <div>
-                                        <Check_box choice="Oui" name="timbre"/>
-                                        <Check_box choice="Non" name="timbre"/>
+                                        <Check_box choice="Oui" value="True" name="payer_timbre"/>
+                                        <Check_box choice="Non" value="False" name="payer_timbre"/>
                                     </div>
                                 </Style>
                                 )}
-                                {PaymentMode === 'Cheque' && (
+                                {PaymentMode === 'Chèque' && (
                                 <div>
-                                <Type_Banque/>
-                                <Input label="Numero du cheque" name="Numero_du_cheque" type="Number" id="Numero_du_cheque" placeholder="Numero du cheque" value={inputValue.Numero_du_cheque} onChange={handleInput}/>
+                                <Type_Banque onChange={handleBankChange1}/>
+                                <Input label="Numero du cheque" name="numero_cheque" type="Number" id="numero_cheque" placeholder="Numero du cheque" value={inputValue.numero_cheque} onChange={handleInput}/>
                                 </div>
                                 )}
                                 {PaymentMode === 'Virement' && (
                                     <div>
-                                    <Type_Banque/>
-                                    <Input label="Virement" name="Virement" type="Number" id="Virement" placeholder="Virement" value={inputValue.Virement} onChange={handleInput}/>
+                                    <Type_Banque onChange={handleBankChange2}/>
+                                    <Input label="Virement" name="virement" type="Number" id="virement" placeholder="Virement" value={inputValue.virement} onChange={handleInput}/>
                                     </div>
                                 )}
                                 {PaymentMode === 'CIB' && (
                                     <div>
-                                    <Input label="CIB" name="CIB" type="text" id="CIB" placeholder="CIB" value={inputValue.CIB} onChange={handleInput}/>
-                                    <Input label="Numero carte CIB" name="Numero_carte_CIB" type="Number" id="Numero_carte_CIB" placeholder="Numero carte CIB" value={inputValue.Numero_carte_CIB} onChange={handleInput}/>
+                                    <Input label="CIB" name="cib" type="text" id="cib" placeholder="CIB" value={inputValue.cib} onChange={handleInput}/>
+                                    <Input label="Numero carte CIB" name="numero_carte_cib" type="Number" id="numero_carte_cib" placeholder="Numero carte CIB" value={inputValue.numero_carte_cib} onChange={handleInput}/>
                                     </div>
                                 )}
                                 {PaymentMode === 'Autre' && (
-                                    <Input label="Preciser:" name="Preciser" type="text" id="Preciser" placeholder="Preciser" value={inputValue.Preciser} onChange={handleInput}/>
+                                    <Input label="Preciser:" name="preciser" type="text" id="preciser" placeholder="Preciser" value={inputValue.preciser} onChange={handleInput}/>
                                 )}
                             </Style>
                                 <div>
@@ -183,7 +214,7 @@ const Add_payment = () => {
                                     </p>
                                     <p className="text-red-500 mt-3">*</p>
                                     </Style>
-                                    <Type_Banque/>
+                                    <Type_Banque onChange={handleBankChange3}/>
                                 </div>
                                 <div>
 
@@ -263,7 +294,7 @@ const Add_payment = () => {
                         <p className="text-xs md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                             Commentaire:
                         </p>
-                        <textarea name="Commentaire" className="w-full border border-solid border-2 border-outset" value={inputValue.commentaire} >kk</textarea>
+                        <textarea name="commentaire" className="w-full border border-solid border-2 border-outset" value={inputValue.commentaire} ></textarea>
                     </div>
                     <button type="submit" className="text-xs bg-[--card-color] text-[--light-color] border-2 border-outset border-[--card-color] py-1 px-2 m-2 shadow-md
                                                     md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">

@@ -1,6 +1,7 @@
 import {Input,Select,Menu,Validation} from '../index'
 import { useState} from "react";
 import { useDispatch} from "react-redux";
+import {addFact} from '../../Redux/API/Facture_API'
 
 const AddFact = () => {
     const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const AddFact = () => {
         const validationErrors = Validation(inputValue);
         setErrors(validationErrors);
         if (Object.keys(validationErrors).length === 0) {
-            // dispatch(addClient(inputValue));
+            dispatch(addFact(inputValue));
             clearInputValues();
         }
         console.log(inputValue)
