@@ -7,7 +7,12 @@ class PaiementSerializer(serializers.ModelSerializer):
     cree_par = serializers.ReadOnlyField(source='cree_par.username') 
     class Meta:
         model = Paiement
-        fields = ['id_paiement', 'date_paiement', 'facture','cree_par', 'montant', 'montant_partiel', 'est_annule', 'etat', 'mode_reglement', 'devise', 'commentaire']
+        fields = [
+            'id_paiement', 'date_paiement', 'facture', 'cree_par', 'montant', 'montant_partiel', 
+            'est_annule', 'etat', 'mode_reglement', 'devise', 'commentaire', 'payer_timbre', 
+            'veuillez_choisir_banque_cheque', 'numero_cheque', 'veuillez_choisir_banque_virement', 
+            'virement', 'cib', 'numero_carte_cib', 'preciser'
+        ]
         read_only_fields = ['montant', 'montant_partiel', 'mode_reglement', 'devise', 'commentaire']
         extra_kwargs = {
             'est_annule': {'required': True},
