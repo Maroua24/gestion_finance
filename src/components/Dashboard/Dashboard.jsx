@@ -1,13 +1,46 @@
 import {PieChart_Card , StraightPieChart_Card , TowLevelPieChart_Card ,BarChart_Card} from '../index';
+import { useEffect,useState } from 'react';
 
 const Dashboard = () => {
+const [FactureVente, setFactureVente] = useState(null);
+const [FactureService, setFactureService] = useState(null);
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/factures-vente/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setFactureVente(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
+useEffect(() => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+    // console.log(id)
+    fetch(`http://127.0.0.1:8000/api/factures-service/statistiques/`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            result = JSON.parse(result)
+            setFactureService(result);
+            console.log(result)
+            // console.log(JSON.parse(result).id)
+})} )//set  the data
+
     return (
         <>
         <div className='flex flex-wrap h-200'>
 
             <PieChart_Card title="Factures"
-                Key_name1="Nombre de Facture vente" Key_value1={23}
-                Key_name2="Nombre de Facture service" Key_value2={7}
+                Key_name1="Nombre de Facture vente" Key_value1={FactureVente}
+                Key_name2="Nombre de Facture service" Key_value2={FactureService}
             />
 
             <PieChart_Card title="Avoires"
@@ -16,18 +49,18 @@ const Dashboard = () => {
             />
 
 
-            <StraightPieChart_Card title="Client VIP"
+            {/* <StraightPieChart_Card title="Client VIP"
                 Key_name1="Nombre de Client VIP" Key_value1={6}
                 Key_name2="Nombre de Client VIP Actif" Key_value2={9}
                 Key_name3="Nombre de Client VIP Inactif" Key_value3={5}
                 Key_name4="Nombre des Client VIP Bloque" Key_value4={9}
-            />
+            /> */}
 
-            <TowLevelPieChart_Card title="Suspensions"
+            {/* <TowLevelPieChart_Card title="Suspensions"
                 Key_name1="Nombre de toutes les Suspensions" Key_value1={3}
                 Key_name2="Nombre de  Suspensions" Key_value2={0}
                 Key_name3="Nombre de date a Suspendre" Key_value3={0}
-            />
+            /> */}
 
             <StraightPieChart_Card title="Paiement"
                 Key_name1="Nombre de paiement " Key_value1={69}
@@ -44,11 +77,11 @@ const Dashboard = () => {
                 Key_name5="Nombre de paiement par virement" Key_value5={8}
             />
 
-            <TowLevelPieChart_Card title="Paiement"
+            {/* <TowLevelPieChart_Card title="Paiement"
                 Key_name1="Nombre de paiement proformat" Key_value1={0}
                 Key_name2="Nombre de paiement proformat CRM" Key_value2={0}
                 Key_name3="Nombre de paiement proformat Site" Key_value3={0}
-            />
+            /> */}
         </div>
         </>
     )

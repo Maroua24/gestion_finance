@@ -3,7 +3,6 @@ import { FaCircleDollarToSlot } from "react-icons/fa6";
 
 const Nav_Table = (props) => {
     const API = props.API
-    const test = props.API
     return (
         <>
             <table className="w-full">
@@ -27,11 +26,11 @@ const Nav_Table = (props) => {
                                                 <td>{invoice.date_decheance}</td>
                                                 <td>{invoice.non_payée}</td>
                                                 <td>
-                                                    <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                            sm:text-sm md:text-xl lg:text-2xl
-                                                            xl:text-3xl 2xl:text-4xl'>
+                                                    <button className='border-none rounded-lg ml-1 px-1 py-1 bg-[--statistic-color]
+                                                            sm:text-sm md:text-lg lg:text-xl
+                                                            xl:text-2xl 2xl:text-3xl'>
                                                         <Link to={`/Add_payment/${invoice.id}`}>
-                                                            <FaCircleDollarToSlot />
+                                                            Paiement
                                                         </Link>
                                                     </button>
                                                 </td>

@@ -8,19 +8,7 @@ import { useEffect, useState } from 'react';
 
 const Facture_PDF = ({ id }) => {
     const [Data, setData] = useState([]);
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     // dispatch(Get_Fac(id));
-    //     dispatch(Get_Fac(id)).then(response => {
-    //         console.log("icosnet"+response);})
-    // }, []);
-    // useEffect(() => {
-    //     dispatch(getFacById(id));
-    // }, [dispatch, id]);
-    // console.log(getFacById(id))
-    // const Facture = useSelector(state => state.FacturesList.FactureList);
-    // //dispatch(getAll("http://127.0.0.1:8000/api/factures/"));
-    // console.log(Facture)
+
     useEffect(() => {
     const requestOptions = {
         method: "GET",

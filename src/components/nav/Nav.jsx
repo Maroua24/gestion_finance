@@ -128,26 +128,6 @@ const Nav = ({id}) => {
             });
     }, [id]);
 
-    // const id = props.id;
-    // const clientId = parseInt(id);
-
-    // const FactureVenteList = useSelector(state => state.FactureVenteList.FactureVenteList);
-    // const Facture_client = FactureVenteList ? FactureVenteList.filter(invoice => invoice.id === clientId) : [];
-
-    // const FactureImpayeesList = useSelector(state => state.FactureImpayeesList.FactureImpayeesList);
-    // const FactureImpayees = FactureImpayeesList ? FactureImpayeesList.filter(invoice => invoice.id === clientId) : [];
-
-    // const AvoiresList = useSelector(state => state.AvoiresReducerList.AvoiresList);
-    // const clientAvoires = AvoiresList ? AvoiresList.filter(invoice => invoice.id === clientId) : [];
-
-    // const CommandeList = useSelector(state => state.CommandesList.CommandesList);
-    // const clientCommande = CommandeList ? CommandeList.filter(invoice => invoice.id === clientId) : [];
-
-
-    // useEffect(()=>{
-    //     //dispatch(getAll("http://127.0.0.1:8000/api/clients/"));
-    //     dispatch(getAllCommandes());
-    // },[dispatch]);
     return (
         <>
             <table className="w-full">
@@ -179,10 +159,33 @@ const Nav = ({id}) => {
                     <tr>
                         <td colSpan="5">
                         {openTable === 'FactureImpayees' && (
-                            <Nav_Table API={Facture}  />)}
+                            <Nav_Table API={FactureImpayees}  />)}
 
                         {openTable === 'Facturepayees' && (
-                            <Nav_Table API={FactureImpayees} />)}
+                            <table className="w-full">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date Creation</th>
+                                    <th>Date Comptabilisation</th>
+                                    <th>Date D'echeance</th>
+                                    <th>Non Payée</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    Facture.map(invoice => (
+                                        <tr key={invoice.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
+                                            <td className="pl-6">{invoice.id}</td>
+                                            <td className="p-3">{invoice.date_creation}</td>
+                                            <td>{invoice.date_comptabilisation}</td>
+                                            <td>{invoice.date_decheance}</td>
+                                            <td>{invoice.non_payée}</td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>)}
 
                         {openTable === 'Avoires' && (
                             <Nav_Table API={Avoires} />)}
@@ -194,23 +197,22 @@ const Nav = ({id}) => {
                         <table className="w-full">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Date Creation</th>
-                                        <th>Date Comptabilisation</th>
-                                        <th>Date Decheance</th>
-                                        <th>Non Payée</th>
-                                        <th>Actions</th>
+                                        <th>Client</th>
+                                        <th>Date de commande</th>
+                                        <th>Code promo</th>
+                                        <th>Produits</th>
+                                        <th>Etat</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                         Commandes.map(Commande => (
-                                            <tr key={Commande.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                                                <td className="pl-6">{Commande.userId}</td>
-                                                <td className="p-3">{Commande.id}</td>
-                                                <td>{Commande.title}</td>
-                                                <td>{Commande.date_decheance}</td>
-                                                <td>{Commande.non_payée}</td>
+                                            <tr key={Commande.client} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">                                                <td className="p-3">{Commande.id}</td>
+                                                <td>{Commande.client}</td>
+                                                <td>{Commande.date_commande}</td>
+                                                <td>{Commande.code_promo}</td>
+                                                <td>{Commande.produits}</td>
+                                                <td>{Commande.est_promo}</td>
                                                 <td>
                                                     <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                             sm:text-sm md:text-xl lg:text-2xl
