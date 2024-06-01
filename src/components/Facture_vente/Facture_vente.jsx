@@ -5,7 +5,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { LuLoader } from "react-icons/lu";
 import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import {Menu,Search_input,Facture_PDF} from '../index'
+import {Menu,Search_input,Facture_PDF,Style} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink ,pdf} from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
@@ -74,12 +74,21 @@ const Facture_vente = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <CSVLink data={Rapport} className='py-1 px-2 border-none rounded-md bg-[--statistic-color] my-3
-                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
-                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
+                <Style>
+                <CSVLink data={Rapport} className='py-1 px-2 border-none  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[70%]
+                                    md:text-sm md:ml-[71%] lg:text-2xl lg:ml-[70%]
                                     2xl:text-3xl
                                     '>Rapport
                 </CSVLink>
+                <button className='py-1 px-2 border-none ml-2  rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs
+                                    md:text-sm  lg:text-2xl
+                                    2xl:text-3xl
+                                    '>
+                    <a href="/AddFact" className='font-semibold'>Ajouter +</a>
+                </button>
+                </Style>
 
 
                 <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">

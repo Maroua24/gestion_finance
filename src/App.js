@@ -3,7 +3,7 @@ import "./App.css"
 import {Style,Log_in,Main,Nav,Client,AddClient,EditClient,Client_VIP,
     Facture_Service,Facture_Service_Info,Facture_vente,Paiment,Add_payment,FactureImpayees,
     Client_info,Facture_Vente_Info,ProtectedRouters,Admin,Avoires_Vente,Avoires_Service,Avoires,
-    Edit_Facture} from "./components/index"
+    Edit_Facture,AddFact} from "./components/index"
 
 const App = () => {
     return(
@@ -26,6 +26,7 @@ const App = () => {
 
                             <Route path='/Facture_vente' element={<Facture_vente/>}/>
                             <Route path='/Facture_Vente_Info/:id' element={<Facture_Vente_Info/>} />
+                            <Route path='/AddFact' element={<AddFact/>}/>
 
                             <Route path='/Facture_Service' element={<Facture_Service/>}/>
                             <Route path='/Facture_Service_Info/:id' element={<Facture_Service_Info/>}/>
@@ -36,7 +37,7 @@ const App = () => {
                             <Route path='/Add_payment/:id' element={<Add_payment/>}/>
 
                             <Route path='/avoires' element={<Avoires/>}/>
-                            <Route path='/Edit_Facture/:id' element={<Edit_Facture/>}/>
+                          <Route path='/Edit_Facture/:id' element={<Edit_Facture/>}/>
                             <Route path="/avoires_vente" element={<Avoires_Vente/>}/>
                             <Route path="/avoires_service" element={<Avoires_Service/>}/>
                         {/* </Route> */}

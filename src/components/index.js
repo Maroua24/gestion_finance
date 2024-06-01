@@ -34,11 +34,12 @@ export {default as Facture_Vente_Info} from './Facture_Vente_Info/Facture_Vente_
 
 export {default as Facture_Service} from './Facture_Service/Facture_Service'
 export {default as Facture_Service_Info} from './Facture_Service_Info/Facture_Service_Info'
+export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
+export {default as AddFact} from './AddFact/AddFact'
 
 export {default as Paiment} from './Paiement/Paiment'
 export {default as Add_payment} from './Addpayment/Addpayment'
 
-export {default as FactureImpayees} from './FactureImpayees/FactureImpayees'
 
 export {default as Info} from './Info/Info'
 export {default as Check_box} from './Check_box/Check_box'

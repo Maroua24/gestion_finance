@@ -82,6 +82,31 @@ const Validation = (inputValue) => {
     if (inputValue.Etat === "") {
         errors.Etat = "Etat is Required!"
     }
+    if (inputValue.commande_ligne === "") {
+        errors.commande_ligne = "Ligne de commande is Required!"
+    }
+    if (inputValue.client === "") {
+        errors.client = "Client is Required!"
+    }
+    if (inputValue.date_creation === "") {
+        errors.date_creation = "Date de creation is Required!"
+    }
+    if (inputValue.commande_ligne === "") {
+        errors.commande_ligne = "Ligne de commande is Required!"
+    }
+    if (inputValue.date_comptabilisation === "") {
+        errors.date_comptabilisation = "Date de comptabilisation is Required!"
+    }
+    if (inputValue.date_decheance === "") {
+        errors.date_decheance = "Date de d'echeance is Required!"
+    }
+    if (inputValue.montant === "") {
+        errors.montant = "Montant is Required!"
+    } else if(inputValue.montant < 0){
+        errors.montant = "The amount is less than 0"
+    } if(inputValue.montant == 0){
+        errors.montant = "The amount should not equal 0"
+    }
 
     return errors;
 };

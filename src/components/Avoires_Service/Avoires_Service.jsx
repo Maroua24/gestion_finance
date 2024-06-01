@@ -48,7 +48,7 @@ const Avoires_Service = () => {
                 setRapport([]);
             });
     }, []);
-  const viewPDF = async (client) => {
+const viewPDF = async (client) => {
       const doc = <Facture_PDF client={client} />;
       const asPdf = pdf([]);
       asPdf.updateContainer(doc);
@@ -92,25 +92,25 @@ const Avoires_Service = () => {
                     </tr>
                 </thead>
 
-                  <tbody className="text-center">
-                      {
-                          isLoading ?
-                          <tr>
-                              <td class="d-flex align-items-center text-primary md:text-2xl lg:text-3xl">
-                              <strong>Loading...</strong>
-                              <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                              </td>
-                          </tr>
-                          :
-                      FactureServiceList
-                      .filter((Facture) => {
-                          return Search.toLowerCase() === ''
-                              ? Facture
-                              :
-                              Facture.name.toLowerCase().includes(Search)
-                      })
-                      .map((Facture) => (
-                          <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
+                <tbody className="text-center">
+                    {
+                        isLoading ?
+                        <tr>
+                            <td class="d-flex align-items-center text-primary md:text-2xl lg:text-3xl">
+                            <strong>Loading...</strong>
+                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                            </td>
+                        </tr>
+                        :
+                    FactureServiceList
+                    .filter((Facture) => {
+                        return Search.toLowerCase() === ''
+                            ? Facture
+                            :
+                            Facture.name.toLowerCase().includes(Search)
+                    })
+                    .map((Facture) => (
+                        <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                               <td className="pl-6">{Facture.id}</td>
                               <td className="p-3 ">{Facture.date_creation}</td>
                               <td>{Facture.date_comptabilisation}</td>
