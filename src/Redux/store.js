@@ -9,7 +9,7 @@ import Client_VIP_Reducer from './ClientVIP/Client_VIP_Slice'
 import PaimentReducer from './Paiement/PaiementSlice'
 import authReducer from './Log_in/Log_in_Slice'
 import AvoiresReducer from './Avoires/AvoiresSlice'
-
+import UsersReducer from './Admin/AdminSlice'
 
 
 const rootReducer = combineReducers({
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
     PaimentList : PaimentReducer,
     authentication : authReducer,
     AvoiresReducerList : AvoiresReducer,
-
+    UsersList:UsersReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
