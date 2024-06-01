@@ -12,7 +12,6 @@ const Nav = ({id}) => {
     const [Paiement, setPaiement] = useState([]);
     const [Commandes, setCommandes] = useState([]);
 
-    // const dispatch = useDispatch();
 
     const handleToggleTable = (table) => {
         setOpenTable(prevTable => (prevTable === table ? null : table));
@@ -135,23 +134,28 @@ const Nav = ({id}) => {
                     <tr colSpan="5">
                         <td>
                             <Nav_Item onClick={() => handleToggleTable('FactureImpayees')}
-                            label="Facture impayees" />
+                            label="Facture impayees"
+                            isActive={openTable === 'FactureImpayees'}/>
                         </td>
                         <td>
                             <Nav_Item onClick={() => handleToggleTable('Facturepayees')}
-                            label="Facture payees" />
+                            label="Facture payees"
+                            isActive={openTable === 'Facturepayees'}/>
                         </td>
                         <td>
                             <Nav_Item onClick={() => handleToggleTable('Avoires')}
-                            label="Avoires" />
+                            label="Avoires"
+                            isActive={openTable === 'Avoires'}/>
                         </td>
                         <td>
                             <Nav_Item onClick={() => handleToggleTable('Paiement')}
-                            label="Paiement" />
+                            label="Paiement"
+                            isActive={openTable === 'Paiement'}/>
                         </td>
                         <td>
                             <Nav_Item onClick={() => handleToggleTable('Commande')}
-                            label="Commande" />
+                            label="Commande"
+                            isActive={openTable === 'Commande'}/>
                         </td>
                     </tr>
                 </thead>
@@ -181,6 +185,11 @@ const Nav = ({id}) => {
                                             <td>{invoice.date_comptabilisation}</td>
                                             <td>{invoice.date_decheance}</td>
                                             <td>{invoice.non_payée}</td>
+                                            <td className="pl-6">{invoice.id}</td>
+                                            <td className="p-3">12/1/2020</td>
+                                            <td>14\1\2020</td>
+                                            <td>17\1\2020</td>
+                                            <td>False</td>
                                         </tr>
                                     ))
                                 }

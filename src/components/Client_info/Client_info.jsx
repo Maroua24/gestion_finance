@@ -22,17 +22,17 @@ const ClientInfo = () => {
                 <div className="md:flex">
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
                     <Info name="ID : " API={client.id}/>
-                    <Info name="Nom : " API={client.company.name}/>
-                    <Info name="Prenom : " API={client.company.catchPhrase}/>
-                    <Info name="Email : " API={client.email}/>
-                    <Info name="Telephone : " API={client.phone}/>
+                    <Info name="Nom : " API={"ABC company"}/>
+                    <Info name="Prenom : " API={"ABC"}/>
+                    <Info name="Email : " API={"info@abccompany.com"}/>
+                    <Info name="Telephone : " API={"098754468"}/>
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Categorie de compte : " API={client.name}/>
-                    <Info name="Nature du compte : " API={client.phone}/>
-                    <Info name="Raison sociale : " API={client.username}/>
-                    <Info name="Registre de commerce : " API={client.company.name}/>
+                    <Info name="Categorie de compte : " API={"Client"}/>
+                    <Info name="Nature du compte : " API={"Client"}/>
+                    <Info name="Raison sociale : " API={"Société ABC"}/>
+                    <Info name="Registre de commerce : " API={"RC12345678"}/>
                 </div>
                 </div>
 

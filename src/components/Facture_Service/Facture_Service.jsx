@@ -84,9 +84,9 @@ const Facture_Service = () => {
                                     '>
                         <tr className="m-2 text-center">
                             <th scope="col" className='py-2 px-4'>id</th>
-                            <th scope="col" className='py-2 px-4'>Date de creation</th>
+                            <th scope="col" className='py-2 px-4'>Non du client</th>
                             <th scope="col" className='py-2 px-4'>Date de comptabilisation</th>
-                            <th scope="col" className='py-2 px-4'>Date de decheance</th>
+                            <th scope="col" className='py-2 px-4'>Date d'echeance</th>
                             <th scope="col" className='py-2 px-4'>Etat</th>
                             <th scope="col" className='py-2 px-4'>Action</th>
                         </tr>
@@ -103,16 +103,16 @@ const Facture_Service = () => {
                             </tr>
                             :
                         FactureServiceList
-                        // .filter((Facture) => {
-                        //     return Search.toLowerCase() === ''
-                        //         ? Facture
-                        //         :
-                        //         Facture.name.toLowerCase().includes(Search)
-                        // })
+                        .filter((Facture) => {
+                            return Search.toLowerCase() === ''
+                                ? Facture
+                                :
+                                Facture.client.toLowerCase().includes(Search)
+                        })
                         .map((Facture) => (
                             <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                 <td className="pl-6">{Facture.id}</td>
-                                <td className="p-3 ">{Facture.date_creation}</td>
+                                <td className="p-3 ">{Facture.client}</td>
                                 <td>{Facture.date_comptabilisation}</td>
                                 <td>{Facture.date_decheance}</td>
                                 <td>{Facture.non_payée}</td>

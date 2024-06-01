@@ -103,15 +103,12 @@ const Avoires_Service = () => {
                           </tr>
                           :
                       FactureServiceList
-                      // .filter((Facture) => {
-                      //     return Search.toLowerCase() === ''
-                      //         ? Facture
-                      //         :
-                      //         Facture.name.toLowerCase().includes(Search) ||
-                      //         Facture.username.toLowerCase().includes(Search) ||
-                      //         Facture.email.toLowerCase().includes(Search) ||
-                      //         Facture.website.toLowerCase().includes(Search)
-                      // })
+                      .filter((Facture) => {
+                          return Search.toLowerCase() === ''
+                              ? Facture
+                              :
+                              Facture.name.toLowerCase().includes(Search)
+                      })
                       .map((Facture) => (
                           <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                               <td className="pl-6">{Facture.id}</td>

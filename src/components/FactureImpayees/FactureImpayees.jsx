@@ -8,20 +8,44 @@ import { useEffect, useState } from 'react';
 import {Menu,Search_input,Facture_PDF} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import { CSVLink } from "react-csv";
 
 const Facture_Impayees = () => {
 
     const [Search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState(null);
+    const [Rapport,setRapport] = useState([])
 
     const dispatch = useDispatch();
     const FactureImpayeesList = useSelector(state => state.FactureImpayeesList.FactureImpayeesList);
     const isLoading = useSelector(state => state.FactureImpayeesList.isLoading)
 
     useEffect(()=>{
-        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        dispatch(getAll("http://127.0.0.1:8000/api/Non-payées/"));
+        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        //dispatch(getAll("http://127.0.0.1:8000/api/Non-payées/"));
     },[dispatch]);
+
+    useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            redirect: "follow"
+        };
+        // console.log(id)
+        fetch("http://127.0.0.1:8000/api/facture_vente/rapport/", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (Array.isArray(result)) {
+                    setRapport(result);
+                } else {
+                    setRapport([result]);
+                }
+                console.log(result)
+            }) //set the data
+            .catch((error) => {
+                console.error(error);
+                setRapport([]);
+            });
+    }, []);
 
     const viewPDF = (client) => {
         const pdfContent = <Facture_PDF client={client} />;
@@ -44,6 +68,12 @@ const Facture_Impayees = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
+                <CSVLink data={Rapport} className='py-1 px-2 border-none rounded-md bg-[--statistic-color] my-3
+                                    hover:bg-[--light-color] sm:text-xs sm:ml-[78%]
+                                    md:text-sm md:ml-[79%] lg:text-2xl lg:ml-[77%]
+                                    2xl:text-3xl
+                                    '>Rapport
+                </CSVLink>
 
                 <table className="ml-5  mt-4 sm:mr-4 xl:mr-8">
                     <thead className='bg-[--statistic-color] text-white font-semibold
@@ -52,7 +82,7 @@ const Facture_Impayees = () => {
                                     '>
                         <tr className="m-2 text-center">
                             <th scope="col" className='py-2 px-4'>id</th>
-                            <th scope="col" className='py-2 px-4'>Date de creation</th>
+                            <th scope="col" className='py-2 px-4'>Non de client</th>
                             <th scope="col" className='py-2 px-4'>Date de comptabilisation</th>
                             <th scope="col" className='py-2 px-4'>Date de decheance</th>
                             <th scope="col" className='py-2 px-4'>Etat</th>
@@ -71,19 +101,16 @@ const Facture_Impayees = () => {
                             </tr>
                             :
                         FactureImpayeesList
-                        // .filter((Facture) => {
-                        //     return Search.toLowerCase() === ''
-                        //         ? Facture
-                        //         :
-                        //         Facture.name.toLowerCase().includes(Search) ||
-                        //         Facture.username.toLowerCase().includes(Search) ||
-                        //         Facture.email.toLowerCase().includes(Search) ||
-                        //         Facture.website.toLowerCase().includes(Search)
-                        // })
+                        .filter((Facture) => {
+                            return Search.toLowerCase() === ''
+                                ? Facture
+                                :
+                                Facture.client.toLowerCase().includes(Search)
+                        })
                         .map((Facture) => (
                             <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
                                 <td className="pl-6">{Facture.id}</td>
-                                <td className="p-3 ">{Facture.date_creation}</td>
+                                <td className="p-3 ">{Facture.client}</td>
                                 <td>{Facture.date_comptabilisation}</td>
                                 <td>{Facture.date_decheance}</td>
                                 <td>{Facture.non_payée}</td>
