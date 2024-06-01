@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Input,Menu } from "../index"
+import { Input,Menu,Select } from "../index"
 import { useDispatch,useSelector } from "react-redux";
 import {UpdateFacture} from "../../Redux/API/Avoires_API"
 import { useState, useEffect } from "react";
@@ -12,17 +12,17 @@ const Edit_Facture = () => {
     const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState({
-        Categorie_de_compte: '',
-        type_facture: '',
-        date_creation: '',
-        date_comptabilisation: '',
-        date_decheance: '',
-        non_payee: '',
-        montant: '',
+        type_facture: Facture ? Facture.type_facture : '',
+        date_creation: Facture ? Facture.date_creation : '',
+        date_comptabilisation: Facture ? Facture.date_comptabilisation : '',
+        date_decheance: Facture ? Facture.date_decheance : '',
+        non_payee: Facture ? Facture.non_payee : '',
+        montant: Facture ? Facture.montant : '',
     });
 
     useEffect(() => {
         if (Facture) {
+            // console.log("Client data:", Facture);
             setInputValue({
                 type_facture:Facture.type_facture,
                 date_creation:Facture.date_creation,
@@ -35,28 +35,30 @@ const Edit_Facture = () => {
     }, [Facture]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setInputValue({ ...inputValue, [name]: value });
+        setInputValue({ ...inputValue, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(UpdateFacture({ id: FactureId, ...inputValue }));
+        console.log(inputValue)
+        dispatch(UpdateFacture({FactureId, inputValue} ));
     };
+
+
     return (
         <>
         <Menu/>
             <form onSubmit={handleSubmit}>
             <h1 className="text-[--statistic-color] text-3xl m-3">Modifier les informations du Facture</h1>
 
-            <Input label="ID client:" name="client" type="text" id="client" value={Facture.client} cursor={'cursor-not-allowed'}/>
+            <Input label="ID client:" name="client" type="text" id="client" value={inputValue.client} cursor={'cursor-not-allowed'}/>
             <Input label="ID Facture:" name="facture_id" type="text" id="facture_id" value={inputValue.client} cursor={'cursor-not-allowed'}/>
             <Input label="Commande ligne:" name="commande_ligne" type="text" id="commande_ligne" value={inputValue.commande_ligne} cursor={'cursor-not-allowed'}/>
 
-            <Input label="Type:" name="type_facture" type="text" id="type_facture" value={inputValue.type_facture} onChange={handleChange} />
-            <Input label="Date de creation:" name="date_creation" type="text" id="date_creation" value={inputValue.date_creation} onChange={handleChange} />
-            <Input label="date_comptabilisation:" name="date_comptabilisation" type="text" id="date_comptabilisation" value={inputValue.date_comptabilisation} onChange={handleChange} />
-            <Input label="Date de decheance:" name="date_decheance" type="text" id="date_decheance" value={inputValue.date_decheance} onChange={handleChange} />
+            <Select label="Type de facture:" name="type_facture" value_1="Vente" value_2="Service" choix1="Vente" choix2="Service" id="type_facture " value={inputValue.type_facture} onChange={handleChange}/>            
+            <Input label="Date de creation:" name="date_creation" type="date" id="date_creation" value={inputValue.date_creation} onChange={handleChange} />
+            <Input label="date_comptabilisation:" name="date_comptabilisation" type="date" id="date_comptabilisation" value={inputValue.date_comptabilisation} onChange={handleChange} />
+            <Input label="Date de decheance:" name="date_decheance" type="date" id="date_decheance" value={inputValue.date_decheance} onChange={handleChange} />
             <Input label="Etat:" name="non_payee" type="text" id="non_payee" value={inputValue.non_payee} onChange={handleChange} />
             <Input label="Montant:" name="montant" type="text" id="montant" value={inputValue.montant} onChange={handleChange} />
 

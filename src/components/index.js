@@ -48,7 +48,7 @@ export {default as Facture_PDF} from './PDF/Facture_PDF'
 export {default as Avoire_PDF} from './PDF/Avoire_PDF'
 
 export {default as Avoires } from './Avoires/Avoires'
-export {default as Edit_Facture} from './Edit_Facture/Edit_Facture'
+export {default as Edit_Facture} from './Avoire_Facture/Avoire_Facture'
 export { default as Avoires_Vente} from './Avoires_Vente/Avoires_vente'
 export {default as Avoires_Service} from './Avoires_Service/Avoires_Service'
 

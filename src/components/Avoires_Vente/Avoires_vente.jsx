@@ -10,7 +10,8 @@ import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
 import { MdVisibility } from "react-icons/md";
-
+import { FaCircleDollarToSlot } from "react-icons/fa6";
+import { GrDocumentUpdate } from "react-icons/gr";
 
 const Avoires_vente = () => {
     const [Search, setSearch] = useState("");
@@ -94,33 +95,30 @@ const Avoires_vente = () => {
                       </tr>
                   </thead>
 
-                  <tbody className="text-center">
-                      {
-                          isLoading ?
-                          <tr>
-                              <td class="d-flex align-items-center text-primary md:text-2xl lg:text-3xl">
-                              <strong>Loading...</strong>
-                              <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                              </td>
-                          </tr>
-                          :
-                      FactureServiceList
+                <tbody className="text-center">
+                    {
+                        isLoading ?
+                        <tr>
+                            <td class="d-flex align-items-center text-primary md:text-2xl lg:text-3xl">
+                            <strong>Loading...</strong>
+                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                            </td>
+                        </tr>
+                        :
+                    FactureServiceList
                       // .filter((Facture) => {
                       //     return Search.toLowerCase() === ''
                       //         ? Facture
                       //         :
-                      //         Facture.name.toLowerCase().includes(Search) ||
-                      //         Facture.username.toLowerCase().includes(Search) ||
-                      //         Facture.email.toLowerCase().includes(Search) ||
-                      //         Facture.website.toLowerCase().includes(Search)
+                      //         Facture.name.toLowerCase().includes(Search)
                       // })
-                      .map((Facture) => (
-                          <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                              <td className="pl-6">{Facture.id}</td>
-                              <td className="p-3 ">{Facture.date_creation}</td>
-                              <td>{Facture.date_comptabilisation}</td>
-                              <td>{Facture.date_decheance}</td>
-                              <td>{Facture.non_payée}</td>
+                    .map((Facture) => (
+                        <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
+                            <td className="pl-6">{Facture.id}</td>
+                            <td className="p-3 ">{Facture.date_creation}</td>
+                            <td>{Facture.date_comptabilisation}</td>
+                            <td>{Facture.date_decheance}</td>
+                            <td>{Facture.non_payée}</td>
                               {/* <td className="pl-6">{Facture.id}</td>
                               <td className="p-3 ">13/03/2018</td>
                               <td>20/02/2020</td>
@@ -142,10 +140,12 @@ const Avoires_vente = () => {
                                         </PDFDownloadLink>
                                 </button>
                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                sm:text-sm md:text-xl lg:text-2xl
-                                                                xl:text-3xl 2xl:text-4xl'
-                                                                onClick={() => viewPDF(Facture.id)}>
-                                    <a href="#"><MdVisibility /></a>
+                                                                    sm:text-sm md:text-xl lg:text-2xl
+                                                                    xl:text-3xl 2xl:text-4xl
+                                                                    '>
+                                    <Link to={`/Edit_Facture/${Facture.id}`}>
+                                        <GrDocumentUpdate  />
+                                    </Link>
                                 </button>
                             </td>
                         </tr>

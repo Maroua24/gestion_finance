@@ -44,7 +44,7 @@ const EditClient = () => {
 
     useEffect(() => {
         if (client) {
-            console.log("Client data:", client);
+            // console.log("Client data:", client);
             setInputValue({
                 categorie_compte: client.categorie_compte,
                 raison_sociale: client.raison_sociale,

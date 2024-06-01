@@ -10,17 +10,19 @@ import {getAll} from '../../Redux/API/GetAll'
 import { PDFDownloadLink,pdf } from "@react-pdf/renderer";
 import { CSVLink } from "react-csv";
 import { MdVisibility } from "react-icons/md";
+import { FaCircleDollarToSlot } from "react-icons/fa6";
+import { GrDocumentUpdate } from "react-icons/gr";
 
 
 const Avoires_Service = () => {
-  const [Search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState(null);
-  const [Rapport,setRapport] = useState([])
+const [Search, setSearch] = useState("");
+const [sortBy, setSortBy] = useState(null);
+const [Rapport,setRapport] = useState([])
 
 
-  const dispatch = useDispatch();
-  const FactureServiceList = useSelector(state => state.FactureServiceList.FactureServiceList);
-  const isLoading = useSelector(state => state.FactureServiceList.isLoading)
+const dispatch = useDispatch();
+const FactureServiceList = useSelector(state => state.FactureServiceList.FactureServiceList);
+const isLoading = useSelector(state => state.FactureServiceList.isLoading)
 
     useEffect(()=>{
         dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
@@ -48,18 +50,10 @@ const Avoires_Service = () => {
                 setRapport([]);
             });
     }, []);
-const viewPDF = async (client) => {
-      const doc = <Facture_PDF client={client} />;
-      const asPdf = pdf([]);
-      asPdf.updateContainer(doc);
-      const blob = await asPdf.toBlob();
-      const pdfURL = URL.createObjectURL(blob);
-      window.open(pdfURL);
-  };
 
-  return (
-      <>
-      <Menu/>
+return (
+    <>
+    <Menu/>
 
         <div>
         <h1 className="text-[--statistic-color] p-4 sm:text-3xl
@@ -111,25 +105,25 @@ const viewPDF = async (client) => {
                     })
                     .map((Facture) => (
                         <tr key={Facture.id} className="shadow-md sm:text-[10px] md:text-xs lg:text-xl xl:text-2xl 2xl:text-3xl">
-                              <td className="pl-6">{Facture.id}</td>
-                              <td className="p-3 ">{Facture.date_creation}</td>
-                              <td>{Facture.date_comptabilisation}</td>
-                              <td>{Facture.date_decheance}</td>
-                              <td>{Facture.non_payée}</td>
+                            <td className="pl-6">{Facture.id}</td>
+                            <td className="p-3 ">{Facture.date_creation}</td>
+                            <td>{Facture.date_comptabilisation}</td>
+                            <td>{Facture.date_decheance}</td>
+                            <td>{Facture.non_payée}</td>
                               {/* <td className="pl-6">{Facture.id}</td>
                               <td className="p-3 ">13/03/2018</td>
                               <td>20/02/2020</td>
                               <td>12/04/2021</td>
                               <td>false</td> */}
-                              <td>
-                                  <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                  sm:text-sm md:text-xl lg:text-2xl
-                                                                  xl:text-3xl 2xl:text-4xl'>
-                                      <Link to={`/Facture_Service_Info/${Facture.id}`}>
-                                          <IoMdInformationCircleOutline />
-                                      </Link>
-                                  </button>
-                                  <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                            <td>
+                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
+                                                    sm:text-sm md:text-xl lg:text-2xl
+                                                    xl:text-3xl 2xl:text-4xl'>
+                                    <Link to={`/Facture_Service_Info/${Facture.id}`}>
+                                        <IoMdInformationCircleOutline />
+                                    </Link>
+                                </button>
+                                <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                 sm:text-sm md:text-xl lg:text-2xl
                                                                 xl:text-3xl 2xl:text-4xl'>
                                         {/* <PDFDownloadLink document={<Avoire_PDF />} fileName="Facture_Service.pdf" >
@@ -137,10 +131,12 @@ const viewPDF = async (client) => {
                                         </PDFDownloadLink> */}
                                 </button>
                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
-                                                                sm:text-sm md:text-xl lg:text-2xl
-                                                                xl:text-3xl 2xl:text-4xl'
-                                                                onClick={() => viewPDF(Facture)}>
-                                    <a href="#"><MdVisibility /></a>
+                                                                    sm:text-sm md:text-xl lg:text-2xl
+                                                                    xl:text-3xl 2xl:text-4xl
+                                                                    '>
+                                    <Link to={`/Edit_Facture/${Facture.id}`}>
+                                        <GrDocumentUpdate  />
+                                    </Link>
                                 </button>
                             </td>
                         </tr>
