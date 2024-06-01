@@ -4,20 +4,12 @@ from factures.models import Facture
 from clients.models import Client
 from paiements.models import Paiement
 from avoirs.models import Avoir
-from .serializers import (
-    ClientStatistiquesSerializer,
-    FactureStatistiquesSerializer,
-    FactureServiceStatistiquesSerializer,
-    FactureVenteStatistiquesSerializer,
-    PaiementStatistiqueSerializer,
-    AvoirStatistiquesSerializer
-)
+
 from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from django.views import View
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
+
 from io import BytesIO
 
 
@@ -25,70 +17,57 @@ from io import BytesIO
 class ClientStatistiques(APIView):
     def get(self, request):
         total_clients = Client.objects.count()
-        serializer = ClientStatistiquesSerializer({ total_clients})
-        return Response(serializer.data)
+        return Response({total_clients})
     
 class ClientVipStatistiques(APIView):
     def get(self, request):
         total_clients_vip = Client.objects.filter(est_vip=True).count()
-        serializer = ClientStatistiquesSerializer({ total_clients_vip})
-        return Response(serializer.data)
+        return Response({total_clients_vip})
 
 class FactureStatistiques(APIView):
     def get(self, request):
         total_factures = Facture.objects.count()
-        serializer = FactureStatistiquesSerializer({ total_factures})
-        return Response(serializer.data)
+        return Response({ total_factures})
 
 class FactureVenteStatistiques(APIView):
     def get(self, request):
         total_factures_vente = Facture.objects.filter(type_facture='Vente').count()
-        serializer = FactureVenteStatistiquesSerializer({total_factures_vente})
-        return Response(serializer.data)
+        return Response({ total_factures_vente})
 
 class FactureServiceStatistiques(APIView):
     def get(self, request):
         total_factures_service = Facture.objects.filter(type_facture='Service').count()
-        serializer = FactureServiceStatistiquesSerializer({ total_factures_service})
-        return Response(serializer.data)
+        return Response({ total_factures_service})
 
 class PaiementCompletStatistiques(APIView):
     def get(self, request):
         total_paiements_complet = Paiement.objects.filter(etat='complet').count()
-        serializer = PaiementStatistiqueSerializer({ total_paiements_complet}) 
-        return Response(serializer.data)
+        return Response({ total_paiements_complet}) 
 
 class PaiementPartielStatistiques(APIView):
     def get(self, request):
         total_paiements_partiel = Paiement.objects.filter(etat='partiel').count()
-        serializer = PaiementStatistiqueSerializer({ total_paiements_partiel})
-        return Response(serializer.data)
+        return Response({ total_paiements_partiel})
 
 class PaiementStatistiques(APIView):
     def get(self, request):
         total_paiements = Paiement.objects.count()
-        serializer = PaiementStatistiqueSerializer({total_paiements})
-        return Response(serializer.data)
+        return Response({ total_paiements})
     
 class AvoirStatistiques(APIView):
     def get(self, request):
         total_avoirs = Avoir.objects.count()
-        serializer = AvoirStatistiquesSerializer({ total_avoirs})
-        return Response(serializer.data)
+        return Response({ total_avoirs})
     
 class AvoirServiceStatistiques(APIView):
     def get(self, request):
         total_avoirs_service = Avoir.objects.filter(type_facture='Service').count()
-        serializer = AvoirStatistiquesSerializer({ total_avoirs_service})
-        return Response(serializer.data)
+        return Response({ total_avoirs_service})
 
 class AvoirVenteStatistiques(APIView):
     def get(self, request):
         total_avoirs_vente = Avoir.objects.filter(type_facture='Vente').count()
-        serializer = AvoirStatistiquesSerializer({ total_avoirs_vente})
-        return Response(serializer.data)    
-
-
+        return Response({ total_avoirs_vente}) 
 
 # class GenererRapportPDF(View):
 #     def get(self, request, *args, **kwargs):
