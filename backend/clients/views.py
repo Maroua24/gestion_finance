@@ -164,8 +164,13 @@ class ClientListView(ListAPIView):
 class ClientDetailView(generics.RetrieveUpdateAPIView):
     # permission_classes = [IsAuthenticated]
     queryset = Client.objects.all()
-    serializer_class = ClientSerializer
     
+    def get_serializer_class(self):
+        if self.request.method == 'PUT':
+            return ClientAjoutSerializer
+        return ClientSerializer
+    
+
     def put(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data)

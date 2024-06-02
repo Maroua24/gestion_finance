@@ -17,8 +17,8 @@ from .views import (
 
 
 urlpatterns = [ 
-    path('facture_vente/rapport/', RapportFacturesServiceView.as_view(), name='rapport-facture-service'),
-    path('facture_service/rapport/', RapportFacturesVenteView.as_view(), name='rapport-facture-vente'),
+    path('facture_service/rapport/', RapportFacturesServiceView.as_view(), name='rapport-facture-service'),
+    path('facture_vente/rapport/', RapportFacturesVenteView.as_view(), name='rapport-facture-vente'),
     path('factures/', FactureListView.as_view(), name='facture-list'),
     path('factures/vente/', FactureVenteList.as_view(), name='facture-vente-list'),
     path('factures/service/', FactureServiceList.as_view(), name='facture-service-list'),
@@ -30,6 +30,4 @@ urlpatterns = [
     path('facture_service/<int:pk>/', FactureServiceDetail.as_view(), name='facture-service-detail'),
     path('facture_non_payee/<int:pk>/', FactureNonPayeeDetail.as_view(), name='facture-non_payee-detail'),
     
-
-
 ]
