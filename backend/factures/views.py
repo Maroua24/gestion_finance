@@ -223,8 +223,11 @@ class PDFFactureView(APIView):
 
 class FactureListView(ListAPIView):
     
-    queryset = Facture.objects.all()
+    
     serializer_class = FactureSerializer
+    def get_queryset(self):
+        # Exclure les factures qui ont un avoir
+        return Facture.objects.filter(avoirs__isnull=True)
 
 class FactureVenteDetail(RetrieveAPIView):
     queryset = Facture.objects.filter(type_facture='Vente')
