@@ -9,6 +9,7 @@ from .views import (
     PDFFactureView , 
     RapportFacturesServiceView,
     RapportFacturesVenteView,
+    RapportFacturesNonPayeeView,
     FactureDetail ,
     FactureServiceDetail ,
     FactureVenteDetail,
@@ -17,6 +18,7 @@ from .views import (
 
 
 urlpatterns = [ 
+    path('facture_non_payee/rapport/', RapportFacturesNonPayeeView.as_view(), name='rapport-facture-nonpayee'),
     path('facture_service/rapport/', RapportFacturesServiceView.as_view(), name='rapport-facture-service'),
     path('facture_vente/rapport/', RapportFacturesVenteView.as_view(), name='rapport-facture-vente'),
     path('factures/', FactureListView.as_view(), name='facture-list'),
