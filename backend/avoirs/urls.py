@@ -7,11 +7,13 @@ from .views import (AvoirDetailAndCreateAPIView,
                     RapportAvoirsServiceView ,
                     AvoirDetail,
                     AvoirServiceDetail,
-                    AvoirVenteDetail
+                    AvoirVenteDetail,
+                    PDFAvoirView
                     
                     )
 
 urlpatterns = [
+    path('avoirs/<int:id>/pdf/', PDFAvoirView.as_view(), name='avoirs-pdf'),
     path('factures/<int:pk>/avoirs/', AvoirDetailAndCreateAPIView.as_view(), name='avoirs--facture'),
     path('avoirs/', AvoirListAPIView.as_view(), name='avoirs-list'),
     path('avoirs/vente/', AvoirVenteListAPIView.as_view(), name='avoirs-vente-list'),

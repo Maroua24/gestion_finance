@@ -13,11 +13,13 @@ from .views import (
     FactureDetail ,
     FactureServiceDetail ,
     FactureVenteDetail,
-    FactureNonPayeeDetail
+    FactureNonPayeeDetail,
+    AvoirsFacturesAPIView
 ) 
 
 
 urlpatterns = [ 
+    path('factures/<int:pk>/listavoir/', AvoirsFacturesAPIView.as_view(), name='facture-listavoir'),
     path('facture_non_payee/rapport/', RapportFacturesNonPayeeView.as_view(), name='rapport-facture-nonpayee'),
     path('facture_service/rapport/', RapportFacturesServiceView.as_view(), name='rapport-facture-service'),
     path('facture_vente/rapport/', RapportFacturesVenteView.as_view(), name='rapport-facture-vente'),

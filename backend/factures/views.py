@@ -26,6 +26,8 @@ from io import BytesIO
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from factures.models import Facture
+from avoirs.serializers import AvoirSerializer
+from avoirs.models import Avoir
 
 class RapportFacturesVenteView(APIView):
     def get(self, request, *args, **kwargs):
@@ -220,6 +222,23 @@ class PDFFactureView(APIView):
 #         except Facture.DoesNotExist:
 #             return HttpResponse('La facture demandée n\'existe pas.', status=404)
 
+class AvoirsFacturesAPIView(ListAPIView):
+    serializer_class = AvoirSerializer
+
+    def get_queryset(self):
+        # Use 'pk' to match the URL pattern
+        facture_id = self.kwargs['pk']
+        # Filtrer les avoirs en fonction de l'ID de la facture
+        return Avoir.objects.filter(facture_id=facture_id)
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if queryset.exists():
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        else:
+            # Gérer le cas où aucun avoir n'est trouvé pour la facture
+            return Response({"detail": "Aucun avoir trouvé pour cette facture."}, status=status.HTTP_404_NOT_FOUND)
 
 class FactureListView(ListAPIView):
     

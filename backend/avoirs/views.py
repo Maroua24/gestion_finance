@@ -22,6 +22,7 @@ from commandes.serializers import Commande_ligneSerializer
 from rest_framework.views import APIView
 from commandes.models import Commande_ligne
 from django.shortcuts import get_object_or_404
+from decimal import Decimal 
 
 class AvoirDetailAndCreateAPIView(RetrieveAPIView, UpdateAPIView):
     queryset = Avoir.objects.all()
@@ -128,6 +129,56 @@ class RapportAvoirsServiceView(APIView):
         return Response({ 'data': avoirs_data})
     
  
+class PDFAvoirView(APIView):
+    def get(self, request, id, *args, **kwargs):
+        try:
+            avoir = Avoir.objects.get(id=id)
+            commande_lignes = avoir.commande_ligne.all()
+
+            # Préparation des données
+            data = {
+                'id_avoir': avoir.avoir_id,
+                'code_client': avoir.client.code_client,
+                'client': avoir.client.nom,
+                'raison_sociale' : avoir.client.raison_sociale ,
+                'rue': avoir.client.rue,
+                'ville': avoir.client.ville,
+                'pays': avoir.client.pays,
+                'nif': avoir.client.nif,
+                'nis': avoir.client.nis,
+                'date_creation': avoir.date_creation,
+                'date_comptabilisation': avoir.date_comptabilisation,
+                'date_decheance': avoir.date_decheance,
+                'produits': [],
+                'total_ht': 0,
+                'tva': avoir.client.code_tva,
+                'devise': str(avoir.client.devise),
+            }
+
+            total_ht = Decimal('0')
+
+            for commande_ligne in commande_lignes:
+                produit = commande_ligne.produit
+                commande = commande_ligne.commande
+                montant = produit.prix_unitaire * commande_ligne.quantity
+
+                data['produits'].append({
+                    'nom': produit.nom,
+                    'prix_unitaire': f"{produit.prix_unitaire:.2f}",
+                    'quantite': commande_ligne.quantity,
+                    'montant' : f"{montant}",
+                    'tva': f"{avoir.client.code_tva}%",
+                })
+
+                total_ht += montant
+
+            data['total_ht'] = f"{total_ht:.2f}"
+            data['ttc'] = f"{total_ht + (total_ht * Decimal(avoir.client.code_tva) / Decimal('100')):.2f}"
+
+            return Response(data, status=status.HTTP_200_OK)
+        except Avoir.DoesNotExist:
+            return Response({'error': 'L\'avoir demandé n\'existe pas.'}, status=status.HTTP_404_NOT_FOUND)
+
 class AvoirListAPIView(ListAPIView):
     queryset = Avoir.objects.all()
     serializer_class = AvoirSerializer
