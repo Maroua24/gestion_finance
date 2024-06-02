@@ -47,7 +47,7 @@ class RapportFacturesVenteView(APIView):
             factures_data.append(facture_data)
 
         # Envoi des données sous forme de JSON
-        return Response({factures_data})
+        return Response(factures_data)
 
 class RapportFacturesServiceView(APIView):
     def get(self, request, *args, **kwargs):
