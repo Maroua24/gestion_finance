@@ -5,9 +5,11 @@ from .views import (
     VueListeClientsVIP ,FacturesClientAPIView ,
     PaiementHistoryView , HistouriqueView ,
     RapportClientsView , RapportClientsVIPView,
+    AvoirsClientsAPIView,
 ) 
 
 urlpatterns = [
+    path('clients/<int:pk>/listavoir/', AvoirsClientsAPIView.as_view(), name='client-listavoir'),
     path('clients-vip/rapport/', RapportClientsView.as_view(), name='clients-VIP-rapport'),
     path('clients/rapport/', RapportClientsView.as_view(), name='clients-rapport'),
     path('clients/', ClientListView.as_view(), name='client-list'),

@@ -19,6 +19,8 @@ from rest_framework.views import APIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from clients.models import Client
+from avoirs.serializers import AvoirSerializer
+from avoirs.models import Avoir
 
 class RapportClientsView(APIView):
     def get(self, request, *args, **kwargs):
@@ -179,6 +181,24 @@ class ClientDetailView(generics.RetrieveUpdateAPIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
+
+class AvoirsClientsAPIView(ListAPIView):
+    serializer_class = AvoirSerializer
+
+    def get_queryset(self):
+
+        id = self.kwargs['pk']
+
+        return Avoir.objects.filter(id=id)
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if queryset.exists():
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        else:
+
+            return Response({"detail": "Aucun avoir trouvé pour cette facture."}, status=status.HTTP_404_NOT_FOUND)
 
 class ClientCreateView(CreateAPIView):
     # permission_classes = (AllowAny,)
