@@ -26,7 +26,7 @@ const Facture_Vente_Info = () => {
             redirect: "follow"
         };
         console.log(id)
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, requestOptions)
+        fetch(`http://127.0.0.1:8000/api/avoir_vente/${id}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 if (Array.isArray(result)) {

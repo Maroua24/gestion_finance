@@ -45,7 +45,7 @@ const Nav = ({id}) => {
             redirect: "follow"
         };
         console.log(id)
-        fetch(`http://127.0.0.1:8000/api/factures/non-payee/${id}`, requestOptions)
+        fetch(`http://127.0.0.1:8000/api/facture_non_payee/${id}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 if (Array.isArray(result)) {
@@ -67,7 +67,7 @@ const Nav = ({id}) => {
             redirect: "follow"
         };
         console.log(id)
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, requestOptions)
+        fetch(`http://127.0.0.1:8000/api/avoir/${id}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 if (Array.isArray(result)) {

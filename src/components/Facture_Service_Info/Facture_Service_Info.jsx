@@ -27,7 +27,7 @@ const Facture_Service_Info = () => {
             redirect: "follow"
         };
         console.log(id)
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, requestOptions)
+        fetch(`http://127.0.0.1:8000/api/avoir_service/${id}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 if (Array.isArray(result)) {
@@ -60,15 +60,15 @@ const Facture_Service_Info = () => {
                 </div>
                 <div className="md:flex">
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="ID : " API={client.id}/>
-                    <Info name="facture id : " API={123}/>
-                    <Info name="ligne de commande : " API={3344}/>
-                    <Info name="client : " API={client.name}/>
+                    <Info name="ID : " API={clientInvoices.id}/>
+                    <Info name="facture id : " API={clientInvoices}/>
+                    <Info name="ligne de commande : " API={clientInvoices}/>
+                    <Info name="client : " API={clientInvoices.name}/>
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Date de creation : " API={"13/03/2018"}/>
-                    <Info name="Date de comptabilisation : " API={"20/02/2020"}/>
+                    <Info name="Date de creation : " API={clientInvoices}/>
+                    <Info name="Date de comptabilisation : " API={clientInvoices}/>
                 </div>
                 </div>
 
