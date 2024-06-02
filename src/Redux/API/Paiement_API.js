@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 export const addPaiement = createAsyncThunk('posts/addPaiement',async (values) => {
     const token = Cookies.get('csrftoken');
-    return fetch("http://127.0.0.1:8000/api/paiements/",{method:"POST",
+    const response = await  fetch("http://127.0.0.1:8000/api/paiements/",{method:"POST",
         headers:{
             Accept:"application/json",
             "Content-type":"application/json",
@@ -24,5 +24,10 @@ export const addPaiement = createAsyncThunk('posts/addPaiement',async (values) =
             AvanceStock:values.AvanceStock ,
             mode_reglement:values.mode_reglement,
         })
-    }).then((res)=> res.json());
+    })
+    if (!response) {
+        const error = await response.json();
+        return error;
+    }
+    return await response.json();
 })

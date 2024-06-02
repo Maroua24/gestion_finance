@@ -21,8 +21,8 @@ const Facture_Impayees = () => {
     const isLoading = useSelector(state => state.FactureImpayeesList.isLoading)
 
     useEffect(()=>{
-        dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
-        //dispatch(getAll("http://127.0.0.1:8000/api/Non-payées/"));
+        //dispatch(getAll("https://jsonplaceholder.typicode.com/users"));
+        dispatch(getAll("http://127.0.0.1:8000/api/Non-payées/"));
     },[dispatch]);
 
     useEffect(() => {

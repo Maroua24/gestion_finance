@@ -23,7 +23,7 @@ const Nav = ({id}) => {
             redirect: "follow"
         };
         console.log(id)
-        fetch(`http://127.0.0.1:8000/api/factures/${id}`, requestOptions)
+        fetch(`http://127.0.0.1:8000/api/clients/${id}/factures/`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 if (Array.isArray(result)) {
@@ -89,7 +89,7 @@ const Nav = ({id}) => {
             redirect: "follow"
         };
         console.log(id)
-        fetch(`http://127.0.0.1:8000/api/paiements/${id}`, requestOptions)
+        fetch(`http://127.0.0.1:8000/api/clients/${id}/paiements/`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 if (Array.isArray(result)) {

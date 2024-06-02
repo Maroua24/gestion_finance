@@ -1,9 +1,11 @@
 import {Input,Select,Menu,Validation} from '../index'
 import { useState} from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import {addFact} from '../../Redux/API/Facture_API'
 
 const AddFact = () => {
+
+    const error = useSelector(state => state.FactureList.error);
     const dispatch = useDispatch();
     const [errors,setErrors] = useState({})
 
@@ -47,6 +49,17 @@ const AddFact = () => {
     <>
     <Menu/>
         <form onSubmit={handleSubmit}>
+
+        <h1 className="text-[--statistic-color] p-4 sm:text-3xl
+                                md:text-5xl lg:text-7xl">
+            Ajouter une facture:
+        </h1>
+
+            {error && (
+                    <div className="p-4 mb-4 text-red-700 bg-red-100 border border-red-700">
+                        {error}
+                    </div>
+            )}
             <Select label="Type de facture:" name="type_facture" value_1="Vente" value_2="Service" choix1="Vente" choix2="Service" id="type_facture " value={inputValue.type_facture} onChange={handleInput}/>
 
             <div>

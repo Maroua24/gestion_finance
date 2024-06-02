@@ -9,6 +9,7 @@ const Edit_Facture = () => {
     const { id } = useParams();
     const FactureId = parseInt(id);
     const Facture = useSelector(state => state.AvoiresReducerList.AvoiresList.find(c => c.id === FactureId));
+    const error = useSelector(state => state.AvoiresReducerList.error);
     const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState({
@@ -49,6 +50,11 @@ const Edit_Facture = () => {
         <>
         <Menu/>
             <form onSubmit={handleSubmit}>
+            {error && (
+                    <div className="p-4 mb-4 text-red-700 bg-red-100 border border-red-700">
+                        {error}
+                    </div>
+            )}
             <h1 className="text-[--statistic-color] text-3xl m-3">Modifier les informations du Facture</h1>
 
             <Input label="ID client:" name="client" type="text" id="client" value={inputValue.client} cursor={'cursor-not-allowed'}/>

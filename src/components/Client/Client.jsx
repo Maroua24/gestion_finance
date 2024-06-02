@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useAsyncError } from "react-router-dom";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
@@ -6,6 +6,7 @@ import {useDispatch , useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 import {Menu,Search_input,Style} from '../index'
 import {getAll} from '../../Redux/API/GetAll'
+import { MdManageHistory } from "react-icons/md";
 import { CSVLink } from "react-csv";
 
 const Client = () => {
@@ -165,8 +166,8 @@ const Client = () => {
                                                 <button className='border-none ml-1 px-1 py-1 bg-[--statistic-color]
                                                                     sm:text-sm md:text-xl lg:text-2xl
                                                                     xl:text-3xl 2xl:text-4xl'>
-                                                    <Link to={`/Add_payment/${client.id}`}>
-                                                        <FaCircleDollarToSlot />
+                                                    <Link to={`/Client_Historique/${client.id}`}>
+                                                        <MdManageHistory />
                                                     </Link>
                                                 </button>
                                             </td>

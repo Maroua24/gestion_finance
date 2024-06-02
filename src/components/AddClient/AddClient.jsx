@@ -1,12 +1,15 @@
 import { Select, Input , Style,Menu,Validation} from "../index"
 import { useState} from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { addClient } from "../../Redux/API/ClientAPI";
 
 const AddClient = () => {
 
+    const error = useSelector(state => state.ClientList.error);
+
     const dispatch = useDispatch();
     const [errors,setErrors] = useState({})
+
 
     const [inputValue, setInputValue] = useState({
         categorie_compte: 'Client',
@@ -76,7 +79,7 @@ const AddClient = () => {
         setInputValue({...inputValue,[e.target.name]: e.target.value});
     }
 
-    const handleSubmit=(e)=> {
+    const handleSubmit=  (e)=> {
         e.preventDefault();
         const validationErrors = Validation(inputValue);
         setErrors(validationErrors);
@@ -96,6 +99,11 @@ const AddClient = () => {
                                 md:text-5xl lg:text-7xl">
                     Ajouter un client:
                 </h1>
+                {error && (
+                    <div className="p-4 mb-4 text-red-700 bg-red-100 border border-red-700">
+                        {error}
+                    </div>
+                )}
                 <div style={{ display: "block" }}>
                     <Select label="Categorie du compte" name="categorie_compte" value_1="Client" value_2="Supplier" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.categorie_compte} onChange={handleInput}/>
 

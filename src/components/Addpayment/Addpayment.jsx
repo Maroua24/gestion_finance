@@ -7,6 +7,8 @@ import {addPaiement} from '../../Redux/API/Paiement_API'
 
 const Add_payment = () => {
 
+    const error = useSelector(state => state.PaimentList.error);
+
     const { id } = useParams();
     const FactureId = parseInt(id);
     const client = useSelector(state => state.PaimentList.PaimentList.find(c => c.id === FactureId));
@@ -104,6 +106,11 @@ const Add_payment = () => {
                             ">
                     Ajouter un paiement:
                 </h1>
+                {error && (
+                    <div className="p-4 mb-4 text-red-700 bg-red-100 border border-red-700">
+                        {error}
+                    </div>
+                )}
                 <div style={{ display: "block" }}>
 
             <div className="block flex-wrap h-5 m-4 md:h-8 lg:h-11 xl:h-14 2xl:h-16">

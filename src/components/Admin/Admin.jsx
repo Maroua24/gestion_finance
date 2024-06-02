@@ -7,6 +7,7 @@ function Admin() {
     const dispatch = useDispatch();
     const Users = useSelector(state => state.UsersList.UsersList);
     const isLoading = useSelector(state => state.UsersList.isLoading);
+    const error = useSelector(state => state.UsersList.error);
 
     const [inputValue, setInputValue] = useState({
         email:'',
@@ -38,6 +39,11 @@ function Admin() {
             <h1 className='text-primary text-8xl   ml-[1%] sm:text-lg sm:ml-[12%] sm:m-1 lg:text-4xl lg:m-9 xl:text-5xl xl:m-12 2xl:text-6xl'>
                 Registration
             </h1>
+            {error && (
+                    <div className="p-4 mb-4 text-red-700 bg-red-100 border border-red-700">
+                        {error}
+                    </div>
+            )}
             <form onSubmit={handleSubmit} className='border border-primary shadow shadow-md  sm:text-sm lg:text-xl xl:text-2xl 2xl:text-3xl'>
                 <div className="m-3 npm start">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>

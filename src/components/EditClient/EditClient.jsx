@@ -6,9 +6,11 @@ import {UpdateClient} from "../../Redux/API/Update_Client"
 
 const EditClient = () => {
 
+
     const { id } = useParams();
     const ClientId = parseInt(id);
     const client = useSelector(state => state.ClientList.ClientsList.find(c => c.id === ClientId));
+    const error = useSelector(state => state.ClientList.error);
     const dispatch = useDispatch();
 
     const [inputValue, setInputValue] = useState({
@@ -94,6 +96,11 @@ const EditClient = () => {
         <Menu/>
         <form onSubmit={handleSubmit}  method="post" action="{% url 'formulaire_client' %}">
                 <h1 className="text-[--statistic-color] text-3xl m-3">Modifier les informations du client</h1>
+                {error && (
+                    <div className="p-4 mb-4 text-red-700 bg-red-100 border border-red-700">
+                        {error}
+                    </div>
+                )}
                 <div style={{ display: "block" }}>
                 <Select label="Categorie du compte" name="categorie_compte" value_1="Client" value_2="Supplier" choix1="Client" choix2="Supplier" id="Categorie_de_compte " value={inputValue.categorie_compte} onChange={handleChange}/>
 

@@ -58,20 +58,20 @@ const Facture_Vente_Info = () => {
                 </div>
                 <div className="md:flex">
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="ID : " API={client.id}/>
-                    <Info name="facture id : " API={client.name}/>
-                    <Info name="ligne de commande : " API={client.company.name}/>
-                    <Info name="client : " API={client.company.catchPhrase}/>
+                <Info name="ID : " API={clientInvoices.client}/>
+                    <Info name="facture id : " API={clientInvoices.facture_id}/>
+                    <Info name="ligne de commande : " API={clientInvoices.commande_ligne}/>
+                    <Info name="client : " API={clientInvoices.nom}/>
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Date de creation : " API={client.phone}/>
-                    <Info name="Date de comptabilisation : " API={client.username}/>
+                <Info name="Date de creation : " API={clientInvoices.date_creation}/>
+                    <Info name="Date de comptabilisation : " API={clientInvoices.date_comptabilisation}/>
                 </div>
                 </div>
 
                 <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    <Info name="Etat : " API={client.company.name}/>
+                    <Info name="Etat : " API={clientInvoices.non_payee}/>
                 </div>
 
                 </div>

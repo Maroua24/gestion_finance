@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 export const addClient = createAsyncThunk('posts/addClient',async (values) => {
     const token = Cookies.get('csrftoken');
-    return fetch("http://127.0.0.1:8000/api/clients/create/",{method:"POST",
+    const response = await fetch("http://127.0.0.1:8000/api/clients/create/",{method:"POST",
         headers:{
             Accept:"application/json", //I accept JSON format
             "Content-type":"application/json",// The content I'm sending is in JSON format.
@@ -39,5 +39,10 @@ export const addClient = createAsyncThunk('posts/addClient',async (values) => {
             statut: values.statut,
             est_vip: values.est_vip,
         })
-    }).then((res)=> res.json());
+    });
+    if (!response) {
+        const error = await response.json();
+        return error;
+    }
+    return await response.json();
 })

@@ -15,9 +15,9 @@ export const logIn = createAsyncThunk('posts/auth', async (values, { rejectWithV
         }),
     });
 
-    if (!response.ok) {
+    if (!response) {
         const error = await response.json();
-        return rejectWithValue(error);
+        return error;
     }
 
     const result = await response.json();

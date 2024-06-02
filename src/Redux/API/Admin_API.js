@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 export const AddUser = createAsyncThunk('posts/addUser',async (values) => {
     const token = Cookies.get('UserToken');
 
-    return fetch("http://127.0.0.1:8000/api/register/",{method:"POST",
+    const response = await  fetch("http://127.0.0.1:8000/api/register/",{method:"POST",
         headers:{
             Accept:"application/json", //I accept JSON format
             "Content-type":"application/json",// The content I'm sending is in JSON format.
@@ -15,5 +15,10 @@ export const AddUser = createAsyncThunk('posts/addUser',async (values) => {
             password : values.password
         })
 
-    }).then((res)=> res.json());
+    })
+    if (!response) {
+        const error = await response.json();
+        return error;
+    }
+    return await response.json();
 })

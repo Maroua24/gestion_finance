@@ -10,7 +10,7 @@ import PaimentReducer from './Paiement/PaiementSlice'
 import authReducer from './Log_in/Log_in_Slice'
 import AvoiresReducer from './Avoires/AvoiresSlice'
 import UsersReducer from './Admin/AdminSlice'
-
+import FactureReducer from './Facture/FacturesSlice'
 
 const rootReducer = combineReducers({
     ClientList : ClientReducer,
@@ -22,6 +22,7 @@ const rootReducer = combineReducers({
     authentication : authReducer,
     AvoiresReducerList : AvoiresReducer,
     UsersList:UsersReducer,
+    FactureList:FactureReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

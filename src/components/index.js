@@ -10,7 +10,8 @@ export { default as Dashboard } from "./Dashboard/Dashboard";
 export { default as Client } from "./Client/Client";
 export { default as AddClient } from "./AddClient/AddClient";
 export { default as EditClient} from './EditClient/EditClient';
-export { default as Client_info} from './Client_info/Client_info'
+export { default as Client_info} from './Client_info/Client_info';
+export {default as Client_History} from './Client_Historique/Client_Historique'
 
 
 export {default as Style} from "./Style/Style";

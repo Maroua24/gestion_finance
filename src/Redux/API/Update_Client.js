@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 export const UpdateClient = createAsyncThunk('posts/UpdateClient', async ({ClientId,inputValue}) => {
     const token = Cookies.get('UserToken');
 
-    try {
         const response = await fetch(`http://127.0.0.1:8000/api/clients/${ClientId}/update/`, {
             method: "PUT",
             headers: {
@@ -42,14 +41,9 @@ export const UpdateClient = createAsyncThunk('posts/UpdateClient', async ({Clien
                 Status: inputValue.Status
             })
         });
-
         if (!response) {
-            throw new Error('Failed to update client');
+            const error = await response.json();
+            return error;
         }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        throw new Error(error.message);
-    }
+        return await response.json();
 });
