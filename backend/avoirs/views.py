@@ -102,7 +102,7 @@ class RapportAvoirsVenteView(APIView):
             avoirs_data.append(avoir_data)
 
         # Envoi des données sous forme de JSON
-        return Response({ 'data': avoirs_data})
+        return Response( avoirs_data)
     
 class RapportAvoirsServiceView(APIView):
     def get(self, request, *args, **kwargs):
@@ -126,7 +126,7 @@ class RapportAvoirsServiceView(APIView):
             avoirs_data.append(avoir_data)
 
         # Envoi des données sous forme de JSON
-        return Response({ 'data': avoirs_data})
+        return Response(avoirs_data)
     
  
 class PDFAvoirView(APIView):

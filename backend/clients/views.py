@@ -62,7 +62,7 @@ class RapportClientsView(APIView):
             clients_data.append(client_data)
 
         # Envoi des données sous forme de JSON
-        return Response({ 'data': clients_data})
+        return Response( clients_data)
 
 class RapportClientsVIPView(APIView):
     def get(self, request, *args, **kwargs):
@@ -104,7 +104,7 @@ class RapportClientsVIPView(APIView):
             clients_data.append(client_data)
 
         # Envoi des données sous forme de JSON
-        return Response({ 'data': clients_data})
+        return Response( clients_data)
 
 
 class HistouriqueView(APIView):

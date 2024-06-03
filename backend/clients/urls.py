@@ -9,7 +9,7 @@ from .views import (
 ) 
 
 urlpatterns = [
-    path('clients/<int:pk>/listavoir/', AvoirsClientsAPIView.as_view(), name='client-listavoir'),
+    
     path('clients-vip/rapport/', RapportClientsView.as_view(), name='clients-VIP-rapport'),
     path('clients/rapport/', RapportClientsView.as_view(), name='clients-rapport'),
     path('clients/', ClientListView.as_view(), name='client-list'),
@@ -21,4 +21,6 @@ urlpatterns = [
     path('clients/<int:client_id>/factures/', FacturesClientAPIView.as_view(), name='factures_client_api'),
     path('clients/<int:client_id>/paiements/', PaiementHistoryView.as_view(), name='client_paiement_history'),
     path('clients/<int:client_id>/historique/', HistouriqueView.as_view(), name='client_history'),
+    path('clients/<int:pk>/listavoir/', AvoirsClientsAPIView.as_view(), name='client-listavoir'),
+
 ]

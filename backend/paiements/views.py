@@ -138,4 +138,4 @@ class RapportPaiementView(APIView):
             }
             paiements_data.append(paiement_dict)
 
-        return Response({ 'data': paiements_data}) 
+        return Response( paiements_data) 
