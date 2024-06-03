@@ -4,12 +4,11 @@ import { useEffect, useState } from 'react';
 
 const Client_Historique = () => {
 
-    const [Data, setData] = useState();
-    const [Historique, setHistorique] = useState();
+    
+    const [History, setHistory] = useState();
     const { id } = useParams();
     const Id = parseInt(id);
-
-    useEffect((Id) => {
+    useEffect(() => {
         const requestOptions = {
             method: "GET",
             redirect: "follow"
@@ -18,8 +17,8 @@ const Client_Historique = () => {
             .then((response) => response.text())
             .then((result) => {
                 result = JSON.parse(result)
-                setHistorique(result);
-                console.log(result)
+                setHistory(result);
+                // console.log(result)
                 // console.log(JSON.parse(result).id)
             }) //set  the data
 
@@ -34,7 +33,8 @@ return (
                 <b>Historique du client:</b>
             </h2>
             <div className="shadow-lg rounded-xl p-3 m-3  sm:text-[15px] md:text-sm lg:text-lg xl:text-2xl 2xl:text-4xl">
-                    
+                    <div>{History.factures}</div>
+                    <div>{History.paiements}</div>
             </div>
             </div>
         </Style>
