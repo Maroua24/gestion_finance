@@ -3,11 +3,11 @@ from .views import (AvoirDetailAndCreateAPIView,
                     AvoirListAPIView, 
                     AvoirVenteListAPIView, 
                     AvoirServiceListAPIView,
-                    RapportAvoirsVenteView ,
-                    RapportAvoirsServiceView ,
-                    AvoirDetail,
-                    AvoirServiceDetail,
-                    AvoirVenteDetail,
+                    RapportAvoirVenteView ,
+                    RapportAvoirServiceView ,
+                    AvoirDetailAPIView,
+                    AvoirServiceDetailAPIView,
+                    AvoirVenteDetailAPIView,
                     PDFAvoirView
                     
                     )
@@ -18,10 +18,10 @@ urlpatterns = [
     path('avoirs/', AvoirListAPIView.as_view(), name='avoirs-list'),
     path('avoirs/vente/', AvoirVenteListAPIView.as_view(), name='avoirs-vente-list'),
     path('avoirs/service/', AvoirServiceListAPIView.as_view(), name='avoirs-service-list'),
-    path('avoirs_vente/rapport/', RapportAvoirsVenteView.as_view(), name='avoirs-vente-rapport'),
-    path('avoirs_service/rapport/', RapportAvoirsServiceView.as_view(), name='avoirs-service-rapport'),
-    path('avoir/<int:pk>/', AvoirDetail.as_view(), name='avoir-detail'),
-    path('avoir_vente/<int:pk>/', AvoirVenteDetail.as_view(), name='avoir-vente-detail'),
-    path('avoir_service/<int:pk>/', AvoirServiceDetail.as_view(), name='avoir-service-detail'),
+    path('avoirs_vente/rapport/', RapportAvoirVenteView.as_view(), name='avoirs-vente-rapport'),
+    path('avoirs_service/rapport/', RapportAvoirServiceView.as_view(), name='avoirs-service-rapport'),
+    path('avoir/<int:pk>/', AvoirDetailAPIView.as_view(), name='avoir-detail'),
+    path('avoir_vente/<int:pk>/', AvoirVenteDetailAPIView.as_view(), name='avoir-vente-detail'),
+    path('avoir_service/<int:pk>/', AvoirServiceDetailAPIView.as_view(), name='avoir-service-detail'),
     
 ]

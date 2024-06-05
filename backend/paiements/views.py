@@ -9,7 +9,7 @@ from decimal import Decimal, InvalidOperation
 from rest_framework.generics import CreateAPIView
 from factures.serializers import FactureSerializer
 
-class ListePaiements(generics.ListAPIView):
+class ListePaiementsView(generics.ListAPIView):
     queryset = Paiement.objects.all()
     serializer_class = PaiementSerializer
 
@@ -21,7 +21,7 @@ class PaiementCreateView(APIView):
         facture = get_object_or_404(Facture, pk=pk)
         serializer = FactureSerializer(facture)
         data = serializer.data
-        data['facture_id'] = pk  # Ajout de l'ID de la facture aux données renvoyées
+        data['facture_id'] = pk 
         return Response(data, status=status.HTTP_200_OK)
     
     def post(self, request, pk):
@@ -33,7 +33,6 @@ class PaiementCreateView(APIView):
             est_annule = request.data.get('est_annule')
             mode_reglement = request.data.get('mode_reglement')
             commentaire = request.data.get('commentaire')
-            # Récupérer les champs spécifiques en fonction du mode de paiement
             payer_timbre = request.data.get('payer_timbre', False) if 'payer_timbre' in request.data else None
             veuillez_choisir_banque_cheque = request.data.get('veuillez_choisir_banque_cheque') if 'veuillez_choisir_banque_cheque' in request.data else None
             numero_cheque = request.data.get('numero_cheque') if 'numero_cheque' in request.data else None
@@ -42,9 +41,6 @@ class PaiementCreateView(APIView):
             cib = request.data.get('cib') if 'cib' in request.data else None
             numero_carte_cib = request.data.get('numero_carte_cib') if 'numero_carte_cib' in request.data else None
             preciser = request.data.get('preciser') if 'preciser' in request.data else None
-
-
-
 
             if etat == 'partiel':
                 montant = Decimal(facture.montant)
@@ -57,7 +53,6 @@ class PaiementCreateView(APIView):
                 except (TypeError, ValueError, InvalidOperation):
                     return Response({'error': 'Montant partiel invalide.'}, status=status.HTTP_400_BAD_REQUEST)
 
-                
                 if montant_partiel and montant_partiel <= montant:
                     montant_partiel = montant_partiel
                     reste_a_payer = montant - montant_partiel
@@ -104,16 +99,15 @@ class PaiementCreateView(APIView):
             return Response({'error': 'La facture est déjà payée.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class PaiementPartielDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Paiement.objects.all()
     serializer_class = PaiementSerializer
 
-class PaiementPartielList(generics.ListAPIView):
+class PaiementPartielListView(generics.ListAPIView):
     queryset = Paiement.objects.filter(etat='partiel')
     serializer_class = PaiementSerializer
 
-class PaiementCompletList(generics.ListAPIView):
+class PaiementCompletListView(generics.ListAPIView):
     queryset = Paiement.objects.filter(etat='complet')
     serializer_class = PaiementSerializer 
 
@@ -126,7 +120,7 @@ class RapportPaiementView(APIView):
             paiement_dict = {
                 'id_paiement': paiement.id_paiement,
                 'date_paiement': paiement.date_paiement.strftime('%Y-%m-%d'),
-                'facture': paiement.facture.facture_id,  # Supposons que Facture ait un champ id_facture
+                'facture': paiement.facture.facture_id,  
                 'montant': paiement.montant,
                 'montant_partiel': paiement.montant_partiel,
                 'creer_par': paiement.creer_par.username if paiement.creer_par else '',

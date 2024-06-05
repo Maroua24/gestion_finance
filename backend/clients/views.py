@@ -16,13 +16,10 @@ from paiements.models import Paiement
 from paiements.serializers import PaiementSerializer
 from rest_framework.views import APIView
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from clients.models import Client
 from avoirs.serializers import AvoirSerializer
 from avoirs.models import Avoir
 
-class RapportClientsView(APIView):
+class ClientsReportView(APIView):
     def get(self, request, *args, **kwargs):
         
         clients = Client.objects.all()
@@ -64,7 +61,7 @@ class RapportClientsView(APIView):
         # Envoi des données sous forme de JSON
         return Response( clients_data)
 
-class RapportClientsVIPView(APIView):
+class VIPClientsReportView(APIView):
     def get(self, request, *args, **kwargs):
         
         clients = Client.objects.filter(est_vip=True)
@@ -107,7 +104,7 @@ class RapportClientsVIPView(APIView):
         return Response( clients_data)
 
 
-class HistouriqueView(APIView):
+class HistoryView(APIView):
     def get(self, request, client_id):
         # Récupère toutes les factures du client
         factures = Facture.objects.filter(client_id=client_id)
@@ -124,7 +121,7 @@ class HistouriqueView(APIView):
         }
         return Response(data)
 
-class PaiementHistoryView(APIView):
+class PaymentHistoryView(APIView):
     def get(self, request, client_id):
         # Récupère toutes les factures du client
         factures = Facture.objects.filter(client_id=client_id)
@@ -215,7 +212,7 @@ class ClientDeleteView(DestroyAPIView):
     serializer_class = ClientSerializer
     lookup_field = 'pk'
 
-class VueListeClientsVIP(generics.ListAPIView):
+class VIPClientsListView(generics.ListAPIView):
     serializer_class = ClientSerializer
 
     def get_queryset(self):

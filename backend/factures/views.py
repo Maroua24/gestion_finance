@@ -3,29 +3,12 @@ from rest_framework.generics import ListAPIView,  CreateAPIView, RetrieveAPIView
 from rest_framework import generics
 from .models import Facture
 from .serializers import FactureSerializer , FactureAjoutSerializer
-from django.http import HttpResponse
-from reportlab.pdfgen import canvas
-from commandes.models import Commande
-from commandes.models import Commande_ligne
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter , A4
-from django.views.generic import View
-from django.http import  HttpResponse
-from .models import Facture
-from .serializers import FactureSerializer
-from rest_framework import generics
-from io import BytesIO
+
 from decimal import Decimal 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from clients.models import Client
-from io import BytesIO
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from factures.models import Facture
 from avoirs.serializers import AvoirSerializer
 from avoirs.models import Avoir
 
@@ -48,7 +31,6 @@ class RapportFacturesVenteView(APIView):
             }
             factures_data.append(facture_data)
 
-        # Envoi des données sous forme de JSON
         return Response(factures_data)
 
 class RapportFacturesServiceView(APIView):
@@ -71,7 +53,6 @@ class RapportFacturesServiceView(APIView):
             }
             factures_data.append(facture_data)
 
-        # Envoi des données sous forme de JSON
         return Response(factures_data)
 
 class RapportFacturesNonPayeeView(APIView):
@@ -94,7 +75,6 @@ class RapportFacturesNonPayeeView(APIView):
             }
             factures_data.append(facture_data)
 
-        # Envoi des données sous forme de JSON
         return Response(factures_data)
 
 
@@ -104,7 +84,6 @@ class PDFFactureView(APIView):
             facture = Facture.objects.get(id=id)
             commande_lignes = facture.commande_ligne.all()
 
-            # Préparation des données
             data = {
                 'id_facture': facture.facture_id,
                 'code_client': facture.client.code_client,
@@ -226,9 +205,7 @@ class AvoirsFacturesAPIView(ListAPIView):
     serializer_class = AvoirSerializer
 
     def get_queryset(self):
-        # Use 'pk' to match the URL pattern
         facture_id = self.kwargs['pk']
-        # Filtrer les avoirs en fonction de l'ID de la facture
         return Avoir.objects.filter(facture_id=facture_id)
 
     def list(self, request, *args, **kwargs):
@@ -237,15 +214,12 @@ class AvoirsFacturesAPIView(ListAPIView):
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
         else:
-            # Gérer le cas où aucun avoir n'est trouvé pour la facture
             return Response({"detail": "Aucun avoir trouvé pour cette facture."}, status=status.HTTP_404_NOT_FOUND)
 
 class FactureListView(ListAPIView):
-    
-    
     serializer_class = FactureSerializer
+
     def get_queryset(self):
-        # Exclure les factures qui ont un avoir
         return Facture.objects.filter(avoirs__isnull=True)
 
 class FactureVenteDetail(RetrieveAPIView):

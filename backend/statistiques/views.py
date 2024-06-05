@@ -5,14 +5,6 @@ from clients.models import Client
 from paiements.models import Paiement
 from avoirs.models import Avoir
 
-from django.http import HttpResponse
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
-from django.views import View
-
-from io import BytesIO
-
-
 
 class ClientStatistiques(APIView):
     def get(self, request):
