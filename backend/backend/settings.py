@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "produits",
     "paiements",
     "factures",
+    # "axes",
     "rest_framework",
     'corsheaders',
     'rest_framework_simplejwt',
@@ -174,8 +175,8 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=365),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=365),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
@@ -207,22 +208,18 @@ SIMPLE_JWT = {
 
 
 
-# Nombre maximal de tentatives de connexion avant le blocage
-AXES_FAILURE_LIMIT = 5
 
-# Bloquer automatiquement les utilisateurs après le nombre maximal d'échecs
-AXES_LOCK_OUT_AT_FAILURE = True
+# AXES_FAILURE_LIMIT = 5
 
-#spécifier un modèle personnalisé pour le verrouillage
-AXES_LOCKOUT_TEMPLATE = None
+# AXES_LOCK_OUT_AT_FAILURE = True
 
-#Backends d'authentification utilisés par Django
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  
-    'axes.backends.AxesBackend',  
-]
+# AXES_LOCKOUT_TEMPLATE = None
 
-# Autres configurations de sécurité recommandées
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',  
+#     'axes.backends.AxesBackend',  
+# ]
+
 # SECURE_SSL_REDIRECT = True
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True

@@ -73,6 +73,11 @@ class Client(models.Model):
         verbose_name = "client"
         verbose_name_plural = "clients"
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['nom', 'prenom'], name='unique_client_name')
+        ]
+
     def __str__(self): 
         return self.nom 
 
